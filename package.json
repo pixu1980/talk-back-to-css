@@ -1,6 +1,6 @@
 {
 	"name": "back-to-css",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"license": "MIT",
 	"private": true,
 	"scripts": {
@@ -31,7 +31,7 @@
 		"@biomejs/biome": "2.4.10",
 		"@parcel/transformer-inline-string": "2.16.4",
 		"@parcel/transformer-sass": "2.16.4",
-    "baseline-browser-mapping": "2.10.13",
+		"baseline-browser-mapping": "2.10.13",
 		"parcel": "2.16.4",
 		"prettier": "3.8.1",
 		"posthtml": "0.16.7",
