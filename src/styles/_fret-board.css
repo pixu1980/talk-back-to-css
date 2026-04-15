@@ -5,264 +5,291 @@
  */
 
 @layer fretboard {
-  fret-board-wrapper {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  }
+	fret-board-wrapper {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	}
 
-  fret-board {
-    --fret-board-bg: light-dark(#eee, #333);
-    --fret-board-fret-c: light-dark(#000, #fff);
-    --fret-board-fret-w: clamp(0.0625rem, 0.03125rem + 0.5cqi, 0.5rem);
-    --fret-board-string-c: light-dark(#0008, #fff8);
-    --fret-board-string-w: clamp(0.0625rem, 0.03125rem + 0.5cqi, 0.125rem);
+	fret-board {
+		--fret-board-bg: light-dark(#eee, #333);
+		--fret-board-fret-c: light-dark(#000, #fff);
+		--fret-board-fret-w: clamp(0.0625rem, 0.03125rem + 0.5cqi, 0.5rem);
+		--fret-board-string-c: light-dark(#0008, #fff8);
+		--fret-board-string-w: clamp(0.0625rem, 0.03125rem + 0.5cqi, 0.125rem);
 
-    /* private consts */
-    --fb--frets: attr(frets number, 4);
-    --fb--strings: attr(strings number, 6);
+		/* private consts */
+		--fb--frets: attr(frets number, 4);
+		--fb--strings: attr(strings number, 6);
 
-    aspect-ratio: 1 / 1;
-    background-color: var(--fret-board-bg);
-    border-radius: var(--fret-board-bdrs, 0.5rem);
-    box-sizing: border-box;
-    container-type: inline-size;
-    display: grid;
-    font-family: var(--fret-board-ff, inherit);
-    grid-template-columns: repeat(calc(var(--fb--strings) * 2), 1fr);
-    grid-template-rows:
-      var(--fret-board-top-row-h, 12%)
-      repeat(calc(var(--fb--frets)), 1fr)
-      var(--fret-board-bottom-row-h, 15%);
-    place-items: center;
+		aspect-ratio: 1 / 1;
+		background-color: var(--fret-board-bg);
+		border-radius: var(--fret-board-bdrs, 0.5rem);
+		box-sizing: border-box;
+		container-type: inline-size;
+		display: grid;
+		font-family: var(--fret-board-ff, inherit);
+		grid-template-columns: repeat(calc(var(--fb--strings) * 2), 1fr);
+		grid-template-rows:
+			var(--fret-board-top-row-h, 12%)
+			repeat(calc(var(--fb--frets)), 1fr)
+			var(--fret-board-bottom-row-h, 15%);
+		place-items: center;
 
-    /* Grid Lines (frets and strings) */
-    &::before {
-      background-color: var(--fret-board-fret-bg, #0000);
-      background-image:
-        linear-gradient(90deg, var(--fret-board-string-c) var(--fret-board-string-w), #0000 0 var(--fret-board-string-w)),
-        linear-gradient(180deg, var(--fret-board-fret-c) var(--fret-board-fret-w), #0000 0 var(--fret-board-fret-w));
-      background-position:
-        0 var(--fret-board-fret-w),
-        0 0;
-      background-repeat: repeat-x, repeat-y;
-      background-size:
-        calc(100% / (var(--fb--strings) - 1) - (var(--fret-board-string-w) / var(--fb--strings))) calc(100% - (2 * var(--fret-board-fret-w))),
-        100% calc(100% / var(--fb--frets) - (var(--fret-board-fret-w) / var(--fb--frets)));
-      box-shadow: 0 calc(0px - var(--fret-board-fret-bbsw, 1.5cqi)) 0 0 var(--fret-board-fret-c);
-      content: '';
-      display: block;
-      grid-area: 2 / 2 / calc(var(--fb--frets) + 2) / calc(var(--fb--strings) * 2);
-      height: 100%;
-      width: 100%;
-    }
-    /* Chord Name */
-    &::after {
-      color: var(--fret-board-chord-c, light-dark(#222, #fff));
-      content: attr(chord);
-      font-size: var(--fret-board-chord-fs, 7.5cqi);
-      font-weight: var(--fret-board-chord-fw, 500);
-      grid-column: 2 / span calc((var(--fb--strings) * 2) - 2);
-      grid-row: calc(var(--fb--frets) + 2);
-      text-align: center;
-      width: 100%;
-    }
+		/* Grid Lines (frets and strings) */
+		&::before {
+			background-color: var(--fret-board-fret-bg, #0000);
+			background-image:
+				linear-gradient(
+					90deg,
+					var(--fret-board-string-c) var(--fret-board-string-w),
+					#0000 0 var(--fret-board-string-w)
+				),
+				linear-gradient(
+					180deg,
+					var(--fret-board-fret-c) var(--fret-board-fret-w),
+					#0000 0 var(--fret-board-fret-w)
+				);
+			background-position:
+				0 var(--fret-board-fret-w),
+				0 0;
+			background-repeat: repeat-x, repeat-y;
+			background-size:
+				calc(
+					100% /
+					(var(--fb--strings) - 1) -
+					(var(--fret-board-string-w) / var(--fb--strings))
+				)
+				calc(100% - (2 * var(--fret-board-fret-w))),
+				100%
+				calc(
+					100% /
+					var(--fb--frets) -
+					(var(--fret-board-fret-w) / var(--fb--frets))
+				);
+			box-shadow: 0 calc(0px - var(--fret-board-fret-bbsw, 1.5cqi)) 0 0
+				var(--fret-board-fret-c);
+			content: "";
+			display: block;
+			grid-area:
+				2 / 2 / calc(var(--fb--frets) + 2) / calc(var(--fb--strings) * 2);
+			height: 100%;
+			width: 100%;
+		}
+		/* Chord Name */
+		&::after {
+			color: var(--fret-board-chord-c, light-dark(#222, #fff));
+			content: attr(chord);
+			font-size: var(--fret-board-chord-fs, 7.5cqi);
+			font-weight: var(--fret-board-chord-fw, 500);
+			grid-column: 2 / span calc((var(--fb--strings) * 2) - 2);
+			grid-row: calc(var(--fb--frets) + 2);
+			text-align: center;
+			width: 100%;
+		}
 
-    /* Fret Number (optional). Set <li value="[number]"> to set fret offset */
-    ol {
-      align-items: center;
-      display: grid;
-      font-size: var(--fret-board-fret-number-fs, 5cqi);
-      font-weight: var(--fret-board-fret-number-fw, 400);
-      grid-column: 1;
-      grid-row: 2 / span var(--fb--frets);
-      grid-template-rows: repeat(var(--fb--frets), 1fr);
-      height: 100%;
-      list-style-position: inside;
-      padding: 0;
-    }
-  }
+		/* Fret Number (optional). Set <li value="[number]"> to set fret offset */
+		ol {
+			align-items: center;
+			display: grid;
+			font-size: var(--fret-board-fret-number-fs, 5cqi);
+			font-weight: var(--fret-board-fret-number-fw, 400);
+			grid-column: 1;
+			grid-row: 2 / span var(--fb--frets);
+			grid-template-rows: repeat(var(--fb--frets), 1fr);
+			height: 100%;
+			list-style-position: inside;
+			padding: 0;
+		}
+	}
 
-  string-note {
-    --string-note-h: 12cqi;
-    --string-note-open-mute-h: 5cqi;
+	string-note {
+		--string-note-h: 12cqi;
+		--string-note-open-mute-h: 5cqi;
 
-    /* from attr() */
-    --barre: attr(barre number, 1);
-    --fret: attr(fret number, 0);
-    --string: attr(string number, 0);
+		/* from attr() */
+		--barre: attr(barre number, 1);
+		--fret: attr(fret number, 0);
+		--string: attr(string number, 0);
 
-    aspect-ratio: 1;
-    background-color: var(--string-note-bg, currentColor);
-    border-radius: 50%;
-    box-sizing: border-box;
-    display: grid;
-    grid-column: calc((var(--fb--strings) * 2) - (var(--string) * 2 - 1)) / span calc(var(--barre) * 2);
-    grid-row: calc(var(--fret) + 1);
-    height: var(--string-note-h);
-    isolation: isolate;
-    list-style: none;
-    place-content: center;
+		aspect-ratio: 1;
+		background-color: var(--string-note-bg, currentColor);
+		border-radius: 50%;
+		box-sizing: border-box;
+		display: grid;
+		grid-column:
+			calc((var(--fb--strings) * 2) - (var(--string) * 2 - 1)) / span
+			calc(var(--barre) * 2);
+		grid-row: calc(var(--fret) + 1);
+		height: var(--string-note-h);
+		isolation: isolate;
+		list-style: none;
+		place-content: center;
 
-    &::after {
-      color: var(--string-note-c, light-dark(#fff, #222));
-      content: attr(finger);
-      font-size: var(--string-note-fs, 7cqi);
-      font-weight: var(--string-note-fw, 500);
-      text-box: cap alphabetic;
-    }
-    &[barre] {
-      aspect-ratio: unset;
-      border-radius: var(--string-note-h);
-      opacity: var(--string-note-barre-o, 0.6);
-      width: 100%;
-    }
-    &[mute],
-    &[open] {
-      background-color: var(--string-note-mute-open-c, light-dark(#222, #fff));
-      height: var(--string-note-open-mute-h);
-      width: var(--string-note-open-mute-h);
-    }
-    &[mute] {
-      border-image: conic-gradient(var(--fret-board-bg) 0 0) 50% / calc(50% - 0.25cqi);
-      rotate: 45deg;
-    }
-    &[open] {
-      border-radius: 50%;
-      mask: radial-gradient(circle farthest-side at center, #0000 calc(100% - 1cqi), #000 calc(100% - 1cqi + 1px));
-    }
-  }
+		&::after {
+			color: var(--string-note-c, light-dark(#fff, #222));
+			content: attr(finger);
+			font-size: var(--string-note-fs, 7cqi);
+			font-weight: var(--string-note-fw, 500);
+			text-box: cap alphabetic;
+		}
+		&[barre] {
+			aspect-ratio: unset;
+			border-radius: var(--string-note-h);
+			opacity: var(--string-note-barre-o, 0.6);
+			width: 100%;
+		}
+		&[mute],
+		&[open] {
+			background-color: var(--string-note-mute-open-c, light-dark(#222, #fff));
+			height: var(--string-note-open-mute-h);
+			width: var(--string-note-open-mute-h);
+		}
+		&[mute] {
+			border-image:
+				conic-gradient(var(--fret-board-bg) 0 0) 50% / calc(50% - 0.25cqi);
+			rotate: 45deg;
+		}
+		&[open] {
+			border-radius: 50%;
+			mask: radial-gradient(
+				circle farthest-side at center,
+				#0000 calc(100% - 1cqi),
+				#000 calc(100% - 1cqi + 1px)
+			);
+		}
+	}
 
-  /* Variations */
-  [theme="blue"] {
-    --fret-board-bg: #00bcd4;
-    --fret-board-chord-c: #065863;
-    --fret-board-fret-bg: #009eb3;
-    --fret-board-fret-c: #1a4a50;
-    --fret-board-string-c: #f0f0f0;
-    --string-note-bg: #1a4a50;
-    --string-note-c: #fff;
-    --string-note-mute-open-c: #065863;
-  }
+	/* Variations */
+	[theme="blue"] {
+		--fret-board-bg: #00bcd4;
+		--fret-board-chord-c: #065863;
+		--fret-board-fret-bg: #009eb3;
+		--fret-board-fret-c: #1a4a50;
+		--fret-board-string-c: #f0f0f0;
+		--string-note-bg: #1a4a50;
+		--string-note-c: #fff;
+		--string-note-mute-open-c: #065863;
+	}
 
-  [theme="green"] {
-    --fret-board-bg: #4caf50;
-    --fret-board-chord-c: #1b5e20;
-    --fret-board-fret-bg: #388e3c;
-    --fret-board-fret-c: #1c4a1e;
-    --fret-board-string-c: #f0f0f0;
-    --string-note-bg: #1c4a1e;
-    --string-note-c: #fff;
-    --string-note-mute-open-c: #1b5e20;
-  }
+	[theme="green"] {
+		--fret-board-bg: #4caf50;
+		--fret-board-chord-c: #1b5e20;
+		--fret-board-fret-bg: #388e3c;
+		--fret-board-fret-c: #1c4a1e;
+		--fret-board-string-c: #f0f0f0;
+		--string-note-bg: #1c4a1e;
+		--string-note-c: #fff;
+		--string-note-mute-open-c: #1b5e20;
+	}
 
-  [theme="red"] {
-    --fret-board-bg: #e57373;
-    --fret-board-chord-c: #7f0000;
-    --fret-board-fret-bg: #bf4040;
-    --fret-board-fret-c: #962c2c;
-    --fret-board-string-c: #f0f0f0;
-    --string-note-bg: #6a1616;
-    --string-note-c: #fff;
-    --string-note-mute-open-c: #7f0000;
-  }
+	[theme="red"] {
+		--fret-board-bg: #e57373;
+		--fret-board-chord-c: #7f0000;
+		--fret-board-fret-bg: #bf4040;
+		--fret-board-fret-c: #962c2c;
+		--fret-board-string-c: #f0f0f0;
+		--string-note-bg: #6a1616;
+		--string-note-c: #fff;
+		--string-note-mute-open-c: #7f0000;
+	}
 
-  [theme="purple"] {
-    --fret-board-bg: #9575cd;
-    --fret-board-chord-c: #eeeafa;
-    --fret-board-fret-bg: #7e57c2;
-    --fret-board-fret-c: #3f2376;
-    --fret-board-string-c: #f0f0f0;
-    --string-note-bg: #3f2376;
-    --string-note-c: #fff;
-    --string-note-mute-open-c: #eeeafa;
-  }
+	[theme="purple"] {
+		--fret-board-bg: #9575cd;
+		--fret-board-chord-c: #eeeafa;
+		--fret-board-fret-bg: #7e57c2;
+		--fret-board-fret-c: #3f2376;
+		--fret-board-string-c: #f0f0f0;
+		--string-note-bg: #3f2376;
+		--string-note-c: #fff;
+		--string-note-mute-open-c: #eeeafa;
+	}
 
-  [theme="orange"] {
-    --fret-board-bg: #f6b655;
-    --fret-board-chord-c: #4e2c05;
-    --fret-board-fret-bg: #f2960d;
-    --fret-board-fret-c: #5c320a;
-    --fret-board-string-c: #f0f0f0;
-    --string-note-bg: #5c320a;
-    --string-note-c: #fff;
-    --string-note-mute-open-c: #4e2c05;
-  }
+	[theme="orange"] {
+		--fret-board-bg: #f6b655;
+		--fret-board-chord-c: #4e2c05;
+		--fret-board-fret-bg: #f2960d;
+		--fret-board-fret-c: #5c320a;
+		--fret-board-string-c: #f0f0f0;
+		--string-note-bg: #5c320a;
+		--string-note-c: #fff;
+		--string-note-mute-open-c: #4e2c05;
+	}
 
-  [theme="teal"] {
-    --fret-board-bg: #00897b;
-    --fret-board-chord-c: #e0f2f1;
-    --fret-board-fret-bg: #12a190;
-    --fret-board-fret-c: #004d40;
-    --fret-board-string-c: #f0f0f0;
-    --string-note-bg: #004d40;
-    --string-note-c: #fff;
-    --string-note-mute-open-c: #e0f2f1;
-  }
+	[theme="teal"] {
+		--fret-board-bg: #00897b;
+		--fret-board-chord-c: #e0f2f1;
+		--fret-board-fret-bg: #12a190;
+		--fret-board-fret-c: #004d40;
+		--fret-board-string-c: #f0f0f0;
+		--string-note-bg: #004d40;
+		--string-note-c: #fff;
+		--string-note-mute-open-c: #e0f2f1;
+	}
 
-  [theme="gold"] {
-    --fret-board-bg: #ffd54f;
-    --fret-board-chord-c: #533f03;
-    --fret-board-fret-bg: #f7d56e;
-    --fret-board-fret-c: #533f03;
-    --fret-board-string-c: #533f03;
-    --string-note-bg: #54450b;
-    --string-note-c: #fff;
-    --string-note-mute-open-c: #533f03;
-  }
+	[theme="gold"] {
+		--fret-board-bg: #ffd54f;
+		--fret-board-chord-c: #533f03;
+		--fret-board-fret-bg: #f7d56e;
+		--fret-board-fret-c: #533f03;
+		--fret-board-string-c: #533f03;
+		--string-note-bg: #54450b;
+		--string-note-c: #fff;
+		--string-note-mute-open-c: #533f03;
+	}
 
-  [theme="brown"] {
-    --fret-board-bg: #8d6e63;
-    --fret-board-chord-c: #efebe9;
-    --fret-board-fret-bg: #997466;
-    --fret-board-fret-c: #4e342e;
-    --fret-board-string-c: #f0f0f0;
-    --string-note-bg: #4e342e;
-    --string-note-c: #fff;
-    --string-note-mute-open-c: #efebe9;
-  }
+	[theme="brown"] {
+		--fret-board-bg: #8d6e63;
+		--fret-board-chord-c: #efebe9;
+		--fret-board-fret-bg: #997466;
+		--fret-board-fret-c: #4e342e;
+		--fret-board-string-c: #f0f0f0;
+		--string-note-bg: #4e342e;
+		--string-note-c: #fff;
+		--string-note-mute-open-c: #efebe9;
+	}
 
-  [theme="rose"] {
-    --fret-board-bg: #e57373;
-    --fret-board-chord-c: #ffebee;
-    --fret-board-fret-bg: #ef9a9a;
-    --fret-board-fret-c: #c62828;
-    --fret-board-string-c: #ffebee;
-    --string-note-bg: #c62828;
-    --string-note-c: #ffebee;
-    --string-note-mute-open-c: #ffebee;
-  }
+	[theme="rose"] {
+		--fret-board-bg: #e57373;
+		--fret-board-chord-c: #ffebee;
+		--fret-board-fret-bg: #ef9a9a;
+		--fret-board-fret-c: #c62828;
+		--fret-board-string-c: #ffebee;
+		--string-note-bg: #c62828;
+		--string-note-c: #ffebee;
+		--string-note-mute-open-c: #ffebee;
+	}
 
-  [theme="amber"] {
-    --fret-board-bg: #ffb74d;
-    --fret-board-chord-c: #4e342e;
-    --fret-board-fret-bg: #ffcc80;
-    --fret-board-fret-c: #e65100;
-    --fret-board-string-c: #e65100;
-    --string-note-bg: #e65100;
-    --string-note-c: #fff3e0;
-    --string-note-mute-open-c: #4e342e;
-  }
+	[theme="amber"] {
+		--fret-board-bg: #ffb74d;
+		--fret-board-chord-c: #4e342e;
+		--fret-board-fret-bg: #ffcc80;
+		--fret-board-fret-c: #e65100;
+		--fret-board-string-c: #e65100;
+		--string-note-bg: #e65100;
+		--string-note-c: #fff3e0;
+		--string-note-mute-open-c: #4e342e;
+	}
 
-  [theme="mint"] {
-    --fret-board-bg: #81c784;
-    --fret-board-chord-c: #1b5e20;
-    --fret-board-fret-bg: #a5d6a7;
-    --fret-board-fret-c: #1b5e20;
-    --fret-board-string-c: #e8f5e9;
-    --string-note-bg: #2e7d32;
-    --string-note-c: #e8f5e9;
-    --string-note-mute-open-c: #1b5e20;
-  }
+	[theme="mint"] {
+		--fret-board-bg: #81c784;
+		--fret-board-chord-c: #1b5e20;
+		--fret-board-fret-bg: #a5d6a7;
+		--fret-board-fret-c: #1b5e20;
+		--fret-board-string-c: #e8f5e9;
+		--string-note-bg: #2e7d32;
+		--string-note-c: #e8f5e9;
+		--string-note-mute-open-c: #1b5e20;
+	}
 
-  [theme="slate"] {
-    --fret-board-bg: #78909c;
-    --fret-board-chord-c: #eceff1;
-    --fret-board-fret-bg: #90a4ae;
-    --fret-board-fret-c: #263238;
-    --fret-board-string-c: #eceff1;
-    --string-note-bg: #455a64;
-    --string-note-c: #eceff1;
-    --string-note-mute-open-c: #eceff1;
-  }
+	[theme="slate"] {
+		--fret-board-bg: #78909c;
+		--fret-board-chord-c: #eceff1;
+		--fret-board-fret-bg: #90a4ae;
+		--fret-board-fret-c: #263238;
+		--fret-board-string-c: #eceff1;
+		--string-note-bg: #455a64;
+		--string-note-c: #eceff1;
+		--string-note-mute-open-c: #eceff1;
+	}
 }

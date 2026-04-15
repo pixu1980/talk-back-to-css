@@ -67,7 +67,8 @@
 					var(--flux-capacitor--light),
 					var(--flux-capacitor--surface),
 					var(--flux-capacitor--surface)
-				), var(--flux-capacitor--color-surface);
+				),
+				var(--flux-capacitor--color-surface);
 			box-shadow: 0 0 10vmin hsla(0, 0%, 0%, 0.5);
 			width: 60vmin;
 			aspect-ratio: 3 / 3.8;
@@ -205,7 +206,8 @@
 							to bottom,
 							rgba(255, 255, 255, 0.5) 40%,
 							rgba(0, 0, 0, 0.2)
-						), var(--flux-capacitor--color-secondary);
+						),
+						var(--flux-capacitor--color-secondary);
 					clip-path: polygon(
 						50% 0%,
 						100% 25%,
@@ -225,7 +227,8 @@
 							at center,
 							rgba(255, 255, 255, 0.6) 40%,
 							rgba(0, 0, 0, 0.2)
-						), var(--flux-capacitor--color-secondary);
+						),
+						var(--flux-capacitor--color-secondary);
 					border-radius: 50%;
 					box-shadow: 0 0.1vmin 0.1vmin rgba(0, 0, 0, 0.4);
 				}
@@ -285,7 +288,8 @@
 							1vmin 2vmin at 70% 50%,
 							rgba(255, 255, 255, 0.25),
 							transparent
-						), linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 30%),
+						),
+						linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 30%),
 						linear-gradient(
 							to right,
 							rgba(0, 0, 0, 0.3),
@@ -296,7 +300,8 @@
 							10vmin at 50% 0%,
 							transparent 40%,
 							rgba(0, 0, 0, 0.5) 60%
-						), var(--flux-capacitor--color-warn-container);
+						),
+						var(--flux-capacitor--color-warn-container);
 				}
 
 				.plug-cable {
@@ -323,7 +328,8 @@
 								rgba(0, 0, 0, 0.5),
 								transparent 60%,
 								rgba(0, 0, 0, 0.5)
-							), var(--flux-capacitor--color-tertiary-container);
+							),
+							var(--flux-capacitor--color-tertiary-container);
 						border-radius: 2vmin;
 					}
 
@@ -346,7 +352,8 @@
 								transparent 50%,
 								transparent 60%,
 								rgba(0, 0, 0, 0.5)
-							), var(--flux-capacitor--color-tertiary-container);
+							),
+							var(--flux-capacitor--color-tertiary-container);
 					}
 
 					&:before {
@@ -375,7 +382,8 @@
 						transparent 88%,
 						rgba(0, 0, 0, 0.3) 88%,
 						transparent 95%
-					), var(--flux-capacitor--color-secondary);
+					),
+					var(--flux-capacitor--color-secondary);
 				box-shadow:
 					0 0 0.3vmin 0vmin rgba(0, 0, 0, 0.3),
 					0 0 4vmin 0.5vmin rgba(0, 0, 0, 0.6);
@@ -510,7 +518,8 @@
 							transparent 90%,
 							rgba(0, 0, 0, 0.3) 90%,
 							transparent 98%
-						), var(--flux-capacitor--color-secondary);
+						),
+						var(--flux-capacitor--color-secondary);
 					&:after {
 						width: 22vmin;
 					}

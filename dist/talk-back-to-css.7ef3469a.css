@@ -11645,27 +11645,27 @@
   }
 
   .reveal .controls .controls-arrow:before {
-    transform: translate(.5em)translateY(1.55em)rotate(45deg);
+    transform: translate(.5em) translateY(1.55em) rotate(45deg);
   }
 
   .reveal .controls .controls-arrow:after {
-    transform: translate(.5em)translateY(1.55em)rotate(-45deg);
+    transform: translate(.5em) translateY(1.55em) rotate(-45deg);
   }
 
   .reveal .controls .controls-arrow:hover:before {
-    transform: translate(.5em)translateY(1.55em)rotate(40deg);
+    transform: translate(.5em) translateY(1.55em) rotate(40deg);
   }
 
   .reveal .controls .controls-arrow:hover:after {
-    transform: translate(.5em)translateY(1.55em)rotate(-40deg);
+    transform: translate(.5em) translateY(1.55em) rotate(-40deg);
   }
 
   .reveal .controls .controls-arrow:active:before {
-    transform: translate(.5em)translateY(1.55em)rotate(36deg);
+    transform: translate(.5em) translateY(1.55em) rotate(36deg);
   }
 
   .reveal .controls .controls-arrow:active:after {
-    transform: translate(.5em)translateY(1.55em)rotate(-36deg);
+    transform: translate(.5em) translateY(1.55em) rotate(-36deg);
   }
 
   .reveal .controls .navigate-left {
@@ -11804,11 +11804,11 @@
   }
 
   .reveal.no-hover .controls .controls-arrow:hover:before, .reveal.no-hover .controls .controls-arrow:active:before {
-    transform: translate(.5em)translateY(1.55em)rotate(45deg);
+    transform: translate(.5em) translateY(1.55em) rotate(45deg);
   }
 
   .reveal.no-hover .controls .controls-arrow:hover:after, .reveal.no-hover .controls .controls-arrow:active:after {
-    transform: translate(.5em)translateY(1.55em)rotate(-45deg);
+    transform: translate(.5em) translateY(1.55em) rotate(-45deg);
   }
 
   @media screen and (width >= 500px) {
@@ -11844,7 +11844,7 @@
     }
 
     .reveal .controls[data-controls-layout="edges"] .navigate-down {
-      bottom: calc(var(--r-controls-spacing)  - 1.4em + .3em);
+      bottom: calc(var(--r-controls-spacing) - 1.4em + .3em);
       margin-left: -1.8em;
       left: 50%;
     }
@@ -12033,19 +12033,19 @@
   }
 
   .reveal .slides > section[data-transition="default"].past, .reveal .slides > section[data-transition~="default-out"].past, .reveal.default .slides > section:not([data-transition]).past {
-    transform: translate3d(-100%, 0, 0)rotateY(-90deg)translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
   }
 
   .reveal .slides > section[data-transition="default"].future, .reveal .slides > section[data-transition~="default-in"].future, .reveal.default .slides > section:not([data-transition]).future {
-    transform: translate3d(100%, 0, 0)rotateY(90deg)translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
   }
 
   .reveal .slides > section > section[data-transition="default"].past, .reveal .slides > section > section[data-transition~="default-out"].past, .reveal.default .slides > section > section:not([data-transition]).past {
-    transform: translate3d(0, -300px, 0)rotateX(70deg)translate3d(0, -300px, 0);
+    transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0);
   }
 
   .reveal .slides > section > section[data-transition="default"].future, .reveal .slides > section > section[data-transition~="default-in"].future, .reveal.default .slides > section > section:not([data-transition]).future {
-    transform: translate3d(0, 300px, 0)rotateX(-70deg)translate3d(0, 300px, 0);
+    transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0);
   }
 
   .reveal .slides section[data-transition="convex"].stack, .reveal.convex .slides section.stack {
@@ -12053,19 +12053,19 @@
   }
 
   .reveal .slides > section[data-transition="convex"].past, .reveal .slides > section[data-transition~="convex-out"].past, .reveal.convex .slides > section:not([data-transition]).past {
-    transform: translate3d(-100%, 0, 0)rotateY(-90deg)translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
   }
 
   .reveal .slides > section[data-transition="convex"].future, .reveal .slides > section[data-transition~="convex-in"].future, .reveal.convex .slides > section:not([data-transition]).future {
-    transform: translate3d(100%, 0, 0)rotateY(90deg)translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
   }
 
   .reveal .slides > section > section[data-transition="convex"].past, .reveal .slides > section > section[data-transition~="convex-out"].past, .reveal.convex .slides > section > section:not([data-transition]).past {
-    transform: translate3d(0, -300px, 0)rotateX(70deg)translate3d(0, -300px, 0);
+    transform: translate3d(0, -300px, 0) rotateX(70deg) translate3d(0, -300px, 0);
   }
 
   .reveal .slides > section > section[data-transition="convex"].future, .reveal .slides > section > section[data-transition~="convex-in"].future, .reveal.convex .slides > section > section:not([data-transition]).future {
-    transform: translate3d(0, 300px, 0)rotateX(-70deg)translate3d(0, 300px, 0);
+    transform: translate3d(0, 300px, 0) rotateX(-70deg) translate3d(0, 300px, 0);
   }
 
   .reveal .slides section[data-transition="concave"].stack, .reveal.concave .slides section.stack {
@@ -12073,19 +12073,19 @@
   }
 
   .reveal .slides > section[data-transition="concave"].past, .reveal .slides > section[data-transition~="concave-out"].past, .reveal.concave .slides > section:not([data-transition]).past {
-    transform: translate3d(-100%, 0, 0)rotateY(90deg)translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
   }
 
   .reveal .slides > section[data-transition="concave"].future, .reveal .slides > section[data-transition~="concave-in"].future, .reveal.concave .slides > section:not([data-transition]).future {
-    transform: translate3d(100%, 0, 0)rotateY(-90deg)translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0);
   }
 
   .reveal .slides > section > section[data-transition="concave"].past, .reveal .slides > section > section[data-transition~="concave-out"].past, .reveal.concave .slides > section > section:not([data-transition]).past {
-    transform: translate3d(0, -80%, 0)rotateX(-70deg)translate3d(0, -80%, 0);
+    transform: translate3d(0, -80%, 0) rotateX(-70deg) translate3d(0, -80%, 0);
   }
 
   .reveal .slides > section > section[data-transition="concave"].future, .reveal .slides > section > section[data-transition~="concave-in"].future, .reveal.concave .slides > section > section:not([data-transition]).future {
-    transform: translate3d(0, 80%, 0)rotateX(70deg)translate3d(0, 80%, 0);
+    transform: translate3d(0, 80%, 0) rotateX(70deg) translate3d(0, 80%, 0);
   }
 
   .reveal .slides section[data-transition="zoom"], .reveal.zoom .slides section:not([data-transition]) {
@@ -12150,7 +12150,7 @@
     position: absolute;
     bottom: 0;
     left: 5%;
-    transform: translateZ(-90px)rotateX(65deg);
+    transform: translateZ(-90px) rotateX(65deg);
     box-shadow: 0 95px 25px #0003;
   }
 
@@ -12161,22 +12161,22 @@
 
   .reveal.cube .slides > section.past {
     transform-origin: 100% 0;
-    transform: translate3d(-100%, 0, 0)rotateY(-90deg);
+    transform: translate3d(-100%, 0, 0) rotateY(-90deg);
   }
 
   .reveal.cube .slides > section.future {
     transform-origin: 0 0;
-    transform: translate3d(100%, 0, 0)rotateY(90deg);
+    transform: translate3d(100%, 0, 0) rotateY(90deg);
   }
 
   .reveal.cube .slides > section > section.past {
     transform-origin: 0 100%;
-    transform: translate3d(0, -100%, 0)rotateX(90deg);
+    transform: translate3d(0, -100%, 0) rotateX(90deg);
   }
 
   .reveal.cube .slides > section > section.future {
     transform-origin: 0 0;
-    transform: translate3d(0, 100%, 0)rotateX(-90deg);
+    transform: translate3d(0, 100%, 0) rotateX(-90deg);
   }
 
   .reveal.page .slides {
@@ -12218,7 +12218,7 @@
     position: absolute;
     bottom: 0;
     left: 5%;
-    transform: translateZ(-90px)rotateX(65deg);
+    transform: translateZ(-90px) rotateX(65deg);
     box-shadow: 0 95px 25px #0003;
   }
 
@@ -12229,7 +12229,7 @@
 
   .reveal.page .slides > section.past {
     transform-origin: 0 0;
-    transform: translate3d(-40%, 0, 0)rotateY(-80deg);
+    transform: translate3d(-40%, 0, 0) rotateY(-80deg);
   }
 
   .reveal.page .slides > section.future {
@@ -12239,7 +12239,7 @@
 
   .reveal.page .slides > section > section.past {
     transform-origin: 0 0;
-    transform: translate3d(0, -40%, 0)rotateX(80deg);
+    transform: translate3d(0, -40%, 0) rotateX(80deg);
   }
 
   .reveal.page .slides > section > section.future {
@@ -12391,42 +12391,42 @@
 
   .reveal[data-background-transition="convex"] > .backgrounds .slide-background.past:not([data-background-transition]), .reveal > .backgrounds .slide-background.past[data-background-transition="convex"] {
     opacity: 0;
-    transform: translate3d(-100%, 0, 0)rotateY(-90deg)translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
   }
 
   .reveal[data-background-transition="convex"] > .backgrounds .slide-background.future:not([data-background-transition]), .reveal > .backgrounds .slide-background.future[data-background-transition="convex"] {
     opacity: 0;
-    transform: translate3d(100%, 0, 0)rotateY(90deg)translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0) rotateY(90deg) translate3d(100%, 0, 0);
   }
 
   .reveal[data-background-transition="convex"] > .backgrounds .slide-background > .slide-background.past:not([data-background-transition]), .reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition="convex"] {
     opacity: 0;
-    transform: translate3d(0, -100%, 0)rotateX(90deg)translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0) rotateX(90deg) translate3d(0, -100%, 0);
   }
 
   .reveal[data-background-transition="convex"] > .backgrounds .slide-background > .slide-background.future:not([data-background-transition]), .reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition="convex"] {
     opacity: 0;
-    transform: translate3d(0, 100%, 0)rotateX(-90deg)translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0) rotateX(-90deg) translate3d(0, 100%, 0);
   }
 
   .reveal[data-background-transition="concave"] > .backgrounds .slide-background.past:not([data-background-transition]), .reveal > .backgrounds .slide-background.past[data-background-transition="concave"] {
     opacity: 0;
-    transform: translate3d(-100%, 0, 0)rotateY(90deg)translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
   }
 
   .reveal[data-background-transition="concave"] > .backgrounds .slide-background.future:not([data-background-transition]), .reveal > .backgrounds .slide-background.future[data-background-transition="concave"] {
     opacity: 0;
-    transform: translate3d(100%, 0, 0)rotateY(-90deg)translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0) rotateY(-90deg) translate3d(100%, 0, 0);
   }
 
   .reveal[data-background-transition="concave"] > .backgrounds .slide-background > .slide-background.past:not([data-background-transition]), .reveal > .backgrounds .slide-background > .slide-background.past[data-background-transition="concave"] {
     opacity: 0;
-    transform: translate3d(0, -100%, 0)rotateX(-90deg)translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0) rotateX(-90deg) translate3d(0, -100%, 0);
   }
 
   .reveal[data-background-transition="concave"] > .backgrounds .slide-background > .slide-background.future:not([data-background-transition]), .reveal > .backgrounds .slide-background > .slide-background.future[data-background-transition="concave"] {
     opacity: 0;
-    transform: translate3d(0, 100%, 0)rotateX(90deg)translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0) rotateX(90deg) translate3d(0, 100%, 0);
   }
 
   .reveal[data-background-transition="zoom"] > .backgrounds .slide-background:not([data-background-transition]), .reveal > .backgrounds .slide-background[data-background-transition="zoom"] {
@@ -12591,7 +12591,7 @@
     right: var(--r-overlay-margin);
     bottom: var(--r-overlay-margin);
     left: var(--r-overlay-margin);
-    border-radius: min(var(--r-overlay-margin), 6px);
+    border-radius: min(var(--r-overlay-margin),6px);
     z-index: 99;
     backdrop-filter: blur(10px);
     color: #fff;
@@ -12879,7 +12879,7 @@
 
   .reveal .roll:hover span {
     background: #00000080;
-    transform: translateZ(-45px)rotateX(90deg);
+    transform: translateZ(-45px) rotateX(90deg);
   }
 
   .reveal .roll span:after {
@@ -12891,7 +12891,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    transform: translate3d(0, 110%, 0)rotateX(-90deg);
+    transform: translate3d(0, 110%, 0) rotateX(-90deg);
   }
 
   .reveal aside.notes {
@@ -13112,7 +13112,7 @@
 
   .reveal-viewport.reveal-scroll .scroll-page {
     width: 100%;
-    height: calc(var(--page-height)  + var(--page-scroll-padding));
+    height: calc(var(--page-height) + var(--page-scroll-padding));
     z-index: 1;
     position: relative;
     overflow: visible;
@@ -13138,7 +13138,7 @@
     width: var(--slide-width) !important;
     height: var(--slide-height) !important;
     opacity: 1 !important;
-    transform: scale(var(--slide-scale)) translate(-50%, -50%) !important;
+    transform: scale(var(--slide-scale)) translate(-50%,-50%) !important;
     transform-style: flat !important;
     transform-origin: 0 0 !important;
     display: block !important;
@@ -13196,7 +13196,7 @@
 
   .reveal-viewport.reveal-scroll .scrollbar .scrollbar-inner {
     width: var(--r-scrollbar-width);
-    height: calc(var(--viewport-height)  - var(--r-controls-spacing) * 2);
+    height: calc(var(--viewport-height) - var(--r-controls-spacing) * 2);
     right: var(--r-controls-spacing);
     border-radius: var(--r-scrollbar-width);
     z-index: 10;
@@ -13209,7 +13209,7 @@
     width: var(--r-scrollbar-width);
     height: var(--r-scrollbar-width);
     border-radius: var(--r-scrollbar-width);
-    background-color: rgba(var(--r-overlay-element-bg-color), 1);
+    background-color: rgba(var(--r-overlay-element-bg-color),1);
     z-index: 11;
     transition: background-color .2s;
     position: absolute;
@@ -13218,9 +13218,9 @@
   }
 
   .reveal-viewport.reveal-scroll .scrollbar .scrollbar-slide {
-    background-color: rgba(var(--r-overlay-element-bg-color), .2);
+    background-color: rgba(var(--r-overlay-element-bg-color),.2);
     width: 100%;
-    box-shadow: 0 0 0 1px rgba(var(--r-overlay-element-fg-color), .1);
+    box-shadow: 0 0 0 1px rgba(var(--r-overlay-element-fg-color),.1);
     border-radius: var(--r-scrollbar-width);
     transition: background-color .2s;
     position: absolute;
@@ -13238,7 +13238,7 @@
   }
 
   .reveal-viewport.reveal-scroll .scrollbar .scrollbar-slide:hover, .reveal-viewport.reveal-scroll .scrollbar .scrollbar-slide.active {
-    background-color: rgba(var(--r-overlay-element-bg-color), .4);
+    background-color: rgba(var(--r-overlay-element-bg-color),.4);
   }
 
   .reveal-viewport.reveal-scroll .scrollbar .scrollbar-trigger {
@@ -13248,7 +13248,7 @@
   }
 
   .reveal-viewport.reveal-scroll .scrollbar .scrollbar-slide.active.has-triggers {
-    background-color: rgba(var(--r-overlay-element-bg-color), .4);
+    background-color: rgba(var(--r-overlay-element-bg-color),.4);
     z-index: 10;
   }
 
@@ -13256,7 +13256,7 @@
     content: "";
     width: var(--r-scrollbar-trigger-size);
     height: var(--r-scrollbar-trigger-size);
-    background-color: rgba(var(--r-overlay-element-bg-color), 1);
+    background-color: rgba(var(--r-overlay-element-bg-color),1);
     opacity: .4;
     border-radius: 20px;
     transition: transform .2s, opacity .2s;
@@ -13272,7 +13272,7 @@
 
   .reveal-viewport.reveal-scroll .scrollbar .scrollbar-slide.active .scrollbar-trigger ~ .scrollbar-trigger.active:after {
     transform: translate(calc(var(--r-scrollbar-width) * -2));
-    background-color: rgba(var(--r-overlay-element-bg-color), 1);
+    background-color: rgba(var(--r-overlay-element-bg-color),1);
   }
 
   html.reveal-print * {
@@ -14624,7 +14624,7 @@
       --input-range--thumb--background-color: var(--color-yellow-400);
       --input-range--thumb--border: .1rem solid var(--color-black-300);
       --input-range--thumb--border-radius: .2rem;
-      --input-range--thumb--margin-top: calc(var(--input-range--thumb--height)  - var(--input-range--track--height) / -2);
+      --input-range--thumb--margin-top: calc(var(--input-range--thumb--height) - var(--input-range--track--height) / -2);
       --input-range--thumb--focus--box-shadow: 0 0 .7rem .3rem #0065c4;
     }
 
@@ -15411,7 +15411,14 @@
 
     & .outer {
       background: var(--bttf--gray--400);
-      background: linear-gradient(74deg, var(--bttf--gray--400) 13%, var(--bttf--gray--100) 24%, var(--bttf--gray--400) 37%, var(--bttf--gray--200) 47%, var(--bttf--gray--500) 62%, var(--bttf--gray--300) 79%, var(--bttf--gray--400) 100%);
+      background: linear-gradient(74deg,
+				var(--bttf--gray--400) 13%,
+				var(--bttf--gray--100) 24%,
+				var(--bttf--gray--400) 37%,
+				var(--bttf--gray--200) 47%,
+				var(--bttf--gray--500) 62%,
+				var(--bttf--gray--300) 79%,
+				var(--bttf--gray--400) 100%);
       box-sizing: border-box;
       border: 1px solid #000;
       min-height: 180px;
@@ -15674,7 +15681,10 @@
 
 @layer btf-inputs {
   :root {
-    --btf-input-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    --btf-input-bg: linear-gradient(135deg,
+			#1a1a2e 0%,
+			#16213e 50%,
+			#0f3460 100%);
     --btf-input-border: #00f5ff;
     --btf-input-border-glow: #00f5ff66;
     --btf-input-text: #e0e6ed;
@@ -15705,7 +15715,8 @@
       cursor: pointer;
       text-transform: uppercase;
       letter-spacing: .05em;
-      box-shadow: 0 0 8px var(--btf-input-border-glow), inset 0 1px 0 #ffffff1a;
+      box-shadow: 0 0 8px var(--btf-input-border-glow),
+				inset 0 1px 0 #ffffff1a;
       background: linear-gradient(#2a2a4a 0%, #1a1a2e 100%);
       font-size: .75rem;
       font-weight: 600;
@@ -15726,13 +15737,16 @@
       }
 
       &:hover {
-        box-shadow: 0 0 15px var(--btf-input-border-glow), 0 0 30px #00f5ff33, inset 0 1px 0 #ffffff26;
+        box-shadow: 0 0 15px var(--btf-input-border-glow),
+					0 0 30px #00f5ff33,
+					inset 0 1px 0 #ffffff26;
         border-color: #00f5ff;
         transform: translateY(-1px);
       }
 
       &:active {
-        box-shadow: 0 0 5px var(--btf-input-border-glow), inset 0 2px 4px #0000004d;
+        box-shadow: 0 0 5px var(--btf-input-border-glow),
+					inset 0 2px 4px #0000004d;
         transform: translateY(0);
       }
 
@@ -15757,7 +15771,8 @@
       width: 100%;
       min-width: 120px;
       height: 8px;
-      box-shadow: inset 0 2px 4px #00000080, 0 0 6px var(--btf-input-border-glow);
+      box-shadow: inset 0 2px 4px #00000080,
+				0 0 6px var(--btf-input-border-glow);
       background: linear-gradient(90deg, #1a1a2e, #2a2a4a);
       border-radius: 4px;
 
@@ -15800,15 +15815,19 @@
       appearance: none;
       border: 1px solid var(--btf-input-border);
       border-radius: var(--btf-input-radius);
-      padding: var(--btf-input-padding-y) calc(var(--btf-input-padding-x)  + 1.5rem) var(--btf-input-padding-y) var(--btf-input-padding-x);
+      padding: var(--btf-input-padding-y)
+				calc(var(--btf-input-padding-x) + 1.5rem) var(--btf-input-padding-y)
+				var(--btf-input-padding-x);
       color: var(--btf-input-text);
       cursor: pointer;
-      box-shadow: 0 0 8px var(--btf-input-border-glow), inset 0 1px 0 #ffffff1a;
+      box-shadow: 0 0 8px var(--btf-input-border-glow),
+				inset 0 1px 0 #ffffff1a;
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300f5ff' d='M6 8L1 3h10z'/%3E%3C/svg%3E") right .75rem center no-repeat;
       min-width: 120px;
 
       &:hover {
-        box-shadow: 0 0 15px var(--btf-input-border-glow), 0 0 30px #00f5ff33;
+        box-shadow: 0 0 15px var(--btf-input-border-glow),
+					0 0 30px #00f5ff33;
         border-color: #00f5ff;
       }
 
@@ -15832,7 +15851,8 @@
       padding: var(--btf-input-padding-y) var(--btf-input-padding-x);
       color: #00f5ff;
       letter-spacing: .1em;
-      box-shadow: inset 0 2px 8px #0009, 0 0 6px var(--btf-input-border-glow);
+      box-shadow: inset 0 2px 8px #0009,
+				0 0 6px var(--btf-input-border-glow);
       text-shadow: 0 0 8px #00f5ff99;
       background: linear-gradient(#0a0a1a 0%, #1a1a2e 100%);
       font-family: Digital Numbers, Courier New, monospace;
@@ -15867,7 +15887,8 @@
       cursor: pointer;
       width: 22px;
       height: 22px;
-      box-shadow: inset 0 2px 4px #00000080, 0 0 6px var(--btf-input-border-glow);
+      box-shadow: inset 0 2px 4px #00000080,
+				0 0 6px var(--btf-input-border-glow);
       background: linear-gradient(#0a0a1a 0%, #1a1a2e 100%);
       border-radius: 4px;
       transition: all .2s;
@@ -15907,7 +15928,8 @@
       cursor: pointer;
       width: 22px;
       height: 22px;
-      box-shadow: inset 0 2px 4px #00000080, 0 0 6px var(--btf-input-border-glow);
+      box-shadow: inset 0 2px 4px #00000080,
+				0 0 6px var(--btf-input-border-glow);
       background: linear-gradient(#0a0a1a 0%, #1a1a2e 100%);
       border-radius: 50%;
       transition: all .2s;
@@ -16005,15 +16027,21 @@
 
 @layer flux-capacitor {
   @property --flux-capacitor--deg {
-    syntax: "<angle>"; inherits: true; initial-value: 0deg;
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
   }
 
   @property --flux-capacitor--ratio-pos {
-    syntax: "<number>"; inherits: true; initial-value: 0;
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
   }
 
   @property --flux-capacitor--ratio-size {
-    syntax: "<number>"; inherits: true; initial-value: 0;
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
   }
 
   flux-capacitor {
@@ -16045,7 +16073,17 @@
     & .case {
       --flux-capacitor--light: #fff9;
       --flux-capacitor--surface: transparent;
-      background: conic-gradient(var(--flux-capacitor--surface), var(--flux-capacitor--light), var(--flux-capacitor--surface), var(--flux-capacitor--light), var(--flux-capacitor--surface), var(--flux-capacitor--light), var(--flux-capacitor--surface), var(--flux-capacitor--light), var(--flux-capacitor--surface), var(--flux-capacitor--surface)), var(--flux-capacitor--color-surface);
+      background: conic-gradient(var(--flux-capacitor--surface),
+					var(--flux-capacitor--light),
+					var(--flux-capacitor--surface),
+					var(--flux-capacitor--light),
+					var(--flux-capacitor--surface),
+					var(--flux-capacitor--light),
+					var(--flux-capacitor--surface),
+					var(--flux-capacitor--light),
+					var(--flux-capacitor--surface),
+					var(--flux-capacitor--surface)),
+				var(--flux-capacitor--color-surface);
       aspect-ratio: 3 / 3.8;
       border-radius: 3vmin;
       width: 60vmin;
@@ -16064,7 +16102,9 @@
     }
 
     & .inner-container {
-      background: radial-gradient(at center, #fff3, transparent 55%), linear-gradient(to bottom, black, #0003), var(--flux-capacitor--color-surface);
+      background: radial-gradient(at center, #fff3, transparent 55%),
+				linear-gradient(to bottom, black, #0003),
+				var(--flux-capacitor--color-surface);
       border-radius: 6vmin;
       width: 80%;
       height: 100%;
@@ -16137,7 +16177,17 @@
         &:before {
           content: "";
           border-radius: inherit;
-          background: conic-gradient(transparent, var(--flux-capacitor--light), transparent, var(--flux-capacitor--light), transparent, var(--flux-capacitor--light), transparent, var(--flux-capacitor--light), transparent, var(--flux-capacitor--light), transparent);
+          background: conic-gradient(transparent,
+						var(--flux-capacitor--light),
+						transparent,
+						var(--flux-capacitor--light),
+						transparent,
+						var(--flux-capacitor--light),
+						transparent,
+						var(--flux-capacitor--light),
+						transparent,
+						var(--flux-capacitor--light),
+						transparent);
           border: .2vmin solid #ffffff4d;
           position: absolute;
           inset: .1vmin;
@@ -16159,7 +16209,10 @@
 
         &:before {
           content: "";
-          background: linear-gradient(to bottom, #ffffff80 40%, #0003), var(--flux-capacitor--color-secondary);
+          background: linear-gradient(to bottom,
+							#ffffff80 40%,
+							#0003),
+						var(--flux-capacitor--color-secondary);
           clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
           position: absolute;
           inset: 0;
@@ -16167,7 +16220,10 @@
 
         &:after {
           content: "";
-          background: radial-gradient(at center, #fff9 40%, #0003), var(--flux-capacitor--color-secondary);
+          background: radial-gradient(at center,
+							#fff9 40%,
+							#0003),
+						var(--flux-capacitor--color-secondary);
           border-radius: 50%;
           position: absolute;
           inset: .25vmin;
@@ -16180,7 +16236,8 @@
 
         & .plug-bottom {
           aspect-ratio: 1;
-          background: radial-gradient(at top, transparent, #0006), var(--flux-capacitor--color-warn-container);
+          background: radial-gradient(at top, transparent, #0006),
+						var(--flux-capacitor--color-warn-container);
           background-position-x: 50%;
           background-size: 150%;
           border-radius: 50%;
@@ -16193,7 +16250,14 @@
 
         & .plug-top {
           aspect-ratio: 1;
-          background: radial-gradient(1vmin at 50% 30%, #ffffff4d, transparent), radial-gradient(5vmin at 50% 30%, #ffffff1a, transparent), radial-gradient(5vmin at 50% 5%, transparent 40%, black 70%) var(--flux-capacitor--color-warn-container) center center no-repeat;
+          background: radial-gradient(1vmin at 50% 30%,
+							#ffffff4d,
+							transparent),
+						radial-gradient(5vmin at 50% 30%,
+							#ffffff1a,
+							transparent),
+						radial-gradient(5vmin at 50% 5%, transparent 40%, black 70%)
+						var(--flux-capacitor--color-warn-container) center center no-repeat;
           border-top: .1vmin solid #ffffff4d;
           border-bottom: .3vmin solid #00000080;
           border-radius: 50%;
@@ -16205,7 +16269,18 @@
 
         & .plug-end {
           aspect-ratio: 2 / 5;
-          background: radial-gradient(1vmin 2vmin at 70% 50%, #ffffff40, transparent), linear-gradient(to bottom, #000000e6, transparent 30%), linear-gradient(to right, #0000004d, transparent, #0000004d), radial-gradient(10vmin at 50% 0%, transparent 40%, #00000080 60%), var(--flux-capacitor--color-warn-container);
+          background: radial-gradient(1vmin 2vmin at 70% 50%,
+							#ffffff40,
+							transparent),
+						linear-gradient(to bottom, #000000e6, transparent 30%),
+						linear-gradient(to right,
+							#0000004d,
+							transparent,
+							#0000004d),
+						radial-gradient(10vmin at 50% 0%,
+							transparent 40%,
+							#00000080 60%),
+						var(--flux-capacitor--color-warn-container);
           border-radius: .8vmin;
           width: 2.5vmin;
           position: absolute;
@@ -16219,7 +16294,15 @@
           left: 6.4vmin;
 
           & .plug-calbe-end {
-            background: radial-gradient(at 50% 0%, transparent 40%, #000000e6 80%), radial-gradient(1vmin at 100% 0%, #000000b3, transparent), linear-gradient(to right, #00000080, transparent 60%, #00000080), var(--flux-capacitor--color-tertiary-container);
+            background: radial-gradient(at 50% 0%,
+								transparent 40%,
+								#000000e6 80%),
+							radial-gradient(1vmin at 100% 0%, #000000b3, transparent),
+							linear-gradient(to right,
+								#00000080,
+								transparent 60%,
+								#00000080),
+							var(--flux-capacitor--color-tertiary-container);
             border-radius: 2vmin;
             width: 1.5vmin;
             height: 3.3vmin;
@@ -16231,7 +16314,16 @@
 
           &:after {
             content: "";
-            background: radial-gradient(2vmin at 110% 100%, var(--flux-capacitor--color-tertiary-container), transparent), linear-gradient(to right, #00000080, transparent 40%, transparent 50%, transparent 60%, #00000080), var(--flux-capacitor--color-tertiary-container);
+            background: radial-gradient(2vmin at 110% 100%,
+								var(--flux-capacitor--color-tertiary-container),
+								transparent),
+							linear-gradient(to right,
+								#00000080,
+								transparent 40%,
+								transparent 50%,
+								transparent 60%,
+								#00000080),
+							var(--flux-capacitor--color-tertiary-container);
             border-radius: 3vmin;
             width: 1.2vmin;
             height: 10vmin;
@@ -16253,7 +16345,11 @@
       }
 
       & .bridge {
-        background: linear-gradient(to right, transparent 88%, #0000004d 88%, transparent 95%), var(--flux-capacitor--color-secondary);
+        background: linear-gradient(to right,
+						transparent 88%,
+						#0000004d 88%,
+						transparent 95%),
+					var(--flux-capacitor--color-secondary);
         transform-origin: 0;
         width: 20.4vmin;
         height: 1.6vmin;
@@ -16311,7 +16407,16 @@
 
       & .bridge-light2 {
         --s: #a4eaf8;
-        background: linear-gradient(to right, var(--s) 20%, transparent 20%, var(--s) 50%, transparent 50%, var(--s) 80%, transparent 80%, var(--s) 90%, transparent 90%, transparent);
+        background: linear-gradient(to right,
+					var(--s) 20%,
+					transparent 20%,
+					var(--s) 50%,
+					transparent 50%,
+					var(--s) 80%,
+					transparent 80%,
+					var(--s) 90%,
+					transparent 90%,
+					transparent);
         opacity: 0;
         z-index: 100;
         background-position: -100vmin;
@@ -16333,7 +16438,7 @@
         }
 
         & .plug-cable {
-          transform: scaleX(-1)translateX(-1.2vmin);
+          transform: scaleX(-1) translateX(-1.2vmin);
         }
 
         & .bridge {
@@ -16351,11 +16456,15 @@
         }
 
         & .plug {
-          transform: rotate(270deg)translateX(-14.1vmin);
+          transform: rotate(270deg) translateX(-14.1vmin);
         }
 
         & .bridge {
-          background: linear-gradient(to right, transparent 90%, #0000004d 90%, transparent 98%), var(--flux-capacitor--color-secondary);
+          background: linear-gradient(to right,
+							transparent 90%,
+							#0000004d 90%,
+							transparent 98%),
+						var(--flux-capacitor--color-secondary);
           width: 25.5vmin;
           left: 6.9vmin;
           transform: rotate(270deg);
@@ -16482,7 +16591,36 @@
       & .l-base {
         mix-blend-mode: overlay;
         opacity: .3;
-        background: conic-gradient(from var(--flux-capacitor--deg), transparent, var(--b-1), transparent, var(--b-1), transparent, var(--b-1), transparent, var(--b-1), transparent, transparent, transparent, var(--b-1), transparent, var(--b-1), transparent, transparent, transparent, var(--b-1), transparent, var(--b-1), transparent, var(--b-1), transparent, transparent, transparent, var(--b-1), transparent, var(--b-1), transparent);
+        background: conic-gradient(from var(--flux-capacitor--deg),
+					transparent,
+					var(--b-1),
+					transparent,
+					var(--b-1),
+					transparent,
+					var(--b-1),
+					transparent,
+					var(--b-1),
+					transparent,
+					transparent,
+					transparent,
+					var(--b-1),
+					transparent,
+					var(--b-1),
+					transparent,
+					transparent,
+					transparent,
+					var(--b-1),
+					transparent,
+					var(--b-1),
+					transparent,
+					var(--b-1),
+					transparent,
+					transparent,
+					transparent,
+					var(--b-1),
+					transparent,
+					var(--b-1),
+					transparent);
         position: absolute;
         inset: 0;
       }
@@ -16496,7 +16634,38 @@
       & .l-bar {
         --s: #a4eaf84f;
         --e: transparent;
-        background: radial-gradient(20vmin calc(.4vmin * var(--flux-capacitor--ratio-size)) at calc(14vmin * var(--flux-capacitor--ratio-pos)) 50%, var(--s), #a4eaf81f, var(--e), transparent), radial-gradient(3vmin calc(.8vmin * var(--flux-capacitor--ratio-size)) at calc(14vmin * var(--flux-capacitor--ratio-pos)) 50%, var(--s), var(--e), transparent), radial-gradient(3vmin calc(1vmin * var(--flux-capacitor--ratio-size)) at calc(20vmin * var(--flux-capacitor--ratio-pos)) 50%, var(--s), var(--e), transparent), radial-gradient(6vmin calc(1.7vmin * var(--flux-capacitor--ratio-size)) at calc(30vmin * var(--flux-capacitor--ratio-pos)) 50%, var(--s), var(--e), transparent), radial-gradient(5vmin calc(1.5vmin * var(--flux-capacitor--ratio-size)) at calc(42vmin * var(--flux-capacitor--ratio-pos)) 50%, var(--s), var(--e), transparent), radial-gradient(10vmin calc(2vmin * var(--flux-capacitor--ratio-size)) at calc(50vmin * var(--flux-capacitor--ratio-pos)) 50%, #a4eaf89f, var(--s), var(--e), transparent);
+        background: radial-gradient(20vmin calc(.4vmin * var(--flux-capacitor--ratio-size)) at
+							calc(14vmin * var(--flux-capacitor--ratio-pos)) 50%,
+						var(--s),
+						#a4eaf81f,
+						var(--e),
+						transparent),
+					radial-gradient(3vmin calc(.8vmin * var(--flux-capacitor--ratio-size)) at
+							calc(14vmin * var(--flux-capacitor--ratio-pos)) 50%,
+						var(--s),
+						var(--e),
+						transparent),
+					radial-gradient(3vmin calc(1vmin * var(--flux-capacitor--ratio-size)) at
+							calc(20vmin * var(--flux-capacitor--ratio-pos)) 50%,
+						var(--s),
+						var(--e),
+						transparent),
+					radial-gradient(6vmin calc(1.7vmin * var(--flux-capacitor--ratio-size)) at
+							calc(30vmin * var(--flux-capacitor--ratio-pos)) 50%,
+						var(--s),
+						var(--e),
+						transparent),
+					radial-gradient(5vmin calc(1.5vmin * var(--flux-capacitor--ratio-size)) at
+							calc(42vmin * var(--flux-capacitor--ratio-pos)) 50%,
+						var(--s),
+						var(--e),
+						transparent),
+					radial-gradient(10vmin calc(2vmin * var(--flux-capacitor--ratio-size)) at
+							calc(50vmin * var(--flux-capacitor--ratio-pos)) 50%,
+						#a4eaf89f,
+						var(--s),
+						var(--e),
+						transparent);
         width: 59vmin;
         height: 4vmin;
         position: absolute;
@@ -16678,20 +16847,36 @@
     box-sizing: border-box;
     font-family: var(--fret-board-ff, inherit);
     grid-template-columns: repeat(calc(var(--fb--strings) * 2), 1fr);
-    grid-template-rows: var(--fret-board-top-row-h, 12%) repeat(calc(var(--fb--frets)), 1fr) var(--fret-board-bottom-row-h, 15%);
+    grid-template-rows: var(--fret-board-top-row-h, 12%)
+			repeat(calc(var(--fb--frets)), 1fr)
+			var(--fret-board-bottom-row-h, 15%);
     place-items: center;
     display: grid;
     container-type: inline-size;
 
     &:before {
       background-color: var(--fret-board-fret-bg, #0000);
-      background-image: linear-gradient(90deg, var(--fret-board-string-c) var(--fret-board-string-w), #0000 0 var(--fret-board-string-w)), linear-gradient(180deg, var(--fret-board-fret-c) var(--fret-board-fret-w), #0000 0 var(--fret-board-fret-w));
-      background-position: 0 var(--fret-board-fret-w), 0 0;
+      background-image: linear-gradient(90deg,
+					var(--fret-board-string-c) var(--fret-board-string-w),
+					#0000 0 var(--fret-board-string-w)),
+				linear-gradient(180deg,
+					var(--fret-board-fret-c) var(--fret-board-fret-w),
+					#0000 0 var(--fret-board-fret-w));
+      background-position: 0 var(--fret-board-fret-w),
+				0 0;
       background-repeat: repeat-x, repeat-y;
-      background-size: calc(100% / (var(--fb--strings)  - 1)  - (var(--fret-board-string-w) / var(--fb--strings))) calc(100% - (2 * var(--fret-board-fret-w))), 100% calc(100% / var(--fb--frets)  - (var(--fret-board-fret-w) / var(--fb--frets)));
-      box-shadow: 0 calc(0px - var(--fret-board-fret-bbsw, 1.5cqi)) 0 0 var(--fret-board-fret-c);
+      background-size: calc(100% /
+					(var(--fb--strings) - 1) -
+					(var(--fret-board-string-w) / var(--fb--strings)))
+				calc(100% - (2 * var(--fret-board-fret-w))),
+				100%
+				calc(100% /
+					var(--fb--frets) -
+					(var(--fret-board-fret-w) / var(--fb--frets)));
+      box-shadow: 0 calc(0px - var(--fret-board-fret-bbsw, 1.5cqi)) 0 0
+				var(--fret-board-fret-c);
       content: "";
-      grid-area: 2 / 2 / calc(var(--fb--frets)  + 2) / calc(var(--fb--strings) * 2);
+      grid-area: 2 / 2 / calc(var(--fb--frets) + 2) / calc(var(--fb--strings) * 2);
       width: 100%;
       height: 100%;
       display: block;
@@ -16702,8 +16887,8 @@
       content: attr(chord);
       font-size: var(--fret-board-chord-fs, 7.5cqi);
       font-weight: var(--fret-board-chord-fw, 500);
-      grid-column: 2 / span calc((var(--fb--strings) * 2)  - 2);
-      grid-row: calc(var(--fb--frets)  + 2);
+      grid-column: 2 / span calc((var(--fb--strings) * 2) - 2);
+      grid-row: calc(var(--fb--frets) + 2);
       text-align: center;
       width: 100%;
     }
@@ -16731,8 +16916,9 @@
     aspect-ratio: 1;
     background-color: var(--string-note-bg, currentColor);
     box-sizing: border-box;
-    grid-column: calc((var(--fb--strings) * 2)  - (var(--string) * 2 - 1)) / span calc(var(--barre) * 2);
-    grid-row: calc(var(--fret)  + 1);
+    grid-column: calc((var(--fb--strings) * 2) - (var(--string) * 2 - 1)) / span
+			calc(var(--barre) * 2);
+    grid-row: calc(var(--fret) + 1);
     height: var(--string-note-h);
     isolation: isolate;
     border-radius: 50%;
@@ -16904,4 +17090,4 @@
     --string-note-mute-open-c: #eceff1;
   }
 }
-/*# sourceMappingURL=back-to-css.108ff052.css.map */
+/*# sourceMappingURL=talk-back-to-css.7ef3469a.css.map */
