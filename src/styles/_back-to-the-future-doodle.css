@@ -8,7 +8,7 @@
 	back-to-the-future-doodle {
 		display: block;
 		margin: auto;
-		transform: rotateY(30deg);
+		transform: rotateY(25deg);
 
 		:where(h1, h2, h3, h4) {
 			white-space: nowrap;
@@ -37,7 +37,7 @@
 			font-family: "Back to the Future", sans-serif;
 			line-height: 1.2;
 
-			-webkit-text-stroke: 3px #ccc;
+			-webkit-text-stroke: 2px #ccc;
 			-webkit-text-fill-color: transparent;
 
 			background: linear-gradient(#b01c1c 30%, #f5d833 70%);

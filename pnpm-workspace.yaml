@@ -1,6 +1,16 @@
 packages:
   - '../talks-libraries/packages/*'
 
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  lmdb: true
+  msgpackr-extract: true
+  sharp: true
+
+minimumReleaseAgeExclude:
+  - prettier@3.8.4
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - '@swc/core'
