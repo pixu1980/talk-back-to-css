@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Back to CSS - Opening Titles</title>
+    <style>
+      @layer reset, tokens, functions, fallback, future, scene;
+
+      @layer reset {
+        * {
+          box-sizing: border-box;
+        }
+        html {
+          color-scheme: dark;
+        }
+        body {
+          min-block-size: 100svh;
+          margin: 0;
+          overflow: hidden;
+          display: grid;
+          place-items: center;
+          font-family: Impact, Haettenschweiler, 'Arial Black', system-ui, sans-serif;
+          background: #01030d;
+          color: white;
+        }
+        button {
+          font: inherit;
+        }
+      }
+
+      @layer tokens {
+        :root {
+          --scene-speed: 8s;
+          --scene-depth: 520px;
+          --scene-glow: 0.76;
+          --hot: #ffbf2f;
+          --fire: #ff4f12;
+          --future: #2fbfff;
+          --blue: #1252ff;
+          --ink: #f8fbff;
+        }
+      }
+
+      @layer functions {
+        @function --seconds(--value <time>: 8s) returns <time> {
+          result: var(--value);
+        }
+        @function --alpha(--color <color>, --amount <number>: 0.5) returns <color> {
+          result: oklch(from var(--color) l c h / var(--amount));
+        }
+        @function --tilt(--depth <length>: 520px) {
+          result: perspective(var(--depth)) rotateX(18deg);
+        }
+      }
+
+      @layer fallback {
+        [is='future-titles'] {
+          --speed: var(--scene-speed);
+          --depth: var(--scene-depth);
+          --glow: var(--scene-glow);
+        }
+      }
+
+      @layer future {
+        [is='future-titles'] {
+          --speed: attr(data-speed s, 8s);
+          --depth: attr(data-depth px, 520px);
+          --glow: attr(data-glow type(<number>), 0.76);
+          --title-color: if(style(--glow > 0.65): var(--hot) ; else: var(--future) ;);
+        }
+      }
+
+      @layer scene {
+        [is='future-titles'] {
+          position: fixed;
+          inset: 0;
+          isolation: isolate;
+          display: grid;
+          place-items: center;
+          background:
+            radial-gradient(circle at 50% 45%, rgb(47 191 255 / 0.22), transparent 26rem), radial-gradient(circle at 50% 100%, rgb(255 79 18 / 0.26), transparent 18rem),
+            linear-gradient(#01030d, #020717 65%, #05020a);
+        }
+
+        [is='future-titles']::before,
+        [is='future-titles']::after {
+          content: '';
+          position: absolute;
+          inset: -25%;
+          z-index: -2;
+          background-image: radial-gradient(circle, white 0 1px, transparent 1.5px), radial-gradient(circle, rgb(47 191 255 / 0.8) 0 1px, transparent 1.5px);
+          background-size:
+            90px 90px,
+            140px 140px;
+          animation: stars calc(var(--speed) * 1.4) linear infinite;
+          opacity: 0.45;
+        }
+
+        [is='future-titles']::after {
+          scale: 1.4;
+          filter: blur(1px);
+          opacity: 0.22;
+          animation-duration: calc(var(--speed) * 0.8);
+        }
+
+        [data-part='title-wrap'] {
+          transform: perspective(var(--depth)) rotateX(18deg);
+          transform-style: preserve-3d;
+          text-align: center;
+          animation: title-arrival var(--speed) cubic-bezier(0.18, 0.84, 0.22, 1) both;
+        }
+
+        [data-part='title'] {
+          margin: 0;
+          line-height: 0.82;
+          font-size: clamp(4rem, 15vw, 14rem);
+          letter-spacing: -0.08em;
+          text-transform: uppercase;
+          color: var(--hot);
+          -webkit-text-stroke: clamp(2px, 0.5vw, 8px) #fd3e00;
+          text-shadow:
+            0 0 calc(24px * var(--glow)) rgb(255 191 47 / 0.9),
+            0 0 calc(60px * var(--glow)) rgb(255 79 18 / 0.66),
+            0 0 calc(110px * var(--glow)) rgb(47 191 255 / 0.44);
+        }
+
+        [data-part='title'] span {
+          display: block;
+        }
+
+        [data-part='title'] span:last-child {
+          color: var(--future);
+          -webkit-text-stroke-color: #1252ff;
+          translate: 0 -0.02em;
+        }
+
+        [data-part='subtitle'] {
+          margin: 1rem 0 0;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          font-size: clamp(0.9rem, 1.8vw, 1.55rem);
+          letter-spacing: 0.24em;
+          text-transform: uppercase;
+          color: #c8f2ff;
+          text-shadow: 0 0 18px rgb(47 191 255 / 0.8);
+        }
+
+        [data-part='scanline'] {
+          position: absolute;
+          inset-inline: 0;
+          inset-block-end: 18%;
+          block-size: 2px;
+          background: linear-gradient(90deg, transparent, var(--future), transparent);
+          box-shadow: 0 0 28px var(--future);
+          animation: scan calc(var(--speed) * 0.7) linear infinite;
+        }
+
+        [data-part='spec'] {
+          position: fixed;
+          inset-inline-start: 1rem;
+          inset-block-end: 1rem;
+          max-inline-size: 42rem;
+          padding: 0.8rem 1rem;
+          border: 1px solid rgb(47 191 255 / 0.38);
+          border-radius: 0.85rem;
+          background: rgb(1 3 13 / 0.72);
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          font-size: 0.85rem;
+          color: #c8f2ff;
+        }
+
+        [data-action='audio'] {
+          position: fixed;
+          inset-inline-end: 1rem;
+          inset-block-end: 1rem;
+          padding: 0.75rem 1rem;
+          border: 1px solid rgb(47 191 255 / 0.72);
+          border-radius: 999px;
+          background: rgb(47 191 255 / 0.16);
+          color: white;
+          cursor: pointer;
+        }
+
+        @keyframes stars {
+          to {
+            transform: translate3d(-90px, 90px, 0);
+          }
+        }
+
+        @keyframes title-arrival {
+          0% {
+            opacity: 0;
+            scale: 0.12;
+            translate: 0 18vh;
+            filter: blur(16px);
+          }
+          60% {
+            opacity: 1;
+            scale: 1.1;
+            filter: blur(0);
+          }
+          100% {
+            scale: 1;
+            translate: 0 0;
+          }
+        }
+
+        @keyframes scan {
+          0% {
+            translate: -120% 0;
+            opacity: 0;
+          }
+          12%,
+          88% {
+            opacity: 1;
+          }
+          100% {
+            translate: 120% 0;
+            opacity: 0;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main is="future-titles" data-audio-root data-speed="8" data-depth="520" data-glow="0.76">
+      <div data-part="title-wrap">
+        <h1 data-part="title"><span>Back</span><span>to CSS</span></h1>
+        <p data-part="subtitle">Typed attrs, if(), custom functions</p>
+      </div>
+      <div data-part="scanline"></div>
+      <p data-part="spec">Font: Impact / Arial Black fallback. Audio: Web Audio API, original synth swell and whoosh, no external samples.</p>
+      <button type="button" data-action="audio">Start sound</button>
+    </main>
+    <script>
+      const audioButton = document.querySelector('[data-action="audio"]');
+      const root = document.querySelector('[data-audio-root]');
+      let audioContext;
+      let running = false;
+
+      function createContext() {
+        audioContext ??= new AudioContext();
+        return audioContext;
+      }
+
+      function envGain(context, destination, start, attack, decay, peak = 0.18) {
+        const gain = context.createGain();
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(peak, start + attack);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + attack + decay);
+        gain.connect(destination);
+        return gain;
+      }
+
+      function tone(context, destination, frequency, start, duration, type = 'sawtooth', gain = 0.14) {
+        const oscillator = context.createOscillator();
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency, start);
+        const envelope = envGain(context, destination, start, 0.02, duration, gain);
+        oscillator.connect(envelope);
+        oscillator.start(start);
+        oscillator.stop(start + duration + 0.08);
+      }
+
+      function noise(context, destination, start, duration, gain = 0.18) {
+        const buffer = context.createBuffer(1, context.sampleRate * duration, context.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let index = 0; index < data.length; index += 1) {
+          data[index] = Math.random() * 2 - 1;
+        }
+        const source = context.createBufferSource();
+        source.buffer = buffer;
+        const filter = context.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(900, start);
+        filter.frequency.exponentialRampToValueAtTime(80, start + duration);
+        const envelope = envGain(context, destination, start, 0.005, duration, gain);
+        source.connect(filter);
+        filter.connect(envelope);
+        source.start(start);
+        source.stop(start + duration);
+      }
+
+      function pulseCssState(attribute) {
+        document.documentElement.toggleAttribute(attribute, true);
+        window.setTimeout(() => document.documentElement.toggleAttribute(attribute, false), 2400);
+      }
+
+      audioButton?.addEventListener('click', async () => {
+        const context = createContext();
+        if (context.state === 'suspended') {
+          await context.resume();
+        }
+        running = !running;
+        audioButton.textContent = running ? 'Stop sound' : 'Start sound';
+        root?.toggleAttribute('data-playing', running);
+        if (running) {
+          window.playScene?.(context);
+        }
+      });
+
+      window.playScene = function playScene(context) {
+        const destination = context.destination;
+        const now = context.currentTime + 0.04;
+        [65.41, 98, 130.81, 196, 261.63].forEach((frequency, index) => {
+          tone(context, destination, frequency, now + index * 0.18, 1.25, 'sawtooth', 0.08);
+        });
+        noise(context, destination, now + 0.8, 1.6, 0.22);
+        tone(context, destination, 523.25, now + 1.4, 0.7, 'triangle', 0.1);
+        tone(context, destination, 783.99, now + 1.55, 0.7, 'triangle', 0.08);
+        if (running) window.setTimeout(() => window.playScene(context), 4200);
+      };
+    </script>
+  </body>
+</html>

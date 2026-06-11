@@ -1,0 +1,39 @@
+<section data-topic="real-world-examples" data-menu-title="Real World 06 - Pricing Card">
+  <div class="real-world-examples-slide">
+    <div class="real-world-examples-demo-layout">
+      <div class="real-world-examples-demo-header">
+        <h3>Pricing <mark>Card</mark></h3>
+        <small>Product metadata becomes visual priority, accent color, badge, and discount meter.</small>
+      </div>
+      <iframe class="real-world-examples-demo-frame" src="./demos/pricing.html" title="Pricing card"></iframe>
+    </div>
+    <article class="real-world-examples-code">
+      <pre><code data-trim data-line-numbers class="hljs html">
+          &lt;article is="back-plan" data-plan="pro" data-popular="true" data-discount="20"&gt;
+            &lt;h2&gt;Pro&lt;/h2&gt;
+            &lt;p&gt;For real product teams.&lt;/p&gt;
+          &lt;/article&gt;
+        </code></pre>
+      <pre><code data-trim data-line-numbers class="hljs css">
+          [is='back-plan'] {
+            --plan: attr(data-plan type(&lt;custom-ident&gt;), starter);
+            --popular: attr(data-popular type(&lt;custom-ident&gt;), false);
+            --discount: attr(data-discount type(&lt;number&gt;), 0);
+
+            --accent: if(style(--plan: starter): #2fbfff; style(--plan: pro): #1252ff; style(--plan: enterprise): #7b4fff; else: #667085;);
+
+            border-color: if(style(--popular: true): var(--accent); else: #eaecf0;);
+            box-shadow: if(style(--popular: true): 0 1.5rem 3rem oklch(from var(--accent) l c h / 0.24); else: 0 0.5rem 1.5rem rgb(16 24 40 / 0.06););
+          }
+
+          [is='back-plan']::after {
+            content: "";
+            display: block;
+            inline-size: calc(clamp(0, var(--discount), 100) * 1%);
+            block-size: 0.35rem;
+            background: var(--accent);
+          }
+        </code></pre>
+    </article>
+  </div>
+</section>

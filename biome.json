@@ -1,5 +1,11 @@
 {
 	"files": {
-		"includes": ["src/**", "README.md", "package.json", ".github/**"]
+		"includes": [
+			"src/**",
+			"README.md",
+			"package.json",
+			".github/**",
+			"!src/styles/_bonus-deck-future-css.css"
+		]
 	}
 }

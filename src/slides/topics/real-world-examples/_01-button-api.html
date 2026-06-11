@@ -1,0 +1,38 @@
+<section data-topic="real-world-examples" data-menu-title="Real World 01 - Button API">
+  <div class="real-world-examples-slide">
+    <div class="real-world-examples-demo-layout">
+      <div class="real-world-examples-demo-header">
+        <h3>Button <mark>API</mark> from HTML</h3>
+        <small><code>data-tone</code>, <code>data-size</code>, and <code>data-radius</code> become the component contract.</small>
+      </div>
+      <iframe class="real-world-examples-demo-frame" src="./demos/button-api.html" title="Button API from HTML"></iframe>
+    </div>
+    <article class="real-world-examples-code">
+      <pre><code data-trim data-line-numbers class="hljs html">
+        &lt;button is="back-button" data-tone="brand" data-size="3" data-radius="12"&gt;
+          Save changes
+        &lt;/button&gt;
+
+        &lt;button is="back-button" data-tone="danger" data-size="3" data-radius="999"&gt;
+          Delete project
+        &lt;/button&gt;
+      </code></pre>
+      <pre><code data-trim data-line-numbers class="hljs css">
+        [is='back-button'] {
+          --tone: attr(data-tone type(&lt;custom-ident&gt;), brand);
+          --size: attr(data-size type(&lt;number&gt;), 3);
+          --radius: attr(data-radius px, 12px);
+
+          --accent: if(style(--tone: danger): #d92d20; style(--tone: ghost): transparent; else: #1252ff;);
+          --text: if(style(--tone: ghost): #1252ff; else: white;);
+
+          padding: calc(var(--size) * 0.25rem) calc(var(--size) * 0.5rem);
+          border: 1px solid if(style(--tone: ghost): #1252ff; else: transparent;);
+          border-radius: var(--radius);
+          background: var(--accent);
+          color: var(--text);
+        }
+      </code></pre>
+    </article>
+  </div>
+</section>

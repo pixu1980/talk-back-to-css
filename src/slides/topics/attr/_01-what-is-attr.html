@@ -7,11 +7,13 @@
   <h4>The basic <mark>syntax</mark></h4>
   <pre>
     <code data-trim data-line-numbers class="hljs css">
-    /* Read any attribute value as a string */
-    content: attr(data-label);
+      .selector {
+        /* Read any attribute value as a string */
+        content: attr(data-label);
 
-    /* Read with a type and fallback */
-    width: attr(data-width px, 100px);
+        /* Read with a type and fallback */
+        width: attr(data-width px, 100px);
+      }
     </code>
   </pre>
 </section>

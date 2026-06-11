@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Back to CSS - Rock Chords</title>
+    <style>
+      @layer reset, tokens, functions, fallback, future, scene;
+
+      @layer reset {
+        * {
+          box-sizing: border-box;
+        }
+        body {
+          min-block-size: 100svh;
+          margin: 0;
+          overflow: hidden;
+          display: grid;
+          place-items: center;
+          font-family: 'Arial Black', Impact, system-ui, sans-serif;
+          color: white;
+          background: #09040d;
+        }
+        button {
+          font: inherit;
+        }
+      }
+
+      @layer tokens {
+        :root {
+          --tempo: 150;
+          --accent-step: 1;
+          --stage-glow: 0.72;
+          --cyan: #2fbfff;
+          --blue: #1252ff;
+          --purple: #7b4fff;
+          --gold: #ffbf2f;
+          --red: #ff4012;
+        }
+      }
+
+      @layer functions {
+        @function --beat(--bpm <number>: 150) returns <time> {
+          result: calc(60s / var(--bpm));
+        }
+        @function --light(--color <color>, --alpha <number>: 0.22) returns <color> {
+          result: oklch(from var(--color) l c h / var(--alpha));
+        }
+        @function --bar-delay(--index <integer>: 0, --tempo <number>: 150) returns <time> {
+          result: calc((60s / var(--tempo)) * var(--index));
+        }
+      }
+
+      @layer fallback {
+        [is='rock-chords'] {
+          --bpm: var(--tempo);
+          --glow: var(--stage-glow);
+        }
+      }
+
+      @layer future {
+        [is='rock-chords'] {
+          --bpm: attr(data-bpm type(<number>), 150);
+          --glow: attr(data-glow type(<number>), 0.72);
+          --accent: if(style(--bpm >= 150): var(--gold) ; else: var(--cyan) ;);
+        }
+      }
+
+      @layer scene {
+        [is='rock-chords'] {
+          position: fixed;
+          inset: 0;
+          isolation: isolate;
+          overflow: hidden;
+          display: grid;
+          place-items: center;
+          background:
+            radial-gradient(circle at 20% 0%, rgb(255 191 47 / 0.26), transparent 24rem), radial-gradient(circle at 80% 0%, rgb(47 191 255 / 0.22), transparent 24rem),
+            linear-gradient(#0d0614 0 62%, #170810 62% 100%);
+        }
+
+        [data-part='spotlight'] {
+          position: absolute;
+          inset-block-start: -8rem;
+          inline-size: 18rem;
+          block-size: 120%;
+          clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%);
+          background: linear-gradient(rgb(255 255 255 / 0.34), transparent 78%);
+          mix-blend-mode: screen;
+          opacity: calc(var(--glow) * 0.6);
+          animation: sweep calc(60s / var(--bpm) * 8) ease-in-out infinite alternate;
+        }
+
+        [data-part='spotlight']:nth-child(1) {
+          inset-inline-start: 6%;
+          rotate: 18deg;
+          background: linear-gradient(rgb(255 191 47 / 0.42), transparent 78%);
+        }
+        [data-part='spotlight']:nth-child(2) {
+          inset-inline-end: 8%;
+          rotate: -18deg;
+          background: linear-gradient(rgb(47 191 255 / 0.42), transparent 78%);
+          animation-direction: alternate-reverse;
+        }
+
+        [data-part='stage'] {
+          position: absolute;
+          inset-inline: 8%;
+          inset-block-end: 8%;
+          block-size: 28%;
+          border-radius: 50% 50% 0 0 / 28% 28% 0 0;
+          background: radial-gradient(ellipse at 50% 0, rgb(255 191 47 / 0.28), rgb(0 0 0 / 0.8) 62%);
+          box-shadow: 0 -2rem 8rem rgb(255 191 47 / 0.18);
+        }
+
+        [data-part='guitar'] {
+          position: relative;
+          inline-size: min(82vw, 62rem);
+          aspect-ratio: 16 / 8;
+          transform: rotate(-5deg);
+          filter: drop-shadow(0 3rem 2rem rgb(0 0 0 / 0.5));
+        }
+
+        [data-part='body'] {
+          position: absolute;
+          inline-size: 21rem;
+          aspect-ratio: 1.08;
+          inset-inline-start: 1rem;
+          inset-block-end: 1rem;
+          border-radius: 45% 55% 48% 52%;
+          background:
+            radial-gradient(circle at 62% 47%, #111 0 13%, transparent 14%), radial-gradient(circle at 34% 38%, rgb(255 255 255 / 0.24), transparent 18%),
+            linear-gradient(145deg, var(--red), #651111 65%, #250408);
+          box-shadow:
+            inset -2rem -2rem 3rem rgb(0 0 0 / 0.5),
+            0 0 3rem rgb(255 64 18 / 0.38);
+        }
+
+        [data-part='neck'] {
+          position: absolute;
+          inline-size: 40rem;
+          block-size: 4.1rem;
+          inset-inline-start: 18rem;
+          inset-block-end: 8.3rem;
+          border-radius: 0 2rem 2rem 0;
+          background: repeating-linear-gradient(90deg, transparent 0 3.3rem, rgb(255 255 255 / 0.34) 3.3rem 3.42rem), linear-gradient(#8b4b22, #4c260f);
+        }
+
+        [data-part='head'] {
+          position: absolute;
+          inline-size: 8rem;
+          block-size: 6rem;
+          inset-inline-end: 1rem;
+          inset-block-end: 7.2rem;
+          border-radius: 1.5rem 2.6rem 2.6rem 1.2rem;
+          background: linear-gradient(145deg, #a65f2f, #52250c);
+        }
+
+        [data-part='string'] {
+          position: absolute;
+          inline-size: 45rem;
+          block-size: 2px;
+          inset-inline-start: 14rem;
+          inset-block-end: calc(9.15rem + var(--string) * 0.54rem);
+          background: linear-gradient(90deg, #f8fbff, #9fc7d9);
+          box-shadow: 0 0 8px rgb(47 191 255 / 0.46);
+          animation: string-vibe calc(60s / var(--bpm) * 0.5) ease-in-out infinite;
+        }
+
+        [data-part='chords'] {
+          position: absolute;
+          inset-inline: 8%;
+          inset-block-start: 8%;
+          display: flex;
+          gap: 0.75rem;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        [data-chord] {
+          --index: attr(data-index type(<integer>), 0);
+          min-inline-size: 5.8rem;
+          padding: 0.65rem 0.85rem;
+          border: 1px solid rgb(255 255 255 / 0.32);
+          border-radius: 0.9rem;
+          background: rgb(255 255 255 / 0.08);
+          text-align: center;
+          color: #fff;
+          text-shadow: 0 0 18px var(--gold);
+          animation: chord-pop calc(60s / var(--bpm) * 12) steps(1) infinite;
+          animation-delay: calc(var(--index) * 60s / var(--bpm));
+        }
+
+        [data-chord='E7'] {
+          --chord-color: var(--gold);
+        }
+        [data-chord='A7'] {
+          --chord-color: var(--cyan);
+        }
+        [data-chord='B7'] {
+          --chord-color: var(--purple);
+        }
+
+        [data-part='note'] {
+          position: fixed;
+          inset-inline-start: 1rem;
+          inset-block-end: 1rem;
+          max-inline-size: 44rem;
+          padding: 0.85rem 1rem;
+          border: 1px solid rgb(255 191 47 / 0.4);
+          border-radius: 0.85rem;
+          background: rgb(9 4 13 / 0.74);
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          color: #ffe9ad;
+        }
+
+        [data-action='audio'] {
+          position: fixed;
+          inset-inline-end: 1rem;
+          inset-block-end: 1rem;
+          padding: 0.75rem 1rem;
+          border: 1px solid rgb(255 191 47 / 0.72);
+          border-radius: 999px;
+          background: rgb(255 191 47 / 0.16);
+          color: white;
+          cursor: pointer;
+        }
+
+        @keyframes sweep {
+          to {
+            translate: 16vw 0;
+            rotate: -12deg;
+          }
+        }
+        @keyframes string-vibe {
+          50% {
+            transform: translateY(2px);
+            filter: blur(0.7px);
+          }
+        }
+        @keyframes chord-pop {
+          0% {
+            background: var(--chord-color);
+            color: #101010;
+            scale: 1.14;
+          }
+          8%,
+          100% {
+            background: rgb(255 255 255 / 0.08);
+            color: white;
+            scale: 1;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main is="rock-chords" data-audio-root data-bpm="150" data-glow="0.72">
+      <div data-part="spotlight"></div>
+      <div data-part="spotlight"></div>
+      <div data-part="stage"></div>
+      <section data-part="chords" aria-label="Original 12 bar rock and roll chord cycle">
+        <span data-chord="E7" data-index="0">E7</span><span data-chord="E7" data-index="1">E7</span><span data-chord="E7" data-index="2">E7</span><span data-chord="E7" data-index="3">E7</span>
+        <span data-chord="A7" data-index="4">A7</span><span data-chord="A7" data-index="5">A7</span><span data-chord="E7" data-index="6">E7</span><span data-chord="E7" data-index="7">E7</span>
+        <span data-chord="B7" data-index="8">B7</span><span data-chord="A7" data-index="9">A7</span><span data-chord="E7" data-index="10">E7</span><span data-chord="B7" data-index="11">B7</span>
+      </section>
+      <section data-part="guitar" aria-label="CSS drawn guitar">
+        <div data-part="body"></div>
+        <div data-part="neck"></div>
+        <div data-part="head"></div>
+        <div data-part="string" style="--string: 0"></div>
+        <div data-part="string" style="--string: 1"></div>
+        <div data-part="string" style="--string: 2"></div>
+        <div data-part="string" style="--string: 3"></div>
+        <div data-part="string" style="--string: 4"></div>
+        <div data-part="string" style="--string: 5"></div>
+      </section>
+      <p data-part="note">Audio: generated original 12-bar E7/A7/B7 rock'n'roll vamp, no copyrighted recording or melody. Font: Arial Black / Impact fallback.</p>
+      <button type="button" data-action="audio">Start sound</button>
+    </main>
+    <script>
+      const audioButton = document.querySelector('[data-action="audio"]');
+      const root = document.querySelector('[data-audio-root]');
+      let audioContext;
+      let running = false;
+
+      function createContext() {
+        audioContext ??= new AudioContext();
+        return audioContext;
+      }
+
+      function envGain(context, destination, start, attack, decay, peak = 0.18) {
+        const gain = context.createGain();
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(peak, start + attack);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + attack + decay);
+        gain.connect(destination);
+        return gain;
+      }
+
+      function tone(context, destination, frequency, start, duration, type = 'sawtooth', gain = 0.14) {
+        const oscillator = context.createOscillator();
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency, start);
+        const envelope = envGain(context, destination, start, 0.02, duration, gain);
+        oscillator.connect(envelope);
+        oscillator.start(start);
+        oscillator.stop(start + duration + 0.08);
+      }
+
+      function noise(context, destination, start, duration, gain = 0.18) {
+        const buffer = context.createBuffer(1, context.sampleRate * duration, context.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let index = 0; index < data.length; index += 1) {
+          data[index] = Math.random() * 2 - 1;
+        }
+        const source = context.createBufferSource();
+        source.buffer = buffer;
+        const filter = context.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(900, start);
+        filter.frequency.exponentialRampToValueAtTime(80, start + duration);
+        const envelope = envGain(context, destination, start, 0.005, duration, gain);
+        source.connect(filter);
+        filter.connect(envelope);
+        source.start(start);
+        source.stop(start + duration);
+      }
+
+      function pulseCssState(attribute) {
+        document.documentElement.toggleAttribute(attribute, true);
+        window.setTimeout(() => document.documentElement.toggleAttribute(attribute, false), 2400);
+      }
+
+      audioButton?.addEventListener('click', async () => {
+        const context = createContext();
+        if (context.state === 'suspended') {
+          await context.resume();
+        }
+        running = !running;
+        audioButton.textContent = running ? 'Stop sound' : 'Start sound';
+        root?.toggleAttribute('data-playing', running);
+        if (running) {
+          window.playScene?.(context);
+        }
+      });
+
+      const chordNotes = {
+        E7: [82.41, 123.47, 146.83, 196.0],
+        A7: [110.0, 164.81, 196.0, 261.63],
+        B7: [123.47, 185.0, 220.0, 293.66],
+      };
+      const progression = ['E7', 'E7', 'E7', 'E7', 'A7', 'A7', 'E7', 'E7', 'B7', 'A7', 'E7', 'B7'];
+      window.playScene = function playScene(context) {
+        const destination = context.destination;
+        const now = context.currentTime + 0.04;
+        const beat = 60 / 150;
+        progression.forEach((chord, bar) => {
+          const notes = chordNotes[chord];
+          notes.forEach((frequency, index) => {
+            tone(context, destination, frequency, now + bar * beat + index * 0.045, 0.22, 'sawtooth', 0.045);
+            tone(context, destination, frequency * 2, now + bar * beat + index * 0.045, 0.12, 'square', 0.018);
+          });
+        });
+        if (running) window.setTimeout(() => window.playScene(context), progression.length * beat * 1000);
+      };
+    </script>
+  </body>
+</html>

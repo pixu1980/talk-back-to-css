@@ -1,0 +1,43 @@
+<section data-topic="real-world-examples" data-menu-title="Real World 05 - Presence Avatar">
+  <div class="real-world-examples-slide">
+    <div class="real-world-examples-demo-layout">
+      <div class="real-world-examples-demo-header">
+        <h3>Presence <mark>Avatar</mark></h3>
+        <small>Status, size, ring, and motion rules are driven by attributes and media conditions.</small>
+      </div>
+      <iframe class="real-world-examples-demo-frame" src="./demos/presence.html" title="Presence avatar"></iframe>
+    </div>
+    <article class="real-world-examples-code">
+      <pre><code data-trim data-line-numbers class="hljs html">
+          &lt;figure is="back-presence" data-status="online" data-size="88" data-ring="5"&gt;
+            &lt;img src="avatar.svg" alt="Online avatar" /&gt;
+          &lt;/figure&gt;
+        </code></pre>
+      <pre><code data-trim data-line-numbers class="hljs css">
+          [is='back-presence'] {
+            --status: attr(data-status type(&lt;custom-ident&gt;), offline);
+            --size: attr(data-size px, 72px);
+            --ring-size: attr(data-ring px, 4px);
+
+            --accent: if(style(--status: online): #079455; style(--status: busy): #f79009; else: #667085;);
+            position: relative;
+            inline-size: var(--size);
+            block-size: var(--size);
+            border-radius: 50%;
+            box-shadow: 0 0 0 var(--ring-size) var(--accent);
+          }
+
+          [is='back-presence']::after {
+            content: "";
+            position: absolute;
+            inset-block-end: 0;
+            inset-inline-end: 0;
+            inline-size: 22%;
+            block-size: 22%;
+            border-radius: 50%;
+            background: var(--accent);
+          }
+        </code></pre>
+    </article>
+  </div>
+</section>

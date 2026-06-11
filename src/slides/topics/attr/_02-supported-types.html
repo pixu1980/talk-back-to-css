@@ -1,0 +1,56 @@
+<!-- Slide 3: Supported types -->
+<section data-topic="foundations" data-menu-title="Supported types">
+  <h3>Supported <mark>Types</mark></h3>
+  <small balance>Each type tells CSS how to parse and use the attribute value.</small>
+</section>
+<section data-topic="foundations" data-menu-title="Supported types">
+  <p balance><mark>Supported types</mark> include: angle, color, custom-ident, image, integer, length, length-percentage, number, percentage, resolution, string, time, transform-function</p>
+</section>
+<section data-topic="foundations" data-menu-title="Supported types">
+  <h4>Numeric types</h4>
+  <pre>
+    <code data-trim data-line-numbers class="hljs css">
+      .selector {
+        /* Pure number for calculations */
+        --speed: attr(data-speed number, 0);
+
+        /* Length units */
+        width: attr(data-width px, 100px);
+        padding: attr(data-pad em, 1em);
+        gap: attr(data-gap rem, 1rem);
+
+        /* Percentage */
+        opacity: attr(data-opacity %, 100%);
+
+        /* Angle for rotations */
+        rotate: attr(data-angle deg, 0deg);
+
+        /* Time for animations */
+        animation-duration: attr(data-duration s, 1s);
+      }
+    </code>
+  </pre>
+</section>
+<section data-topic="foundations" data-menu-title="Token type">
+  <h4>Token type for keywords</h4>
+  <pre>
+    <code data-trim data-line-numbers class="hljs css">
+    /* Token matches exact strings */
+    .card {
+      --theme: attr(data-theme token, light);
+    }
+
+    /* Use with if() for branching */
+    background: if(
+      attr(data-theme token) = dark,
+      #1a1a2e,
+      #ffffff
+    );
+    </code>
+  </pre>
+  <pre>
+    <code data-trim data-line-numbers class="hljs html">
+    &lt;div data-theme="dark"&gt;...&lt;/div&gt;
+    </code>
+  </pre>
+</section>

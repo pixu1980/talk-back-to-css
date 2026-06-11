@@ -1,0 +1,66 @@
+<section data-topic="real-world-examples" data-menu-title="Real World 04 - Responsive Grid">
+  <div class="real-world-examples-slide">
+    <div class="real-world-examples-demo-layout real-world-examples-demo-layout--resizable">
+      <div class="real-world-examples-demo-header">
+        <h3>Responsive <mark>Grid</mark></h3>
+        <small>The markup expresses the desired layout - CSS decides what the container can afford.</small>
+      </div>
+      <div class="control-row real-world-examples-grid-controls">
+        <label for="real-world-grid-size">
+          Container
+          <input
+            id="real-world-grid-size"
+            type="range"
+            min="320"
+            max="960"
+            step="20"
+            value="720"
+            data-attr-slider-target="#real-world-grid-preview"
+            data-attr-name="data-width"
+            data-attr-style-var="--real-world-grid-inline-size"
+          />
+          <output data-live-value-target="#real-world-grid-preview" data-live-value="data-width">720</output>
+          <span>px</span>
+        </label>
+      </div>
+      <div id="real-world-grid-preview" class="real-world-examples-resize-frame" data-width="720" style="--real-world-grid-inline-size: 720">
+        <iframe class="real-world-examples-demo-frame" src="./demos/grid.html" title="Responsive grid"></iframe>
+      </div>
+    </div>
+    <article class="real-world-examples-code">
+      <pre><code data-trim data-line-numbers class="hljs html">
+          &lt;div class="grid-preview"&gt;
+            &lt;section is="back-grid" data-cols="4" data-gap="4" data-density="comfortable"&gt;
+              &lt;article&gt;Design tokens&lt;/article&gt;
+              &lt;article&gt;Components&lt;/article&gt;
+              &lt;article&gt;Patterns&lt;/article&gt;
+              &lt;article&gt;Guidelines&lt;/article&gt;
+            &lt;/section&gt;
+          &lt;/div&gt;
+        </code></pre>
+      <pre><code data-trim data-line-numbers class="hljs css">
+          .grid-preview {
+            container-type: inline-size;
+            resize: horizontal;
+            overflow: auto;
+          }
+
+          [is='back-grid'] {
+            --columns: attr(data-cols type(&lt;integer&gt;), 3);
+            --gap-step: attr(data-gap type(&lt;number&gt;), 4);
+            --density: attr(data-density type(&lt;custom-ident&gt;), comfortable);
+
+            display: grid;
+            gap: calc(var(--gap-step) * 0.25rem);
+            grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+          }
+
+          @container (width &lt; 700px) {
+            [is='back-grid'] {
+              grid-template-columns: 1fr;
+            }
+          }
+        </code></pre>
+    </article>
+  </div>
+</section>

@@ -1,13 +1,14 @@
-@import "npm:@pixu-talks/fonts";
-@import "npm:@pixu-talks/theme";
+@import 'npm:@pixu-talks/fonts';
+@import 'npm:@pixu-talks/theme';
 
-@import "./fonts/digital-numbers/digital-numbers.css";
-@import "./fonts/michroma/michroma.css";
-@import "./fonts/back-to-the-future/back-to-the-future.css";
-@import "./fonts/six-caps/six-caps.css";
+@import './fonts/digital-numbers/digital-numbers.css';
+@import './fonts/michroma/michroma.css';
+@import './fonts/back-to-the-future/back-to-the-future.css';
+@import './fonts/six-caps/six-caps.css';
 
-@import "./_back-to-the-future-doodle.css";
-@import "./_time-circuits.css";
-@import "./_btf-inputs.css";
-@import "./_flux-capacitor.css";
-@import "./_fret-board.css";
+@import './_back-to-the-future-doodle.css';
+@import './_time-circuits.css';
+@import './_btf-inputs.css';
+@import './_flux-capacitor.css';
+@import './_fret-board.css';
+@import './_real-world-examples.css';

@@ -4,968 +4,831 @@
    ============================================ */
 
 @layer flux-capacitor {
-	@property --flux-capacitor--deg {
-		syntax: "<angle>";
-		inherits: true;
-		initial-value: 0deg;
-	}
-
-	@property --flux-capacitor--ratio-pos {
-		syntax: "<number>";
-		inherits: true;
-		initial-value: 0;
-	}
-
-	@property --flux-capacitor--ratio-size {
-		syntax: "<number>";
-		inherits: true;
-		initial-value: 0;
-	}
-
-	flux-capacitor {
-		--flux-capacitor--color-background: #111;
-		--flux-capacitor--color-surface: #505050;
-		--flux-capacitor--color-warn-container: #953a38;
-		--flux-capacitor--color-tertiary-container: #f9bb26;
-		--flux-capacitor--color-secondary: #ceb893;
-		--flux-capacitor--z-noise: 100;
-		--flux-capacitor--z-top: 1;
-		--flux-capacitor--z-glass: 2;
-
-		overflow: visible;
-		display: grid;
-		place-items: center;
-		position: relative;
-		color: #a4eaf8;
-		scale: 0.7;
-
-		&:after {
-			content: "";
-			position: absolute;
-			/* background: url('../assets/noise.svg') repeat; */
-			mix-blend-mode: overlay;
-			inset: 0;
-			pointer-events: none;
-			filter: invert(1);
-			z-index: var(--flux-capacitor--z-noise);
-		}
-
-		.case {
-			--flux-capacitor--light: rgba(255, 255, 255, 0.6);
-			--flux-capacitor--surface: transparent;
-
-			/*light reflection*/
-			background:
-				conic-gradient(
-					var(--flux-capacitor--surface),
-					var(--flux-capacitor--light),
-					var(--flux-capacitor--surface),
-					var(--flux-capacitor--light),
-					var(--flux-capacitor--surface),
-					var(--flux-capacitor--light),
-					var(--flux-capacitor--surface),
-					var(--flux-capacitor--light),
-					var(--flux-capacitor--surface),
-					var(--flux-capacitor--surface)
-				),
-				var(--flux-capacitor--color-surface);
-			box-shadow: 0 0 10vmin hsla(0, 0%, 0%, 0.5);
-			width: 60vmin;
-			aspect-ratio: 3 / 3.8;
-			border-radius: 3vmin;
-			position: relative;
-
-			.top,
-			.bottom {
-				height: 8vmin;
-			}
-
-			.center {
-				height: 60vmin;
-				display: grid;
-				place-items: center;
-			}
-		}
-
-		.inner-container {
-			background:
-				radial-gradient(at center, hsla(0, 0%, 100%, 0.2), transparent 55%),
-				linear-gradient(to bottom, black, rgba(0, 0, 0, 0.2)),
-				var(--flux-capacitor--color-surface);
-			width: 80%;
-			height: 100%;
-			border-radius: 6vmin;
-			position: relative;
-			overflow: hidden;
-		}
-
-		.top {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			z-index: var(--flux-capacitor--z-top);
-
-			.gap {
-				flex-basis: 0.7vmin;
-			}
-		}
-
-		.label {
-			padding: 0.5vmin 0.8vmin;
-			border-radius: 0.25vmin;
-			background: var(--flux-capacitor--color-warn-container);
-			color: hsla(0, 0%, 100%, 0.7);
-			text-transform: uppercase;
-			letter-spacing: 0.3vmin;
-			font-weight: bold;
-			font-family: "Helvetica Neue", Helvetica, sans-serif;
-			font-size: 1.1vmin;
-			text-shadow: 0.1vmin 0.1vmin 0.1vmin #390404de;
-			box-shadow: 0 0.1vmin 0.3vmin rgba(0, 0, 0, 0.2);
-			border: 1px solid transparent;
-			z-index: var(--flux-capacitor--z-top);
-			&:last-child {
-				transform: translateY(42vmin);
-			}
-		}
-
-		.inner-container-shadow {
-			pointer-events: none;
-			position: absolute;
-			inset: 0;
-			border-radius: inherit;
-			overflow: hidden;
-
-			&:before {
-				content: "";
-				position: absolute;
-				top: 7vmin;
-				left: 2vmin;
-				right: 2vmin;
-				bottom: 2vmin;
-				box-shadow: 0 -2vmin 0 10vmin hsla(0, 0%, 0%, 0.4);
-				transform: translateY(5vmin);
-				border-radius: 10vmin;
-				filter: blur(10px);
-			}
-		}
-
-		.part {
-			position: absolute;
-			left: 1.5vmin;
-			top: 6.5vmin;
-
-			.circle {
-				position: absolute;
-				border-radius: 50%;
-				background: var(--flux-capacitor--color-secondary);
-				width: 14vmin;
-				aspect-ratio: 1;
-				box-shadow: 1vmin 0 3vmin hsla(0, 0%, 0%, 1);
-				&:before {
-					content: "";
-					position: absolute;
-					inset: 0.1vmin;
-					border: 0.2vmin hsla(0, 0%, 100%, 0.3) solid;
-					border-radius: inherit;
-					background: conic-gradient(
-						transparent,
-						var(--flux-capacitor--light),
-						transparent,
-						var(--flux-capacitor--light),
-						transparent,
-						var(--flux-capacitor--light),
-						transparent,
-						var(--flux-capacitor--light),
-						transparent,
-						var(--flux-capacitor--light),
-						transparent
-					);
-				}
-			}
-
-			.bolt {
-				position: absolute;
-				left: 2vmin;
-				top: 5.7vmin;
-				width: 1vmin;
-				opacity: 0.8;
-				aspect-ratio: 1;
-				filter: drop-shadow(0 0.2vmin 0.2vmin rgba(0, 0, 0, 0.6));
-
-				&.second {
-					top: 7.5vmin;
-				}
-
-				&:before {
-					content: "";
-					position: absolute;
-					inset: 0;
-					background:
-						linear-gradient(
-							to bottom,
-							rgba(255, 255, 255, 0.5) 40%,
-							rgba(0, 0, 0, 0.2)
-						),
-						var(--flux-capacitor--color-secondary);
-					clip-path: polygon(
-						50% 0%,
-						100% 25%,
-						100% 75%,
-						50% 100%,
-						0% 75%,
-						0% 25%
-					);
-				}
-
-				&:after {
-					content: "";
-					position: absolute;
-					inset: 0.25vmin;
-					background:
-						radial-gradient(
-							at center,
-							rgba(255, 255, 255, 0.6) 40%,
-							rgba(0, 0, 0, 0.2)
-						),
-						var(--flux-capacitor--color-secondary);
-					border-radius: 50%;
-					box-shadow: 0 0.1vmin 0.1vmin rgba(0, 0, 0, 0.4);
-				}
-			}
-
-			.plug {
-				position: absolute;
-
-				.plug-bottom {
-					position: absolute;
-					left: 5vmin;
-					top: 5vmin;
-					border-radius: 50%;
-					box-shadow: 0 0.5vmin 0.5vmin 0.1vmin rgba(0, 0, 0, 0.6);
-					width: 4vmin;
-					aspect-ratio: 1;
-					background:
-						radial-gradient(at top, transparent, rgba(0, 0, 0, 0.4)),
-						var(--flux-capacitor--color-warn-container);
-					background-size: 150%;
-					background-position-x: 50%;
-				}
-
-				.plug-top {
-					position: absolute;
-					left: 5.4vmin;
-					top: 5.4vmin;
-					width: 3.2vmin;
-					aspect-ratio: 1;
-					border-radius: 50%;
-					border-top: 0.1vmin solid rgba(255, 255, 255, 0.3);
-					border-bottom: 0.3vmin solid rgba(0, 0, 0, 0.5);
-					background:
-						radial-gradient(
-							1vmin at 50% 30%,
-							rgba(255, 255, 255, 0.3),
-							transparent
-						),
-						radial-gradient(
-							5vmin at 50% 30%,
-							rgba(255, 255, 255, 0.1),
-							transparent
-						),
-						radial-gradient(5vmin at 50% 5%, transparent 40%, black 70%)
-						var(--flux-capacitor--color-warn-container) center center no-repeat;
-				}
-
-				.plug-end {
-					position: absolute;
-					left: 5.8vmin;
-					top: 8vmin;
-					width: 2.5vmin;
-					aspect-ratio: 2 / 5;
-					border-radius: 0.8vmin;
-					background:
-						radial-gradient(
-							1vmin 2vmin at 70% 50%,
-							rgba(255, 255, 255, 0.25),
-							transparent
-						),
-						linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 30%),
-						linear-gradient(
-							to right,
-							rgba(0, 0, 0, 0.3),
-							transparent,
-							rgba(0, 0, 0, 0.3)
-						),
-						radial-gradient(
-							10vmin at 50% 0%,
-							transparent 40%,
-							rgba(0, 0, 0, 0.5) 60%
-						),
-						var(--flux-capacitor--color-warn-container);
-				}
-
-				.plug-cable {
-					position: absolute;
-					left: 6.4vmin;
-					top: 14vmin;
-
-					.plug-calbe-end {
-						position: absolute;
-						left: 0.8vmin;
-						top: 8.7vmin;
-						transform: rotate(-45deg);
-						width: 1.5vmin;
-						height: 3.3vmin;
-						background:
-							radial-gradient(
-								at 50% 0%,
-								transparent 40%,
-								rgba(0, 0, 0, 0.9) 80%
-							),
-							radial-gradient(1vmin at 100% 0%, rgba(0, 0, 0, 0.7), transparent),
-							linear-gradient(
-								to right,
-								rgba(0, 0, 0, 0.5),
-								transparent 60%,
-								rgba(0, 0, 0, 0.5)
-							),
-							var(--flux-capacitor--color-tertiary-container);
-						border-radius: 2vmin;
-					}
-
-					&:after {
-						content: "";
-						position: absolute;
-						border-radius: 3vmin;
-						width: 1.2vmin;
-						height: 10vmin;
-						background:
-							radial-gradient(
-								2vmin at 110% 100%,
-								var(--flux-capacitor--color-tertiary-container),
-								transparent
-							),
-							linear-gradient(
-								to right,
-								rgba(0, 0, 0, 0.5),
-								transparent 40%,
-								transparent 50%,
-								transparent 60%,
-								rgba(0, 0, 0, 0.5)
-							),
-							var(--flux-capacitor--color-tertiary-container);
-					}
-
-					&:before {
-						content: "";
-						position: absolute;
-						background: radial-gradient(
-							at 50% 0%,
-							black 40%,
-							rgba(0, 0, 0, 0.8)
-						);
-						border-radius: 50%;
-						border: 0.3vmin solid rgba(255, 255, 255, 0.3);
-						top: 10vmin;
-						left: 1.3vmin;
-						width: 1.8vmin;
-						aspect-ratio: 1;
-					}
-				}
-			}
-
-			.bridge {
-				position: absolute;
-				background:
-					linear-gradient(
-						to right,
-						transparent 88%,
-						rgba(0, 0, 0, 0.3) 88%,
-						transparent 95%
-					),
-					var(--flux-capacitor--color-secondary);
-				box-shadow:
-					0 0 0.3vmin 0vmin rgba(0, 0, 0, 0.3),
-					0 0 4vmin 0.5vmin rgba(0, 0, 0, 0.6);
-				left: 7vmin;
-				top: 5.2vmin;
-				width: 20.4vmin;
-				height: 1.6vmin;
-				transform: rotate(43deg);
-				transform-origin: center left;
-
-				&:after {
-					content: "";
-					position: absolute;
-					top: 0.6vmin;
-					width: 17.5vmin;
-					height: 0.4vmin;
-					background: transparent;
-					box-shadow: inset 0 0 0.3vmin rgba(0, 0, 0, 0.7);
-					border-radius: 2vmin;
-				}
-			}
-
-			.bridge-glass {
-				position: absolute;
-				height: 2.2vmin;
-				width: 16vmin;
-				background:
-					linear-gradient(
-						to right,
-						transparent,
-						hsla(0, 0%, 100%, 0.7),
-						transparent
-					),
-					linear-gradient(
-						to right,
-						hsla(0, 0%, 100%, 0.7),
-						transparent,
-						transparent
-					);
-				border: 2px solid hsla(0, 0%, 100%, 0.4);
-				top: -0.45vmin;
-				border-radius: 3vmin;
-				mix-blend-mode: overlay;
-				z-index: 1;
-
-				.waveimage {
-					position: absolute;
-					top: -0.8vmin;
-					left: 0;
-					height: 3.5vmin;
-					width: 20vmin;
-					opacity: 0;
-					animation: flux-capacitor-wave 10s linear infinite;
-					animation-delay: 1s;
-				}
-			}
-
-			.bridge-light {
-				z-index: 1;
-				filter: blur(6px);
-				position: absolute;
-				height: 1.5vmin;
-				width: 16vmin;
-				background: white;
-				animation: flux-capacitor-bridge-light-1 10s linear infinite;
-				animation-delay: 1s;
-				border-radius: 4vmin;
-				opacity: 0;
-			}
-
-			.bridge-light2 {
-				position: absolute;
-				height: 0.5vmin;
-				top: 0.5vmin;
-				width: 17vmin;
-				--s: #a4eaf8;
-				background: linear-gradient(
-					to right,
-					var(--s) 20%,
-					transparent 20%,
-					var(--s) 50%,
-					transparent 50%,
-					var(--s) 80%,
-					transparent 80%,
-					var(--s) 90%,
-					transparent 90%,
-					transparent
-				);
-				background-size: 200% 100%;
-				border-radius: 4vmin;
-				animation: flux-capacitor-bridge-light-2 1s linear infinite;
-				background-position: -100vmin;
-				opacity: 0;
-				z-index: 100;
-			}
-
-			&.right {
-				left: unset;
-				right: 15vmin;
-				.circle {
-					transform: rotate(42deg);
-				}
-
-				.plug-cable {
-					transform: scaleX(-1) translateX(-1.2vmin);
-				}
-
-				.bridge {
-					transform: rotate(136.8deg);
-				}
-			}
-
-			&.bottom {
-				left: 17.4vmin;
-				top: unset;
-				bottom: 5vmin;
-				.circle {
-					transform: rotate(59deg);
-				}
-
-				.plug {
-					transform: rotate(270deg) translateX(-14.1vmin);
-				}
-
-				.bridge {
-					width: 25.5vmin;
-					left: 6.9vmin;
-					transform: rotate(270deg);
-					background:
-						linear-gradient(
-							to right,
-							transparent 90%,
-							rgba(0, 0, 0, 0.3) 90%,
-							transparent 98%
-						),
-						var(--flux-capacitor--color-secondary);
-					&:after {
-						width: 22vmin;
-					}
-
-					.waveimage {
-						width: 28vmin;
-					}
-
-					.bridge-glass {
-						width: 20vmin;
-						top: -0.5vmin;
-					}
-
-					.bridge-light2 {
-						width: 22vmin;
-					}
-				}
-			}
-		}
-
-		.case-border {
-			pointer-events: none;
-			position: absolute;
-			top: 0.5vmin;
-			left: 0;
-			right: 0.5vmin;
-			bottom: 0;
-			background: transparent;
-			border-radius: inherit;
-			z-index: var(--flux-capacitor--z-glass);
-			box-shadow:
-				0 -0.2vmin 0 0.15vmin rgba(0, 0, 0, 0.5),
-				0.1vmin -0.3vmin 0 0.1vmin hsla(0, 0%, 100%, 0.6),
-				0vmin -0.1vmin 0 0.1vmin hsla(0, 0%, 100%, 0.1),
-				0.2vmin -0.2vmin 0 0.2vmin hsla(0, 0%, 100%, 0.6);
-			mix-blend-mode: overlay;
-			opacity: 0.8;
-		}
-
-		.case-glass {
-			pointer-events: none;
-			--case-glass-light-size: 0.3vmin;
-			position: absolute;
-			z-index: var(--flux-capacitor--z-glass);
-			inset: 6vmin;
-			filter: drop-shadow(0 0 1vmin hsla(0, 0%, 0%, 0.4));
-			border-radius: 5vmin;
-		}
-
-		.case-glass-bg {
-			position: absolute;
-			inset: -0.5vmin;
-			border-radius: 6vmin;
-			background: linear-gradient(
-					135deg,
-					hsla(0, 0%, 20%, 1),
-					hsla(0, 0%, 0%, 1)
-				)
-				border-box;
-			border: 3vmin solid transparent;
-			mask:
-				linear-gradient(#fff 0 0) padding-box,
-				linear-gradient(#fff 0 0);
-			mask-composite: exclude;
-		}
-
-		.case-glass-soft-lights {
-			position: absolute;
-			inset: var(--case-glass-light-size);
-			border-radius: 5vmin;
-			background: linear-gradient(
-					to bottom,
-					hsla(0, 0%, 100%, 0.2),
-					transparent 40%,
-					transparent 50%,
-					hsla(0, 0%, 100%, 0.1)
-				)
-				border-box;
-			border: calc(var(--case-glass-light-size) * 4) solid transparent;
-			mask:
-				linear-gradient(#fff 0 0) padding-box,
-				linear-gradient(#fff 0 0);
-			mask-composite: exclude;
-		}
-
-		.case-glass-middle-lights {
-			position: absolute;
-			inset: calc(var(--case-glass-light-size) * 2);
-			border-radius: 5vmin;
-			background: linear-gradient(
-					to bottom,
-					hsla(0, 0%, 100%, 0.2),
-					transparent 40%,
-					transparent 45%,
-					hsla(0, 0%, 100%, 0.1)
-				)
-				border-box;
-			border: var(--case-glass-light-size) solid transparent;
-			mask:
-				linear-gradient(#fff 0 0) padding-box,
-				linear-gradient(#fff 0 0);
-			mask-composite: exclude;
-		}
-
-		.case-glass-hard-lights {
-			position: absolute;
-			inset: calc(var(--case-glass-light-size) * 2.5);
-			border-radius: 5vmin;
-			background: linear-gradient(
-					to bottom,
-					hsla(0, 0%, 100%, 0.1),
-					transparent 40%,
-					transparent 70%,
-					hsla(0, 0%, 100%, 0.1)
-				)
-				border-box;
-			border: calc(var(--case-glass-light-size) / 2) solid transparent;
-			mask:
-				linear-gradient(#fff 0 0) padding-box,
-				linear-gradient(#fff 0 0);
-			mask-composite: exclude;
-		}
-
-		.lights {
-			position: absolute;
-			inset: 0;
-			border-radius: 50%;
-			z-index: 10000;
-			--b-1: #a4eaf80f;
-			--flux-capacitor--deg: 0deg;
-			--flux-capacitor--ratio-pos: 1;
-			--flux-capacitor--ratio-size: 1;
-			opacity: 0;
-			transform: translateY(-2vmin);
-			animation: flux-capacitor-light-1 10s linear infinite;
-			animation-delay: 1s;
-			.l-base {
-				mix-blend-mode: overlay;
-				position: absolute;
-				inset: 0vmax;
-				opacity: 0.3;
-				background: conic-gradient(
-					from var(--flux-capacitor--deg),
-					transparent,
-					var(--b-1),
-					transparent,
-					var(--b-1),
-					transparent,
-					var(--b-1),
-					transparent,
-					var(--b-1),
-					transparent,
-					transparent,
-					transparent,
-					var(--b-1),
-					transparent,
-					var(--b-1),
-					transparent,
-					transparent,
-					transparent,
-					var(--b-1),
-					transparent,
-					var(--b-1),
-					transparent,
-					var(--b-1),
-					transparent,
-					transparent,
-					transparent,
-					var(--b-1),
-					transparent,
-					var(--b-1),
-					transparent
-				);
-			}
-
-			.l-center {
-				position: absolute;
-				inset: -50vmax;
-				background:
-					radial-gradient(
-						2vmin at center,
-						hsla(0, 0%, 100%, 0.9),
-						#a4eaf84f,
-						transparent,
-						transparent
-					),
-					radial-gradient(
-						5vmin at center,
-						hsla(0, 0%, 100%, 0.9),
-						#a4eaf84f,
-						transparent,
-						transparent
-					),
-					radial-gradient(2vmin at center, hsla(0, 0%, 100%, 0.9), transparent),
-					radial-gradient(
-						10vmin at center,
-						hsla(0, 0%, 100%, 0.6),
-						#a4eaf81f,
-						transparent,
-						transparent
-					),
-					radial-gradient(
-						20vmin at center,
-						#a4eaf81f,
-						transparent,
-						transparent,
-						transparent
-					),
-					radial-gradient(
-						at center,
-						#a4eaf84f,
-						#a4eaf81f,
-						transparent,
-						transparent,
-						transparent
-					);
-			}
-
-			.l-bar {
-				position: absolute;
-				top: 36vmin;
-				left: 20vmin;
-				height: 4vmin;
-				width: 59vmin;
-				--s: #a4eaf84f;
-				--e: transparent;
-				background:
-					radial-gradient(
-						20vmin calc(0.4vmin * var(--flux-capacitor--ratio-size)) at
-							calc(14vmin * var(--flux-capacitor--ratio-pos)) 50%,
-						var(--s),
-						#a4eaf81f,
-						var(--e),
-						transparent
-					),
-					radial-gradient(
-						3vmin calc(0.8vmin * var(--flux-capacitor--ratio-size)) at
-							calc(14vmin * var(--flux-capacitor--ratio-pos)) 50%,
-						var(--s),
-						var(--e),
-						transparent
-					),
-					radial-gradient(
-						3vmin calc(1vmin * var(--flux-capacitor--ratio-size)) at
-							calc(20vmin * var(--flux-capacitor--ratio-pos)) 50%,
-						var(--s),
-						var(--e),
-						transparent
-					),
-					radial-gradient(
-						6vmin calc(1.7vmin * var(--flux-capacitor--ratio-size)) at
-							calc(30vmin * var(--flux-capacitor--ratio-pos)) 50%,
-						var(--s),
-						var(--e),
-						transparent
-					),
-					radial-gradient(
-						5vmin calc(1.5vmin * var(--flux-capacitor--ratio-size)) at
-							calc(42vmin * var(--flux-capacitor--ratio-pos)) 50%,
-						var(--s),
-						var(--e),
-						transparent
-					),
-					radial-gradient(
-						10vmin calc(2vmin * var(--flux-capacitor--ratio-size)) at
-							calc(50vmin * var(--flux-capacitor--ratio-pos)) 50%,
-						#a4eaf89f,
-						var(--s),
-						var(--e),
-						transparent
-					);
-			}
-		}
-
-		.pipe {
-			position: absolute;
-			left: 60vmin;
-			bottom: 30vmin;
-			height: 14vmin;
-			width: 16vmin;
-			background: #222;
-			border-top-right-radius: 50%;
-			border-bottom-right-radius: 50%;
-			background:
-				linear-gradient(
-					to right,
-					hsla(0, 0%, 100%, 0.3),
-					transparent 30%,
-					transparent
-				),
-				radial-gradient(
-					5vmin 6vmin at 80% 50%,
-					hsla(0, 0%, 100%, 0.2),
-					transparent
-				),
-				linear-gradient(
-					to bottom,
-					rgba(0, 0, 0, 0.5),
-					hsla(0, 0%, 100%, 0.3),
-					rgba(0, 0, 0, 0.5)
-				);
-			box-shadow: 0 0 10vmin black;
-			z-index: -1;
-
-			&:before {
-				content: "";
-				position: absolute;
-				left: 0;
-				border-radius: 0.2vmin;
-				top: -1vmin;
-				bottom: -1vmin;
-				width: 2vmin;
-				background:
-					linear-gradient(to bottom, black, hsla(0, 0%, 100%, 1), black), black;
-				box-shadow: 0 0 1vmin rgba(0, 0, 0, 0.9);
-			}
-
-			&.top {
-				transform: rotate(-90deg);
-				bottom: 76.6vmin;
-				left: 22.4vmin;
-				width: 15vmin;
-				height: 13vmin;
-			}
-		}
-
-		.buckle {
-			position: absolute;
-			right: -2vmin;
-			top: 10vmin;
-			background:
-				linear-gradient(to right, hsla(0, 0%, 100%, 0.1), transparent),
-				linear-gradient(to bottom, hsla(0, 0%, 100%, 0.1), transparent), #333;
-			width: 2vmin;
-			height: 10vmin;
-			border-top-right-radius: 1vmin;
-			border-bottom-right-radius: 1vmin;
-			border: 0.15vmin solid hsla(0, 0%, 100%, 0.2);
-			border-left-color: transparent;
-			z-index: -1;
-			&:before {
-				content: "";
-				position: absolute;
-				background: linear-gradient(
-					to left,
-					rgba(255, 255, 255, 0.2),
-					transparent
-				);
-				top: 0.5vmin;
-				left: 0.7vmin;
-				bottom: 0.5vmin;
-				right: 0;
-				border: 0.2vmin solid hsla(0, 0%, 100%, 0.2);
-				border-top-left-radius: 0.25vmin;
-				border-bottom-left-radius: 0.25vmin;
-			}
-
-			&.buckle-bottom {
-				top: 57vmin;
-			}
-		}
-	}
-
-	@keyframes flux-capacitor-bridge-light-2 {
-		from {
-			background-position: -100vmin;
-			opacity: 0;
-		}
-
-		to {
-			background-position: 0;
-			opacity: 1;
-		}
-	}
-
-	@keyframes flux-capacitor-bridge-light-1 {
-		from {
-			opacity: 0;
-			width: 0;
-		}
-
-		2% {
-			opacity: 1;
-			width: 22vmin;
-		}
-
-		49% {
-			opacity: 1;
-			width: 22vmin;
-		}
-		50% {
-			opacity: 0;
-			width: 0;
-		}
-
-		50% {
-			width: 22vmin;
-		}
-	}
-
-	@keyframes flux-capacitor-wave {
-		to {
-			opacity: 0;
-		}
-
-		10% {
-			opacity: 1;
-		}
-
-		50% {
-			opacity: 0;
-		}
-
-		to {
-			opacity: 0;
-		}
-	}
-
-	@keyframes flux-capacitor-light-1 {
-		from {
-			opacity: 0;
-			--flux-capacitor--deg: 0deg;
-			--flux-capacitor--ratio-size: 0;
-			--flux-capacitor--ratio-pos: 0.6;
-		}
-		10% {
-			--flux-capacitor--ratio-size: 1;
-			opacity: 1;
-		}
-		40% {
-			opacity: 1;
-			--flux-capacitor--ratio-size: 1;
-		}
-
-		50% {
-			--flux-capacitor--deg: 30deg;
-			--flux-capacitor--ratio-size: 0;
-			opacity: 0;
-			--flux-capacitor--ratio-pos: 1;
-		}
-
-		to {
-			--flux-capacitor--deg: 30deg;
-			--flux-capacitor--ratio-size: 0;
-			opacity: 0;
-			--flux-capacitor--ratio-pos: 1;
-		}
-	}
+  @property --flux-capacitor--deg {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+  }
+
+  @property --flux-capacitor--ratio-pos {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+  }
+
+  @property --flux-capacitor--ratio-size {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+  }
+
+  flux-capacitor {
+    --flux-capacitor--design-block-size: 76;
+    --flux-capacitor--design-inline-size: 76em;
+    --flux-capacitor--max-scale: 0.7;
+    --flux-capacitor--color-background: #111;
+    --flux-capacitor--color-surface: #505050;
+    --flux-capacitor--color-warn-container: #953a38;
+    --flux-capacitor--color-tertiary-container: #f9bb26;
+    --flux-capacitor--color-secondary: #ceb893;
+    --flux-capacitor--bridge-light-1-animation: none;
+    --flux-capacitor--bridge-light-2-animation: none;
+    --flux-capacitor--case-light-animation: none;
+    --flux-capacitor--center-flash-animation: none;
+    --flux-capacitor--travel-delay: 0ms;
+    --flux-capacitor--travel-duration: 3200ms;
+    --flux-capacitor--scan-duration: 640ms;
+    --flux-capacitor--wave-animation: none;
+    --flux-capacitor--z-noise: 100;
+    --flux-capacitor--z-top: 1;
+    --flux-capacitor--z-glass: 2;
+
+    container-type: inline-size;
+    overflow: visible;
+    display: block;
+    inline-size: min(100%, calc(var(--flux-capacitor--design-inline-size) * var(--flux-capacitor--max-scale)));
+    aspect-ratio: var(--flux-capacitor--design-block-size) / var(--flux-capacitor--design-block-size);
+    position: relative;
+    font-size: 1vmin;
+    color: #a4eaf8;
+    max-inline-size: 100%;
+
+    &[data-speed='88'] {
+      --flux-capacitor--bridge-light-1-animation: flux-capacitor-bridge-light-1;
+      --flux-capacitor--bridge-light-2-animation: flux-capacitor-bridge-light-2;
+      --flux-capacitor--case-light-animation: flux-capacitor-light-1;
+      --flux-capacitor--center-flash-animation: flux-capacitor-center-flash;
+      --flux-capacitor--wave-animation: flux-capacitor-wave;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      /* background: url('../assets/noise.svg') repeat; */
+      mix-blend-mode: overlay;
+      inset: 0;
+      pointer-events: none;
+      filter: invert(1);
+      z-index: var(--flux-capacitor--z-noise);
+    }
+
+    .case {
+      --flux-capacitor--fit-scale: var(--flux-capacitor--max-scale);
+      --flux-capacitor--light: rgba(255, 255, 255, 0.6);
+      --flux-capacitor--surface: transparent;
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      transform-origin: left top;
+      scale: var(--flux-capacitor--fit-scale);
+
+      /*light reflection*/
+      background:
+        conic-gradient(
+          var(--flux-capacitor--surface),
+          var(--flux-capacitor--light),
+          var(--flux-capacitor--surface),
+          var(--flux-capacitor--light),
+          var(--flux-capacitor--surface),
+          var(--flux-capacitor--light),
+          var(--flux-capacitor--surface),
+          var(--flux-capacitor--light),
+          var(--flux-capacitor--surface),
+          var(--flux-capacitor--surface)
+        ),
+        var(--flux-capacitor--color-surface);
+      box-shadow: 0 0 10em hsla(0, 0%, 0%, 0.5);
+      width: 60em;
+      aspect-ratio: 3 / 3.8;
+      border-radius: 3em;
+
+      @supports (scale: calc(1px / 1px)) {
+        --flux-capacitor--fit-scale: min(var(--flux-capacitor--max-scale), calc(100cqi / var(--flux-capacitor--design-inline-size)));
+      }
+
+      .top,
+      .bottom {
+        height: 8em;
+      }
+
+      .center {
+        height: 60em;
+        display: grid;
+        place-items: center;
+      }
+    }
+
+    .inner-container {
+      background: radial-gradient(at center, hsla(0, 0%, 100%, 0.2), transparent 55%), linear-gradient(to bottom, black, rgba(0, 0, 0, 0.2)), var(--flux-capacitor--color-surface);
+      width: 80%;
+      height: 100%;
+      border-radius: 6em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: var(--flux-capacitor--z-top);
+
+      .gap {
+        flex-basis: 0.7em;
+      }
+    }
+
+    .label {
+      padding: 0.5em 0.8em;
+      border-radius: 0.25em;
+      background: var(--flux-capacitor--color-warn-container);
+      color: hsla(0, 0%, 100%, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-weight: bold;
+      font-family: 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 1.1em;
+      text-shadow: 0.1em 0.1em 0.1em #390404de;
+      box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.2);
+      border: 1px solid transparent;
+      z-index: var(--flux-capacitor--z-top);
+      &:last-child {
+        transform: translateY(42em);
+      }
+    }
+
+    .inner-container-shadow {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      overflow: hidden;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 7em;
+        left: 2em;
+        right: 2em;
+        bottom: 2em;
+        box-shadow: 0 -2em 0 10em hsla(0, 0%, 0%, 0.4);
+        transform: translateY(5em);
+        border-radius: 10em;
+        filter: blur(10px);
+      }
+    }
+
+    .part {
+      position: absolute;
+      left: 1.5em;
+      top: 6.5em;
+
+      .circle {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--flux-capacitor--color-secondary);
+        width: 14em;
+        aspect-ratio: 1;
+        box-shadow: 1em 0 3em hsla(0, 0%, 0%, 1);
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0.1em;
+          border: 0.2em hsla(0, 0%, 100%, 0.3) solid;
+          border-radius: inherit;
+          background: conic-gradient(
+            transparent,
+            var(--flux-capacitor--light),
+            transparent,
+            var(--flux-capacitor--light),
+            transparent,
+            var(--flux-capacitor--light),
+            transparent,
+            var(--flux-capacitor--light),
+            transparent,
+            var(--flux-capacitor--light),
+            transparent
+          );
+        }
+      }
+
+      .bolt {
+        position: absolute;
+        left: 2em;
+        top: 5.7em;
+        width: 1em;
+        opacity: 0.8;
+        aspect-ratio: 1;
+        filter: drop-shadow(0 0.2em 0.2em rgba(0, 0, 0, 0.6));
+
+        &.second {
+          top: 7.5em;
+        }
+
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 40%, rgba(0, 0, 0, 0.2)), var(--flux-capacitor--color-secondary);
+          clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          inset: 0.25em;
+          background: radial-gradient(at center, rgba(255, 255, 255, 0.6) 40%, rgba(0, 0, 0, 0.2)), var(--flux-capacitor--color-secondary);
+          border-radius: 50%;
+          box-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.4);
+        }
+      }
+
+      .plug {
+        position: absolute;
+
+        .plug-bottom {
+          position: absolute;
+          left: 5em;
+          top: 5em;
+          border-radius: 50%;
+          box-shadow: 0 0.5em 0.5em 0.1em rgba(0, 0, 0, 0.6);
+          width: 4em;
+          aspect-ratio: 1;
+          background: radial-gradient(at top, transparent, rgba(0, 0, 0, 0.4)), var(--flux-capacitor--color-warn-container);
+          background-size: 150%;
+          background-position-x: 50%;
+        }
+
+        .plug-top {
+          position: absolute;
+          left: 5.4em;
+          top: 5.4em;
+          width: 3.2em;
+          aspect-ratio: 1;
+          border-radius: 50%;
+          border-top: 0.1em solid rgba(255, 255, 255, 0.3);
+          border-bottom: 0.3em solid rgba(0, 0, 0, 0.5);
+          background:
+            radial-gradient(1em at 50% 30%, rgba(255, 255, 255, 0.3), transparent),
+            radial-gradient(5em at 50% 30%, rgba(255, 255, 255, 0.1), transparent),
+            radial-gradient(5em at 50% 5%, transparent 40%, black 70%) var(--flux-capacitor--color-warn-container) center center no-repeat;
+        }
+
+        .plug-end {
+          position: absolute;
+          left: 5.8em;
+          top: 8em;
+          width: 2.5em;
+          aspect-ratio: 2 / 5;
+          border-radius: 0.8em;
+          background:
+            radial-gradient(1em 2em at 70% 50%, rgba(255, 255, 255, 0.25), transparent), linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 30%),
+            linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent, rgba(0, 0, 0, 0.3)), radial-gradient(10em at 50% 0%, transparent 40%, rgba(0, 0, 0, 0.5) 60%),
+            var(--flux-capacitor--color-warn-container);
+        }
+
+        .plug-cable {
+          position: absolute;
+          left: 6.4em;
+          top: 14em;
+
+          .plug-calbe-end {
+            position: absolute;
+            left: 0.8em;
+            top: 8.7em;
+            transform: rotate(-45deg);
+            width: 1.5em;
+            height: 3.3em;
+            background:
+              radial-gradient(at 50% 0%, transparent 40%, rgba(0, 0, 0, 0.9) 80%), radial-gradient(1em at 100% 0%, rgba(0, 0, 0, 0.7), transparent),
+              linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent 60%, rgba(0, 0, 0, 0.5)), var(--flux-capacitor--color-tertiary-container);
+            border-radius: 2em;
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            border-radius: 3em;
+            width: 1.2em;
+            height: 10em;
+            background:
+              radial-gradient(2em at 110% 100%, var(--flux-capacitor--color-tertiary-container), transparent),
+              linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent 40%, transparent 50%, transparent 60%, rgba(0, 0, 0, 0.5)), var(--flux-capacitor--color-tertiary-container);
+          }
+
+          &:before {
+            content: '';
+            position: absolute;
+            background: radial-gradient(at 50% 0%, black 40%, rgba(0, 0, 0, 0.8));
+            border-radius: 50%;
+            border: 0.3em solid rgba(255, 255, 255, 0.3);
+            top: 10em;
+            left: 1.3em;
+            width: 1.8em;
+            aspect-ratio: 1;
+          }
+        }
+      }
+
+      .bridge {
+        position: absolute;
+        background: linear-gradient(to right, transparent 88%, rgba(0, 0, 0, 0.3) 88%, transparent 95%), var(--flux-capacitor--color-secondary);
+        box-shadow:
+          0 0 0.3em 0em rgba(0, 0, 0, 0.3),
+          0 0 4em 0.5em rgba(0, 0, 0, 0.6);
+        left: 7em;
+        top: 5.2em;
+        width: 20.4em;
+        height: 1.6em;
+        transform: rotate(43deg);
+        transform-origin: center left;
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0.6em;
+          width: 17.5em;
+          height: 0.4em;
+          background: transparent;
+          box-shadow: inset 0 0 0.3em rgba(0, 0, 0, 0.7);
+          border-radius: 2em;
+        }
+      }
+
+      .bridge-glass {
+        position: absolute;
+        height: 2.2em;
+        width: 16em;
+        background: linear-gradient(to right, transparent, hsla(0, 0%, 100%, 0.7), transparent), linear-gradient(to right, hsla(0, 0%, 100%, 0.7), transparent, transparent);
+        border: 2px solid hsla(0, 0%, 100%, 0.4);
+        top: -0.45em;
+        border-radius: 3em;
+        mix-blend-mode: overlay;
+        z-index: 1;
+
+        .waveimage {
+          position: absolute;
+          top: -0.8em;
+          left: 0;
+          height: 3.5em;
+          width: 20em;
+          opacity: 0;
+          animation-name: var(--flux-capacitor--wave-animation);
+          animation-duration: var(--flux-capacitor--travel-duration);
+          animation-timing-function: linear;
+          animation-delay: var(--flux-capacitor--travel-delay);
+          animation-iteration-count: 1;
+          animation-fill-mode: both;
+        }
+      }
+
+      .bridge-light {
+        z-index: 1;
+        filter: blur(6px);
+        position: absolute;
+        height: 1.5em;
+        width: 16em;
+        background: white;
+        animation-name: var(--flux-capacitor--bridge-light-1-animation);
+        animation-duration: var(--flux-capacitor--travel-duration);
+        animation-timing-function: linear;
+        animation-delay: var(--flux-capacitor--travel-delay);
+        animation-iteration-count: 1;
+        animation-fill-mode: both;
+        border-radius: 4em;
+        opacity: 0;
+      }
+
+      .bridge-light2 {
+        position: absolute;
+        height: 0.5em;
+        top: 0.5em;
+        width: 17em;
+        --s: #a4eaf8;
+        background: linear-gradient(to right, var(--s) 20%, transparent 20%, var(--s) 50%, transparent 50%, var(--s) 80%, transparent 80%, var(--s) 90%, transparent 90%, transparent);
+        background-size: 200% 100%;
+        border-radius: 4em;
+        animation-name: var(--flux-capacitor--bridge-light-2-animation);
+        animation-duration: var(--flux-capacitor--scan-duration);
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        background-position: -100em;
+        opacity: 0;
+        z-index: 100;
+      }
+
+      &.right {
+        left: unset;
+        right: 15em;
+        .circle {
+          transform: rotate(42deg);
+        }
+
+        .plug-cable {
+          transform: scaleX(-1) translateX(-1.2em);
+        }
+
+        .bridge {
+          transform: rotate(136.8deg);
+        }
+      }
+
+      &.bottom {
+        left: 17.4em;
+        top: unset;
+        bottom: 5em;
+        .circle {
+          transform: rotate(59deg);
+        }
+
+        .plug {
+          transform: rotate(270deg) translateX(-14.1em);
+        }
+
+        .bridge {
+          width: 25.5em;
+          left: 6.9em;
+          transform: rotate(270deg);
+          background: linear-gradient(to right, transparent 90%, rgba(0, 0, 0, 0.3) 90%, transparent 98%), var(--flux-capacitor--color-secondary);
+          &:after {
+            width: 22em;
+          }
+
+          .waveimage {
+            width: 28em;
+          }
+
+          .bridge-glass {
+            width: 20em;
+            top: -0.5em;
+          }
+
+          .bridge-light2 {
+            width: 22em;
+          }
+        }
+      }
+    }
+
+    .case-border {
+      pointer-events: none;
+      position: absolute;
+      top: 0.5em;
+      left: 0;
+      right: 0.5em;
+      bottom: 0;
+      background: transparent;
+      border-radius: inherit;
+      z-index: var(--flux-capacitor--z-glass);
+      box-shadow:
+        0 -0.2em 0 0.15em rgba(0, 0, 0, 0.5),
+        0.1em -0.3em 0 0.1em hsla(0, 0%, 100%, 0.6),
+        0em -0.1em 0 0.1em hsla(0, 0%, 100%, 0.1),
+        0.2em -0.2em 0 0.2em hsla(0, 0%, 100%, 0.6);
+      mix-blend-mode: overlay;
+      opacity: 0.8;
+    }
+
+    .case-glass {
+      pointer-events: none;
+      --case-glass-light-size: 0.3em;
+      position: absolute;
+      z-index: var(--flux-capacitor--z-glass);
+      inset: 6em;
+      filter: drop-shadow(0 0 1em hsla(0, 0%, 0%, 0.4));
+      border-radius: 5em;
+    }
+
+    .case-glass-bg {
+      position: absolute;
+      inset: -0.5em;
+      border-radius: 6em;
+      background: linear-gradient(135deg, hsla(0, 0%, 20%, 1), hsla(0, 0%, 0%, 1)) border-box;
+      border: 3em solid transparent;
+      mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+    }
+
+    .case-glass-soft-lights {
+      position: absolute;
+      inset: var(--case-glass-light-size);
+      border-radius: 5em;
+      background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.2), transparent 40%, transparent 50%, hsla(0, 0%, 100%, 0.1)) border-box;
+      border: calc(var(--case-glass-light-size) * 4) solid transparent;
+      mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+    }
+
+    .case-glass-middle-lights {
+      position: absolute;
+      inset: calc(var(--case-glass-light-size) * 2);
+      border-radius: 5em;
+      background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.2), transparent 40%, transparent 45%, hsla(0, 0%, 100%, 0.1)) border-box;
+      border: var(--case-glass-light-size) solid transparent;
+      mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+    }
+
+    .case-glass-hard-lights {
+      position: absolute;
+      inset: calc(var(--case-glass-light-size) * 2.5);
+      border-radius: 5em;
+      background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.1), transparent 40%, transparent 70%, hsla(0, 0%, 100%, 0.1)) border-box;
+      border: calc(var(--case-glass-light-size) / 2) solid transparent;
+      mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+    }
+
+    .lights {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      z-index: 10000;
+      --b-1: #a4eaf80f;
+      --flux-capacitor--deg: 0deg;
+      --flux-capacitor--ratio-pos: 1;
+      --flux-capacitor--ratio-size: 1;
+      opacity: 0;
+      transform: translateY(-2em);
+      animation-name: var(--flux-capacitor--case-light-animation);
+      animation-duration: var(--flux-capacitor--travel-duration);
+      animation-timing-function: linear;
+      animation-delay: var(--flux-capacitor--travel-delay);
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+      .l-base {
+        mix-blend-mode: overlay;
+        position: absolute;
+        inset: 0vmax;
+        opacity: 0.3;
+        background: conic-gradient(
+          from var(--flux-capacitor--deg),
+          transparent,
+          var(--b-1),
+          transparent,
+          var(--b-1),
+          transparent,
+          var(--b-1),
+          transparent,
+          var(--b-1),
+          transparent,
+          transparent,
+          transparent,
+          var(--b-1),
+          transparent,
+          var(--b-1),
+          transparent,
+          transparent,
+          transparent,
+          var(--b-1),
+          transparent,
+          var(--b-1),
+          transparent,
+          var(--b-1),
+          transparent,
+          transparent,
+          transparent,
+          var(--b-1),
+          transparent,
+          var(--b-1),
+          transparent
+        );
+      }
+
+      .l-center {
+        position: absolute;
+        inset: -50vmax;
+        background:
+          radial-gradient(2em at center, hsla(0, 0%, 100%, 0.9), #a4eaf84f, transparent, transparent), radial-gradient(5em at center, hsla(0, 0%, 100%, 0.9), #a4eaf84f, transparent, transparent),
+          radial-gradient(2em at center, hsla(0, 0%, 100%, 0.9), transparent), radial-gradient(10em at center, hsla(0, 0%, 100%, 0.6), #a4eaf81f, transparent, transparent),
+          radial-gradient(20em at center, #a4eaf81f, transparent, transparent, transparent), radial-gradient(at center, #a4eaf84f, #a4eaf81f, transparent, transparent, transparent);
+        opacity: 0;
+        animation-name: var(--flux-capacitor--center-flash-animation);
+        animation-duration: var(--flux-capacitor--travel-duration);
+        animation-timing-function: ease-out;
+        animation-delay: var(--flux-capacitor--travel-delay);
+        animation-iteration-count: 1;
+        animation-fill-mode: both;
+        pointer-events: none;
+      }
+
+      .l-bar {
+        position: absolute;
+        top: 36em;
+        left: 20em;
+        height: 4em;
+        width: 59em;
+        --s: #a4eaf84f;
+        --e: transparent;
+        background:
+          radial-gradient(20em calc(0.4em * var(--flux-capacitor--ratio-size)) at calc(14em * var(--flux-capacitor--ratio-pos)) 50%, var(--s), #a4eaf81f, var(--e), transparent),
+          radial-gradient(3em calc(0.8em * var(--flux-capacitor--ratio-size)) at calc(14em * var(--flux-capacitor--ratio-pos)) 50%, var(--s), var(--e), transparent),
+          radial-gradient(3em calc(1em * var(--flux-capacitor--ratio-size)) at calc(20em * var(--flux-capacitor--ratio-pos)) 50%, var(--s), var(--e), transparent),
+          radial-gradient(6em calc(1.7em * var(--flux-capacitor--ratio-size)) at calc(30em * var(--flux-capacitor--ratio-pos)) 50%, var(--s), var(--e), transparent),
+          radial-gradient(5em calc(1.5em * var(--flux-capacitor--ratio-size)) at calc(42em * var(--flux-capacitor--ratio-pos)) 50%, var(--s), var(--e), transparent),
+          radial-gradient(10em calc(2em * var(--flux-capacitor--ratio-size)) at calc(50em * var(--flux-capacitor--ratio-pos)) 50%, #a4eaf89f, var(--s), var(--e), transparent);
+      }
+    }
+
+    .pipe {
+      position: absolute;
+      left: 60em;
+      bottom: 30em;
+      height: 14em;
+      width: 16em;
+      background: #222;
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+      background:
+        linear-gradient(to right, hsla(0, 0%, 100%, 0.3), transparent 30%, transparent), radial-gradient(5em 6em at 80% 50%, hsla(0, 0%, 100%, 0.2), transparent),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.5), hsla(0, 0%, 100%, 0.3), rgba(0, 0, 0, 0.5));
+      box-shadow: 0 0 10em black;
+      z-index: -1;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        border-radius: 0.2em;
+        top: -1em;
+        bottom: -1em;
+        width: 2em;
+        background: linear-gradient(to bottom, black, hsla(0, 0%, 100%, 1), black), black;
+        box-shadow: 0 0 1em rgba(0, 0, 0, 0.9);
+      }
+
+      &.top {
+        transform: rotate(-90deg);
+        bottom: 76.6em;
+        left: 22.4em;
+        width: 15em;
+        height: 13em;
+      }
+    }
+
+    .buckle {
+      position: absolute;
+      right: -2em;
+      top: 10em;
+      background: linear-gradient(to right, hsla(0, 0%, 100%, 0.1), transparent), linear-gradient(to bottom, hsla(0, 0%, 100%, 0.1), transparent), #333;
+      width: 2em;
+      height: 10em;
+      border-top-right-radius: 1em;
+      border-bottom-right-radius: 1em;
+      border: 0.15em solid hsla(0, 0%, 100%, 0.2);
+      border-left-color: transparent;
+      z-index: -1;
+      &:before {
+        content: '';
+        position: absolute;
+        background: linear-gradient(to left, rgba(255, 255, 255, 0.2), transparent);
+        top: 0.5em;
+        left: 0.7em;
+        bottom: 0.5em;
+        right: 0;
+        border: 0.2em solid hsla(0, 0%, 100%, 0.2);
+        border-top-left-radius: 0.25em;
+        border-bottom-left-radius: 0.25em;
+      }
+
+      &.buckle-bottom {
+        top: 57em;
+      }
+    }
+  }
+
+  @keyframes flux-capacitor-bridge-light-2 {
+    from {
+      background-position: -100em;
+      opacity: 0;
+    }
+
+    to {
+      background-position: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes flux-capacitor-bridge-light-1 {
+    from {
+      opacity: 0;
+      width: 0;
+    }
+
+    2% {
+      opacity: 1;
+      width: 22em;
+    }
+
+    49% {
+      opacity: 1;
+      width: 22em;
+    }
+    50% {
+      opacity: 0;
+      width: 0;
+    }
+
+    50% {
+      width: 22em;
+    }
+  }
+
+  @keyframes flux-capacitor-wave {
+    from {
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+
+    72% {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes flux-capacitor-light-1 {
+    from {
+      opacity: 0;
+      --flux-capacitor--deg: 0deg;
+      --flux-capacitor--ratio-size: 0;
+      --flux-capacitor--ratio-pos: 0.6;
+    }
+    10% {
+      --flux-capacitor--ratio-size: 1;
+      opacity: 1;
+    }
+    40% {
+      opacity: 1;
+      --flux-capacitor--ratio-size: 1;
+    }
+
+    72% {
+      opacity: 1;
+      --flux-capacitor--ratio-size: 1.4;
+      --flux-capacitor--ratio-pos: 0.8;
+    }
+
+    88% {
+      --flux-capacitor--deg: 30deg;
+      --flux-capacitor--ratio-size: 2.2;
+      --flux-capacitor--ratio-pos: 1;
+      opacity: 1;
+    }
+
+    to {
+      --flux-capacitor--deg: 30deg;
+      --flux-capacitor--ratio-size: 0;
+      opacity: 0;
+      --flux-capacitor--ratio-pos: 1;
+    }
+  }
+
+  @keyframes flux-capacitor-center-flash {
+    from,
+    60% {
+      opacity: 0;
+      background:
+        radial-gradient(2em at center, hsla(0, 0%, 100%, 0.9), #a4eaf84f, transparent, transparent), radial-gradient(5em at center, hsla(0, 0%, 100%, 0.9), #a4eaf84f, transparent, transparent),
+        radial-gradient(2em at center, hsla(0, 0%, 100%, 0.9), transparent), radial-gradient(10em at center, hsla(0, 0%, 100%, 0.6), #a4eaf81f, transparent, transparent),
+        radial-gradient(20em at center, #a4eaf81f, transparent, transparent, transparent), radial-gradient(at center, #a4eaf84f, #a4eaf81f, transparent, transparent, transparent);
+    }
+
+    78% {
+      opacity: 0.45;
+      background:
+        radial-gradient(18vmax at center, hsla(0, 0%, 100%, 0.96), rgba(164, 234, 248, 0.52) 18%, transparent 52%), radial-gradient(36vmax at center, rgba(164, 234, 248, 0.3), transparent 66%),
+        radial-gradient(at center, rgba(164, 234, 248, 0.42), transparent 72%);
+    }
+
+    90% {
+      opacity: 1;
+      background:
+        radial-gradient(34vmax at center, hsla(0, 0%, 100%, 0.98), rgba(164, 234, 248, 0.78) 20%, rgba(164, 234, 248, 0.32) 46%, transparent 72%),
+        radial-gradient(62vmax at center, rgba(255, 255, 255, 0.62), rgba(164, 234, 248, 0.24) 38%, transparent 76%), radial-gradient(110vmax at center, rgba(164, 234, 248, 0.24), transparent 78%);
+    }
+
+    to {
+      opacity: 0;
+      background:
+        radial-gradient(52vmax at center, hsla(0, 0%, 100%, 0.9), rgba(164, 234, 248, 0.42) 24%, transparent 78%), radial-gradient(120vmax at center, rgba(164, 234, 248, 0.2), transparent 84%);
+    }
+  }
 }

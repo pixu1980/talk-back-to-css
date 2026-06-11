@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Back to CSS - Time Machine</title>
+    <style>
+      @layer reset, tokens, functions, fallback, future, scene;
+
+      @layer reset {
+        * {
+          box-sizing: border-box;
+        }
+        body {
+          min-block-size: 100svh;
+          margin: 0;
+          overflow: hidden;
+          display: grid;
+          place-items: center;
+          font-family:
+            ui-sans-serif,
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            'Segoe UI',
+            sans-serif;
+          color: white;
+          background: #020717;
+        }
+        button {
+          font: inherit;
+        }
+      }
+
+      @layer tokens {
+        :root {
+          --speed: 6s;
+          --charge: 88;
+          --car-size: 1;
+          --cyan: #2fbfff;
+          --blue: #1252ff;
+          --purple: #7b4fff;
+          --fire: #ff6a00;
+          --hot: #ffcc33;
+        }
+      }
+
+      @layer functions {
+        @function --energy(--charge <number>: 88) returns <percentage> {
+          result: calc(clamp(0, var(--charge), 100) * 1%);
+        }
+        @function --glow(--color <color>, --amount <number>: 0.42) returns <color> {
+          result: oklch(from var(--color) l c h / var(--amount));
+        }
+        @function --drive(--speed <time>: 6s) {
+          result: drive var(--speed) cubic-bezier(0.24, 0.84, 0.2, 1) infinite;
+        }
+      }
+
+      @layer fallback {
+        [is='time-machine'] {
+          --duration: var(--speed);
+          --power: var(--charge);
+          --scale: var(--car-size);
+        }
+      }
+
+      @layer future {
+        [is='time-machine'] {
+          --duration: attr(data-speed s, 6s);
+          --power: attr(data-charge type(<number>), 88);
+          --scale: attr(data-scale type(<number>), 1);
+          --trail-color: if(style(--power >= 88): var(--cyan) ; style(--power >= 60): var(--hot) ; else: var(--purple) ;);
+        }
+      }
+
+      @layer scene {
+        [is='time-machine'] {
+          position: fixed;
+          inset: 0;
+          isolation: isolate;
+          overflow: hidden;
+          background: radial-gradient(circle at 50% 35%, rgb(47 191 255 / 0.2), transparent 28rem), linear-gradient(#020717 0 55%, #0b102a 55% 72%, #03040a 72%);
+        }
+
+        [data-part='road'] {
+          position: absolute;
+          inset-inline: -20%;
+          inset-block-end: 0;
+          block-size: 35%;
+          transform: perspective(520px) rotateX(64deg);
+          transform-origin: 50% 100%;
+          background:
+            repeating-linear-gradient(90deg, transparent 0 76px, rgb(47 191 255 / 0.32) 78px 80px), repeating-linear-gradient(0deg, rgb(255 255 255 / 0.1) 0 4px, transparent 4px 80px),
+            linear-gradient(rgb(18 82 255 / 0.24), transparent);
+        }
+
+        [data-part='portal'] {
+          position: absolute;
+          inline-size: 26rem;
+          aspect-ratio: 1;
+          inset-inline: 50%;
+          inset-block-start: 12%;
+          translate: -50% 0;
+          border-radius: 50%;
+          background: radial-gradient(circle, transparent 38%, rgb(47 191 255 / 0.9) 40% 42%, transparent 44%), conic-gradient(from 0turn, var(--cyan), var(--purple), var(--hot), var(--cyan));
+          mask: radial-gradient(circle, transparent 0 40%, black 41% 58%, transparent 59%);
+          filter: blur(0.5px) drop-shadow(0 0 36px var(--cyan));
+          animation: spin 2.5s linear infinite;
+        }
+
+        [data-part='car'] {
+          position: absolute;
+          inline-size: calc(32rem * var(--scale));
+          block-size: calc(12rem * var(--scale));
+          inset-block-end: 22%;
+          inset-inline-start: -40rem;
+          animation: drive var(--duration) cubic-bezier(0.24, 0.84, 0.2, 1) infinite;
+          filter: drop-shadow(0 1.5rem 1rem rgb(0 0 0 / 0.45));
+        }
+
+        [data-part='body'] {
+          position: absolute;
+          inset-inline: 2rem 2rem;
+          inset-block-end: 2.2rem;
+          block-size: 5rem;
+          clip-path: polygon(4% 60%, 22% 20%, 58% 8%, 79% 24%, 94% 58%, 98% 88%, 3% 88%);
+          background: linear-gradient(160deg, #eef6ff, #8b97a7 42%, #252b35 43% 52%, #aab8c9 53% 100%);
+          box-shadow: inset 0 0 0 3px rgb(255 255 255 / 0.38);
+        }
+
+        [data-part='cabin'] {
+          position: absolute;
+          inline-size: 13rem;
+          block-size: 4.4rem;
+          inset-inline-start: 9.7rem;
+          inset-block-end: 6.1rem;
+          clip-path: polygon(12% 100%, 32% 8%, 78% 12%, 100% 100%);
+          background: linear-gradient(145deg, rgb(47 191 255 / 0.85), rgb(18 82 255 / 0.28));
+          border: 2px solid rgb(255 255 255 / 0.42);
+        }
+
+        [data-part='door'] {
+          position: absolute;
+          inline-size: 9rem;
+          block-size: 2.8rem;
+          inset-inline-start: 15rem;
+          inset-block-end: 10rem;
+          transform-origin: 0 100%;
+          rotate: -22deg;
+          clip-path: polygon(0 100%, 18% 0, 100% 18%, 82% 100%);
+          background: linear-gradient(145deg, #dce8f7, #7a8697);
+          box-shadow: 0 0 1rem rgb(47 191 255 / 0.4);
+        }
+
+        [data-part='wheel'] {
+          position: absolute;
+          inline-size: 5.4rem;
+          aspect-ratio: 1;
+          inset-block-end: 0;
+          border-radius: 50%;
+          background: radial-gradient(circle, var(--cyan) 0 16%, #101828 17% 38%, #050505 39% 58%, #2f3644 59% 72%, #050505 73%);
+          box-shadow: 0 0 1rem rgb(47 191 255 / 0.7);
+          animation: wheel 0.34s linear infinite;
+        }
+
+        [data-part='wheel']:nth-of-type(5) {
+          inset-inline-start: 5rem;
+        }
+        [data-part='wheel']:nth-of-type(6) {
+          inset-inline-end: 5rem;
+        }
+
+        [data-part='flux'] {
+          position: absolute;
+          inline-size: 15rem;
+          block-size: 0.8rem;
+          inset-inline-start: -11rem;
+          inset-block-end: 5rem;
+          border-radius: 999px;
+          background: linear-gradient(90deg, transparent, var(--cyan), white);
+          box-shadow:
+            0 0 34px var(--cyan),
+            0 0 80px var(--blue);
+          animation: flux 0.45s ease-in-out infinite alternate;
+        }
+
+        [data-part='flames'] {
+          position: absolute;
+          inset-inline: 0;
+          inset-block-end: 15%;
+          block-size: 2rem;
+          background: linear-gradient(90deg, transparent, var(--fire), var(--hot), transparent 62%), linear-gradient(90deg, transparent 35%, var(--fire), transparent 88%);
+          filter: blur(5px) drop-shadow(0 0 30px var(--fire));
+          opacity: 0;
+          animation: flame-trace var(--duration) linear infinite;
+        }
+
+        [data-part='dashboard'] {
+          position: fixed;
+          inset-inline-start: 1rem;
+          inset-block-start: 1rem;
+          display: grid;
+          gap: 0.25rem;
+          padding: 0.85rem 1rem;
+          border: 1px solid rgb(47 191 255 / 0.38);
+          border-radius: 0.85rem;
+          background: rgb(2 7 23 / 0.72);
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          color: #c8f2ff;
+        }
+
+        [data-part='dashboard'] strong {
+          color: var(--hot);
+        }
+
+        [data-action='audio'] {
+          position: fixed;
+          inset-inline-end: 1rem;
+          inset-block-end: 1rem;
+          padding: 0.75rem 1rem;
+          border: 1px solid rgb(47 191 255 / 0.72);
+          border-radius: 999px;
+          background: rgb(47 191 255 / 0.16);
+          color: white;
+          cursor: pointer;
+        }
+
+        @keyframes drive {
+          0% {
+            translate: 0 0;
+            scale: 0.7;
+            opacity: 0;
+          }
+          12% {
+            opacity: 1;
+          }
+          72% {
+            translate: calc(100vw + 30rem) -10vh;
+            scale: 1.05;
+            opacity: 1;
+          }
+          78% {
+            opacity: 0;
+          }
+          100% {
+            translate: calc(100vw + 30rem) -10vh;
+            scale: 1.05;
+            opacity: 0;
+          }
+        }
+        @keyframes wheel {
+          to {
+            rotate: 1turn;
+          }
+        }
+        @keyframes spin {
+          to {
+            rotate: 1turn;
+          }
+        }
+        @keyframes flux {
+          to {
+            scale: 1.05 1.6;
+            opacity: 0.65;
+          }
+        }
+        @keyframes flame-trace {
+          0%,
+          52% {
+            opacity: 0;
+            transform: scaleX(0.05);
+            transform-origin: 50% 50%;
+          }
+          58%,
+          84% {
+            opacity: 1;
+            transform: scaleX(1);
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main is="time-machine" data-audio-root data-speed="6" data-charge="88" data-scale="1">
+      <div data-part="portal"></div>
+      <div data-part="road"></div>
+      <div data-part="flames"></div>
+      <section data-part="car" aria-label="CSS drawn time machine car">
+        <div data-part="body"></div>
+        <div data-part="cabin"></div>
+        <div data-part="door"></div>
+        <div data-part="flux"></div>
+        <div data-part="wheel"></div>
+        <div data-part="wheel"></div>
+      </section>
+      <p data-part="dashboard"><strong>88 typed attrs</strong><span>data-speed="6"</span><span>data-charge="88"</span><span>Audio: generated engine hum, flux burst and tire fire.</span></p>
+      <button type="button" data-action="audio">Start sound</button>
+    </main>
+    <script>
+      const audioButton = document.querySelector('[data-action="audio"]');
+      const root = document.querySelector('[data-audio-root]');
+      let audioContext;
+      let running = false;
+
+      function createContext() {
+        audioContext ??= new AudioContext();
+        return audioContext;
+      }
+
+      function envGain(context, destination, start, attack, decay, peak = 0.18) {
+        const gain = context.createGain();
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(peak, start + attack);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + attack + decay);
+        gain.connect(destination);
+        return gain;
+      }
+
+      function tone(context, destination, frequency, start, duration, type = 'sawtooth', gain = 0.14) {
+        const oscillator = context.createOscillator();
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency, start);
+        const envelope = envGain(context, destination, start, 0.02, duration, gain);
+        oscillator.connect(envelope);
+        oscillator.start(start);
+        oscillator.stop(start + duration + 0.08);
+      }
+
+      function noise(context, destination, start, duration, gain = 0.18) {
+        const buffer = context.createBuffer(1, context.sampleRate * duration, context.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let index = 0; index < data.length; index += 1) {
+          data[index] = Math.random() * 2 - 1;
+        }
+        const source = context.createBufferSource();
+        source.buffer = buffer;
+        const filter = context.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(900, start);
+        filter.frequency.exponentialRampToValueAtTime(80, start + duration);
+        const envelope = envGain(context, destination, start, 0.005, duration, gain);
+        source.connect(filter);
+        filter.connect(envelope);
+        source.start(start);
+        source.stop(start + duration);
+      }
+
+      function pulseCssState(attribute) {
+        document.documentElement.toggleAttribute(attribute, true);
+        window.setTimeout(() => document.documentElement.toggleAttribute(attribute, false), 2400);
+      }
+
+      audioButton?.addEventListener('click', async () => {
+        const context = createContext();
+        if (context.state === 'suspended') {
+          await context.resume();
+        }
+        running = !running;
+        audioButton.textContent = running ? 'Stop sound' : 'Start sound';
+        root?.toggleAttribute('data-playing', running);
+        if (running) {
+          window.playScene?.(context);
+        }
+      });
+
+      window.playScene = function playScene(context) {
+        const destination = context.destination;
+        const now = context.currentTime + 0.04;
+        tone(context, destination, 55, now, 2.4, 'sawtooth', 0.08);
+        tone(context, destination, 82.41, now + 0.2, 2.2, 'sawtooth', 0.06);
+        noise(context, destination, now + 1.45, 0.75, 0.2);
+        [440, 660, 880, 1320].forEach((frequency, index) => {
+          tone(context, destination, frequency, now + 1.2 + index * 0.08, 0.24, 'square', 0.05);
+        });
+        if (running) window.setTimeout(() => window.playScene(context), 3600);
+      };
+    </script>
+  </body>
+</html>

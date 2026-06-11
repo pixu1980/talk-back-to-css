@@ -1,0 +1,38 @@
+<section data-topic="real-world-examples" data-menu-title="Real World 02 - Editorial Callout">
+  <div class="real-world-examples-slide">
+    <div class="real-world-examples-demo-layout">
+      <div class="real-world-examples-demo-header">
+        <h3>Editorial <mark>Callout</mark></h3>
+        <small>A CMS or markdown renderer emits semantic attributes - CSS builds the visual treatment.</small>
+      </div>
+      <iframe class="real-world-examples-demo-frame" src="./demos/callout.html" title="Editorial callout"></iframe>
+    </div>
+    <article class="real-world-examples-code">
+      <pre><code data-trim data-line-numbers class="hljs html">
+          &lt;aside is="back-callout" data-tone="warning" data-emphasis="soft" data-gap="5" data-icon="!"&gt;
+            &lt;strong&gt;Experimental CSS ahead.&lt;/strong&gt;
+            Use this demo in a controlled browser environment.
+          &lt;/aside&gt;
+        </code></pre>
+      <pre><code data-trim data-line-numbers class="hljs css">
+          [is='back-callout'] {
+            --tone: attr(data-tone type(&lt;custom-ident&gt;), info);
+            --emphasis: attr(data-emphasis type(&lt;custom-ident&gt;), soft);
+            --gap: attr(data-gap type(&lt;number&gt;), 4);
+
+            --accent: if(style(--tone: warning): #f79009; else: #1252ff;);
+            --surface: if(style(--emphasis: solid): var(--accent); else: oklch(from var(--accent) l c h / 0.12););
+            --ink: if(style(--emphasis: solid): white; else: #101828;);
+
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: calc(var(--gap) * 0.25rem);
+            padding: calc(var(--gap) * 0.25rem);
+            border: 1px solid oklch(from var(--accent) l c h / 0.4);
+            background: var(--surface);
+            color: var(--ink);
+          }
+        </code></pre>
+    </article>
+  </div>
+</section>

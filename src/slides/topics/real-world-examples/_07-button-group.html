@@ -1,0 +1,45 @@
+<section data-topic="real-world-examples" data-menu-title="Real World 07 - Button Group">
+  <div class="real-world-examples-slide">
+    <div class="real-world-examples-demo-layout">
+      <div class="real-world-examples-demo-header">
+        <h3>Button <mark>Group</mark></h3>
+        <small>A design system edge case solved by attribute contracts and conditional values.</small>
+      </div>
+      <iframe class="real-world-examples-demo-frame" src="./demos/button-group.html" title="Button group"></iframe>
+    </div>
+    <article class="real-world-examples-code">
+      <pre><code data-trim data-line-numbers class="hljs html">
+          &lt;div is="back-button-group" data-axis="inline"&gt;
+            &lt;button data-position="first"&gt;Left&lt;/button&gt;
+            &lt;button data-position="middle"&gt;Center&lt;/button&gt;
+            &lt;button data-position="last"&gt;Right&lt;/button&gt;
+          &lt;/div&gt;
+        </code></pre>
+      <pre><code data-trim data-line-numbers class="hljs css">
+          [is='back-button-group'] {
+            --axis: attr(data-axis type(&lt;custom-ident&gt;), inline);
+
+            display: flex;
+            flex-direction: if(style(--axis: block): column; else: row);
+          }
+
+          [is='back-button-group'] &gt; button {
+            --position: attr(data-position type(&lt;custom-ident&gt;), single);
+            --radius: 0.75rem;
+
+            border: 1px solid #1252ff;
+            padding: 0.75rem 1rem;
+            border-radius: if(
+              style((--position: first) and (--axis: inline)): var(--radius) 0 0 var(--radius);
+              style((--position: last) and (--axis: inline)): 0 var(--radius) var(--radius) 0;
+              style((--position: first) and (--axis: block)): var(--radius) var(--radius) 0 0;
+              style((--position: last) and (--axis: block)): 0 0 var(--radius) var(--radius);
+              else: 0;
+            );
+            margin-inline-start: if(style((--axis: inline) and ((--position: middle) or (--position: last))): -1px; else: 0;);
+            margin-block-start: if(style((--axis: block) and ((--position: middle) or (--position: last))): -1px; else: 0;);
+          }
+        </code></pre>
+    </article>
+  </div>
+</section>

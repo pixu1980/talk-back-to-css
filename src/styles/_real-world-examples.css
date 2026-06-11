@@ -1,0 +1,87 @@
+/* Styles for real world example slides (BTTF bonus demos + UI component demos) */
+.real-world-examples-demo-layout {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0.65rem;
+  min-block-size: 0;
+}
+
+.real-world-examples-demo-header {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.real-world-examples-slide {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  block-size: 100%;
+  min-block-size: 0;
+}
+
+.real-world-examples-demo-frame {
+  inline-size: 100%;
+  block-size: 100%;
+  min-block-size: 25rem;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 0.5rem;
+  background: white;
+  box-shadow: 0 1.4rem 4rem rgb(0 0 0 / 0.32);
+}
+
+.real-world-examples-code {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.real-world-examples-code pre {
+  max-block-size: min(11rem, 25vh);
+  overflow: auto;
+}
+
+.real-world-examples-demo-layout--resizable {
+  grid-template-rows: auto auto minmax(0, 1fr);
+}
+
+.real-world-examples-grid-controls {
+  justify-content: stretch;
+  border-radius: 0.5rem;
+}
+
+.real-world-examples-grid-controls label {
+  inline-size: 100%;
+}
+
+.real-world-examples-grid-controls input[type='range'] {
+  flex: 1 1 12rem;
+}
+
+.real-world-examples-resize-frame {
+  inline-size: min(100%, calc(var(--real-world-grid-inline-size, 720) * 1px));
+  min-inline-size: min(20rem, 100%);
+  max-inline-size: 100%;
+  block-size: 100%;
+  min-block-size: min(14rem, 38vh);
+  justify-self: center;
+  overflow: hidden;
+  resize: horizontal;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 0.5rem;
+  background: white;
+  box-shadow: 0 1.4rem 4rem rgb(0 0 0 / 0.32);
+}
+
+.real-world-examples-resize-frame .real-world-examples-demo-frame {
+  min-block-size: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (width < 900px) {
+  .real-world-examples-code {
+    grid-template-columns: 1fr;
+  }
+}

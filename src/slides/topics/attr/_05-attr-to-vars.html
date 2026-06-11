@@ -1,0 +1,48 @@
+<!-- Slide 6: attr() to custom properties -->
+<section data-topic="foundations" data-menu-title="attr() to vars">
+  <h3>Bridging to <mark>Custom Properties</mark></h3>
+  <small balance>Store typed attr() values in variables for reuse across the cascade.</small>
+</section>
+<section data-topic="foundations" data-menu-title="attr() to vars">
+  <h4>The pattern</h4>
+  <pre>
+    <code data-trim data-line-numbers class="hljs css">
+      .component {
+        /* Read once at the component root */
+        --speed: attr(data-speed number, 0);
+        --energy: attr(data-energy number, 1);
+        --theme: attr(data-theme token, light);
+      }
+
+      /* Descendants inherit and use */
+      .component .gauge {
+        width: calc(var(--speed) * 1px);
+      }
+
+      .component .glow {
+        box-shadow: 0 0 calc(var(--energy) * 10px) cyan;
+      }
+
+      .component .label {
+        color: if(var(--theme) = dark, white, black);
+      }
+    </code>
+  </pre>
+</section>
+<section data-topic="foundations" data-menu-title="Scoped inheritance">
+  <h4>Scoped inheritance</h4>
+  <pre>
+    <code data-trim data-line-numbers class="hljs html">
+    &lt;div class="card" data-energy="0.8"&gt;
+      &lt;header&gt;Low power mode&lt;/header&gt;
+      &lt;div class="glow"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="card" data-energy="1.6"&gt;
+      &lt;header&gt;High power mode&lt;/header&gt;
+      &lt;div class="glow"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    </code>
+  </pre>
+  <small balance> Each card reads its own <code>data-energy</code>. Children inherit the scoped value. No prop drilling. No JavaScript. </small>
+</section>

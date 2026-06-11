@@ -1,0 +1,34 @@
+<section data-topic="real-world-examples" data-menu-title="Real World 03 - Progress Meter">
+  <div class="real-world-examples-slide">
+    <div class="real-world-examples-demo-layout">
+      <div class="real-world-examples-demo-header">
+        <h3>Progress <mark>Meter</mark></h3>
+        <small>A number attribute feeds a computed percentage, while state controls the tone.</small>
+      </div>
+      <iframe class="real-world-examples-demo-frame" src="./demos/meter.html" title="Progress meter"></iframe>
+    </div>
+    <article class="real-world-examples-code">
+      <pre><code data-trim data-line-numbers class="hljs html">
+          &lt;div is="back-meter" data-label="Build health" data-value="82" data-state="success"&gt;&lt;/div&gt;
+          &lt;div is="back-meter" data-label="Storage usage" data-value="64" data-state="warning"&gt;&lt;/div&gt;
+          &lt;div is="back-meter" data-label="Error budget" data-value="24" data-state="danger"&gt;&lt;/div&gt;
+        </code></pre>
+      <pre><code data-trim data-line-numbers class="hljs css">
+          [is='back-meter'] {
+            --value: attr(data-value type(&lt;number&gt;), 0);
+            --state: attr(data-state type(&lt;custom-ident&gt;), info);
+
+            --accent: if(style(--state: danger): #d92d20; style(--state: warning): #f79009; style(--state: success): #079455; else: #1252ff;);
+          }
+
+          [is='back-meter']::after {
+            content: "";
+            display: block;
+            block-size: 0.9rem;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent) 0 calc(clamp(0, var(--value), 100) * 1%), #eaecf0 0);
+          }
+        </code></pre>
+    </article>
+  </div>
+</section>

@@ -27,7 +27,11 @@
 
 		h1 {
 			margin: 0;
-			transform: skewX(15deg);
+			transform: skewX(15deg) translateX(-80px);
+
+			&.visible {
+				transform: skewX(15deg) translateX(0);
+			}
 		}
 
 		h2,
@@ -46,13 +50,21 @@
 
 		h2 {
 			font-size: 13rem;
-			transform: skewX(8deg);
+			transform: skewX(8deg) translateX(80px);
+
+			&.visible {
+				transform: skewX(8deg) translateX(0);
+			}
 		}
 
 		h3 {
 			margin-top: -2rem;
 			font-size: 15rem;
-			transform: skewX(-10deg);
+			transform: skewX(-10deg) translateX(-80px);
+
+			&.visible {
+				transform: skewX(-10deg) translateX(0);
+			}
 
 			small {
 				font-size: 5rem;
@@ -62,22 +74,17 @@
 
 		h4 {
 			margin-top: -3rem;
-			transform: skewX(-10deg);
+			transform: skewX(-10deg) translateX(80px);
+
+			&.visible {
+				transform: skewX(-10deg) translateX(0);
+			}
 		}
 	}
 
 	.present {
 		back-to-the-future-doodle {
 			opacity: 1;
-
-			h2 {
-				transform: skewX(8deg);
-				opacity: 1;
-			}
-
-			h3 {
-				opacity: 1;
-			}
 		}
 	}
 }

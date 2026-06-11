@@ -1,0 +1,200 @@
+<!-- Fretboard demo: typed attr() creates a musical chord diagram -->
+<section class="slide slide--demo" data-background-color="var(--btf-gray-dark)">
+  <h3>Case Study: Fretboard</h3>
+  <p balance>Custom elements + typed attr() = dynamic chord diagrams</p>
+  <a href="https://codepen.io/pixu1980/pen/WbwybVQ" target="_blank" rel="noopener noreferrer">See this on Codepen</a>
+  <comparison>
+    <left style="place-content: center; place-items: center">
+      <fret-board-wrapper>
+        <fret-board frets="4" strings="6" chord="E Major" theme="blue">
+          <string-note string="6" open></string-note>
+          <string-note string="5" fret="2" finger="2"></string-note>
+          <string-note string="4" fret="2" finger="3"></string-note>
+          <string-note string="3" fret="1" finger="1"></string-note>
+          <string-note string="2" open></string-note>
+          <string-note string="1" open></string-note>
+        </fret-board>
+      </fret-board-wrapper>
+    </left>
+    <right>
+      <pre>
+        <code data-trim data-line-numbers class="hljs html">
+          &lt;fret-board frets="4" strings="6" chord="E Major"&gt;
+            &lt;string-note string="6" open&gt;&lt;/string-note&gt;
+            &lt;string-note string="5" fret="2" finger="2"&gt;&lt;/string-note&gt;
+            &lt;string-note string="4" fret="2" finger="3"&gt;&lt;/string-note&gt;
+            &lt;string-note string="3" fret="1" finger="1"&gt;&lt;/string-note&gt;
+            &lt;string-note string="2" open&gt;&lt;/string-note&gt;
+            &lt;string-note string="1" open&gt;&lt;/string-note&gt;
+          &lt;/fret-board&gt;
+        </code>
+      </pre>
+    </right>
+  </comparison>
+
+  <aside class="notes">
+    The fretboard is entirely CSS driven: - Grid layout adapts to frets/strings attributes - Note positions calculated via typed attr() - No JavaScript required for rendering - Theme variations
+    through custom properties
+  </aside>
+</section>
+
+<!-- Fretboard: CSS breakdown -->
+<section class="slide slide--code" data-background-color="var(--btf-gray-dark)">
+  <h3>Fretboard CSS: Typed attr() Magic</h3>
+  <comparison>
+    <left>
+      <h5>Grid from Attributes</h5>
+      <pre>
+        <code data-trim data-line-numbers class="hljs css">
+          /* fret board definition */
+          fret-board {
+            --fb--frets: 
+              attr(frets integer, 4);
+              
+            --fb--strings: 
+              attr(strings integer, 6);
+
+            display: grid;
+            grid-template-columns: repeat(var(--fb--frets), 1fr);
+            grid-template-rows: repeat(var(--fb--strings), 1fr);
+          }
+        </code>
+      </pre>
+    </left>
+    <right>
+      <h5>Note Positioning</h5>
+      <pre>
+        <code data-trim data-line-numbers class="hljs css">
+          /* single note position CSS */
+          string-note {
+            --fb--fret: 
+              attr(fret integer, 0);
+              
+            --fb--string: 
+              attr(string integer, 0);
+
+            grid-column: var(--fb--fret);
+            grid-row: var(--fb--string);
+            /* this sets the note positions */
+          }
+        </code>
+      </pre>
+    </right>
+  </comparison>
+  <aside class="notes">
+    Key typed attr() patterns: - type(&lt;number&gt;) ensures numeric grid calculations - Fallback values (4, 6, 0) prevent layout breaks - Custom properties cache attr() results for reuse
+  </aside>
+</section>
+
+<!-- Fretboard: interactive variations -->
+<section class="slide slide--demo" data-background-color="var(--btf-gray-dark)">
+  <h2>Fretboard Variations</h2>
+  <p>Change attributes, watch it adapt</p>
+  <fret-board-wrapper style="margin-block-start: 2rem">
+    <fret-board frets="4" strings="6" chord="A Major" theme="amber">
+      <string-note string="6" mute></string-note>
+      <string-note string="5" open></string-note>
+      <string-note string="4" fret="2" finger="1"></string-note>
+      <string-note string="3" fret="2" finger="2"></string-note>
+      <string-note string="2" fret="2" finger="3"></string-note>
+      <string-note string="1" open></string-note>
+    </fret-board>
+    <fret-board frets="4" strings="6" chord="D Major" theme="rose">
+      <string-note string="6" mute></string-note>
+      <string-note string="5" mute></string-note>
+      <string-note string="4" open></string-note>
+      <string-note string="3" fret="2" finger="1"></string-note>
+      <string-note string="2" fret="3" finger="3"></string-note>
+      <string-note string="1" fret="2" finger="2"></string-note>
+    </fret-board>
+    <fret-board frets="5" strings="6" chord="F Major" barre="1" theme="green">
+      <string-note string="6" fret="1" barre="6" finger="1"></string-note>
+      <string-note string="3" fret="2" finger="2"></string-note>
+      <string-note string="5" fret="3" finger="3"></string-note>
+      <string-note string="4" fret="3" finger="4"></string-note>
+    </fret-board>
+    <fret-board frets="4" strings="6" chord="E7sus4" theme="teal">
+      <string-note string="6" open></string-note>
+      <string-note string="5" fret="2" finger="2"></string-note>
+      <string-note string="4" fret="2" finger="3"></string-note>
+      <string-note string="3" fret="2" finger="4"></string-note>
+      <string-note string="2" barre="2" string="2" fret="3" finger="1"></string-note>
+      <string-note string="1" open></string-note>
+      <ol>
+        <li value="7"></li>
+      </ol>
+    </fret-board>
+  </fret-board-wrapper>
+  <aside class="notes">Same component, different attributes: - Open chords vs barre chords - Muted strings marked without finger numbers - Grid adjusts to fret count automatically</aside>
+</section>
+
+<section class="slide slide--demo" data-background-color="var(--btf-gray-dark)">
+  <audio data-autoplay src="./assets/audio/johnny-b-goode.m4a"></audio>
+  <h3>Johnny B. Goode Intro</h3>
+  <small balance>Chuck Berry's iconic riff as four attribute-driven fret positions</small>
+  <fret-board-wrapper style="margin-block-start: 2rem">
+    <fret-board class="fragment" frets="3" strings="6" chord="G-B Opener" barre="5" theme="blue">
+      <string-note string="3" fret="1" finger="1"></string-note>
+      <string-note string="2" fret="1" finger="2"></string-note>
+      <ol>
+        <li value="5"></li>
+      </ol>
+    </fret-board>
+    <fret-board class="fragment" frets="3" strings="6" chord="Double Stop" barre="4" theme="amber">
+      <string-note string="2" fret="2" finger="1"></string-note>
+      <string-note string="1" fret="2" finger="2"></string-note>
+      <ol>
+        <li value="4"></li>
+      </ol>
+    </fret-board>
+    <fret-board class="fragment" frets="4" strings="6" chord="High Peak" barre="5" theme="rose">
+      <string-note string="3" fret="3" finger="3"></string-note>
+      <string-note string="2" fret="4" finger="4"></string-note>
+      <ol>
+        <li value="5"></li>
+      </ol>
+    </fret-board>
+    <fret-board class="fragment" frets="3" strings="6" chord="D Drive" barre="5" theme="teal">
+      <string-note string="4" fret="3" finger="2"></string-note>
+      <ol>
+        <li value="5"></li>
+      </ol>
+    </fret-board>
+  </fret-board-wrapper>
+  <fret-board-wrapper style="margin-block-start: 2rem">
+    <fret-board class="fragment" frets="4" strings="6" chord="Sib" theme="blue">
+      <string-note string="6" mute></string-note>
+      <string-note string="5" fret="1" barre="5" finger="1"></string-note>
+      <string-note string="4" fret="3" finger="2"></string-note>
+      <string-note string="3" fret="3" finger="3"></string-note>
+      <string-note string="2" fret="3" finger="4"></string-note>
+    </fret-board>
+    <fret-board class="fragment" frets="4" strings="6" chord="Sib6" theme="amber">
+      <string-note string="6" mute></string-note>
+      <string-note string="5" fret="1" finger="1"></string-note>
+      <string-note string="4" fret="3" finger="2"></string-note>
+      <string-note string="3" open></string-note>
+      <string-note string="2" fret="3" finger="3"></string-note>
+      <string-note string="1" fret="3" finger="4"></string-note>
+    </fret-board>
+    <fret-board class="fragment" frets="4" strings="6" chord="Sib" theme="rose">
+      <string-note string="6" mute></string-note>
+      <string-note string="5" fret="1" barre="5" finger="1"></string-note>
+      <string-note string="4" fret="3" finger="2"></string-note>
+      <string-note string="3" fret="3" finger="3"></string-note>
+      <string-note string="2" fret="3" finger="4"></string-note>
+    </fret-board>
+    <fret-board class="fragment" frets="4" strings="6" chord="Sib6" theme="teal">
+      <string-note string="6" mute></string-note>
+      <string-note string="5" fret="1" finger="1"></string-note>
+      <string-note string="4" fret="3" finger="2"></string-note>
+      <string-note string="3" open></string-note>
+      <string-note string="2" fret="3" finger="3"></string-note>
+      <string-note string="1" fret="3" finger="4"></string-note>
+    </fret-board>
+  </fret-board-wrapper>
+  <aside class="notes">
+    Johnny B. Goode intro by Chuck Berry in A major. G-B Opener: G (string 3) and B (string 2) at guitar fret 5, G slides to 6. Double Stop: e (string 1) and B (string 2) at guitar fret 5, sliding
+    from 4. High Peak: G at guitar fret 7, B peaks at guitar fret 8 then descends. D Drive: D string (string 4) triple at guitar fret 7, the rhythmic anchor.
+  </aside>
+</section>

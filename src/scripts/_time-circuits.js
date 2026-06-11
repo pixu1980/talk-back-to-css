@@ -51,5 +51,5 @@ addEventListener("DOMContentLoaded", () => {
 	renderTimeError();
 
 	setInterval(renderTime, 1000);
-	setInterval(renderTimeError, 750);
+	setInterval(renderTimeError, 650);
 });

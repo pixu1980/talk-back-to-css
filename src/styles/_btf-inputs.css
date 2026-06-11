@@ -4,454 +4,435 @@
    ============================================ */
 
 @layer btf-inputs {
-	:root {
-		/* BTF Input Color Tokens */
-		--btf-input-bg: linear-gradient(
-			135deg,
-			#1a1a2e 0%,
-			#16213e 50%,
-			#0f3460 100%
-		);
-		--btf-input-border: #00f5ff;
-		--btf-input-border-glow: rgba(0, 245, 255, 0.4);
-		--btf-input-text: #e0e6ed;
-		--btf-input-accent: #ff9500;
-		--btf-input-focus: #00f5ff;
-		--btf-input-disabled: #3a3f47;
+  :root {
+    /* BTF Input Color Tokens */
+    --btf-input-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    --btf-input-border: #00f5ff;
+    --btf-input-border-glow: rgba(0, 245, 255, 0.4);
+    --btf-input-text: #e0e6ed;
+    --btf-input-accent: #ff9500;
+    --btf-input-focus: #00f5ff;
+    --btf-input-disabled: #3a3f47;
 
-		/* BTF Input Sizing */
-		--btf-input-radius: 0.4rem;
-		--btf-input-padding-x: 0.75rem;
-		--btf-input-padding-y: 0.5rem;
-		--btf-input-font-size: 0.9rem;
-		--btf-input-transition: all 0.2s ease;
-	}
+    /* BTF Input Sizing */
+    --btf-input-radius: 0.4rem;
+    --btf-input-padding-x: 0.75rem;
+    --btf-input-padding-y: 0.5rem;
+    --btf-input-font-size: 0.9rem;
+    --btf-input-transition: all 0.2s ease;
+  }
 
-	/* Base Input Reset */
-	:where(.demo-panel, .control-row) {
-		:where(input, select, textarea, button) {
-			font-family: "Michroma", "Segoe UI", system-ui, sans-serif;
-			font-size: var(--btf-input-font-size);
-			color: var(--btf-input-text);
-			transition: var(--btf-input-transition);
-		}
+  /* Base Input Reset */
+  :where(.demo-panel, .control-row) {
+    :where(input, select, textarea, button) {
+      font-family: 'Michroma', 'Segoe UI', system-ui, sans-serif;
+      font-size: var(--btf-input-font-size);
+      color: var(--btf-input-text);
+      transition: var(--btf-input-transition);
+    }
 
-		/* ============================================
+    /* ============================================
      Buttons - Time Circuit Style
      ============================================ */
-		button {
-			appearance: none;
-			background: linear-gradient(180deg, #2a2a4a 0%, #1a1a2e 100%);
-			border: 1px solid var(--btf-input-border);
-			border-radius: var(--btf-input-radius);
-			padding: var(--btf-input-padding-y) var(--btf-input-padding-x);
-			color: var(--btf-input-text);
-			cursor: pointer;
-			text-transform: uppercase;
-			letter-spacing: 0.05em;
-			font-size: 0.75rem;
-			font-weight: 600;
-			box-shadow:
-				0 0 8px var(--btf-input-border-glow),
-				inset 0 1px 0 rgba(255, 255, 255, 0.1);
-			position: relative;
-			overflow: hidden;
+    button {
+      appearance: none;
+      background: linear-gradient(180deg, #2a2a4a 0%, #1a1a2e 100%);
+      border: 1px solid var(--btf-input-border);
+      border-radius: var(--btf-input-radius);
+      padding: var(--btf-input-padding-y) var(--btf-input-padding-x);
+      color: var(--btf-input-text);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      box-shadow:
+        0 0 8px var(--btf-input-border-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
 
-			&::before {
-				content: "";
-				position: absolute;
-				inset: 0;
-				background: linear-gradient(
-					180deg,
-					rgba(0, 245, 255, 0.1) 0%,
-					transparent 50%
-				);
-				opacity: 0;
-				transition: opacity 0.2s ease;
-			}
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 245, 255, 0.1) 0%, transparent 50%);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
 
-			&:hover::before {
-				opacity: 1;
-			}
+      &:hover::before {
+        opacity: 1;
+      }
 
-			&:hover {
-				border-color: #00f5ff;
-				box-shadow:
-					0 0 15px var(--btf-input-border-glow),
-					0 0 30px rgba(0, 245, 255, 0.2),
-					inset 0 1px 0 rgba(255, 255, 255, 0.15);
-				transform: translateY(-1px);
-			}
+      &:hover {
+        border-color: #00f5ff;
+        box-shadow:
+          0 0 15px var(--btf-input-border-glow),
+          0 0 30px rgba(0, 245, 255, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        transform: translateY(-1px);
+      }
 
-			&:active {
-				transform: translateY(0);
-				box-shadow:
-					0 0 5px var(--btf-input-border-glow),
-					inset 0 2px 4px rgba(0, 0, 0, 0.3);
-			}
+      &:active {
+        transform: translateY(0);
+        box-shadow:
+          0 0 5px var(--btf-input-border-glow),
+          inset 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
 
-			&[aria-pressed="true"] {
-				background: linear-gradient(180deg, #0a3a4a 0%, #062a3e 100%);
-				border-color: var(--btf-input-accent);
-				color: var(--btf-input-accent);
-				box-shadow:
-					0 0 12px rgba(255, 149, 0, 0.4),
-					inset 0 0 10px rgba(255, 149, 0, 0.1);
-			}
+      &[aria-pressed='true'] {
+        background: linear-gradient(180deg, #0a3a4a 0%, #062a3e 100%);
+        border-color: var(--btf-input-accent);
+        color: var(--btf-input-accent);
+        box-shadow:
+          0 0 12px rgba(255, 149, 0, 0.4),
+          inset 0 0 10px rgba(255, 149, 0, 0.1);
+      }
 
-			&:disabled {
-				opacity: 0.5;
-				cursor: not-allowed;
-				box-shadow: none;
-			}
-		}
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+    }
 
-		/* ============================================
+    /* ============================================
      Range Inputs - Flux Capacitor Slider
      ============================================ */
-		input[type="range"] {
-			appearance: none;
-			width: 100%;
-			min-width: 120px;
-			height: 8px;
-			background: linear-gradient(90deg, #1a1a2e, #2a2a4a);
-			border: 1px solid var(--btf-input-border);
-			border-radius: 4px;
-			cursor: pointer;
-			box-shadow:
-				inset 0 2px 4px rgba(0, 0, 0, 0.5),
-				0 0 6px var(--btf-input-border-glow);
+    input[type='range'] {
+      --btf-range-track-size: 8px;
+      --btf-range-thumb-size: 20px;
 
-			&::-webkit-slider-thumb {
-				appearance: none;
-				width: 20px;
-				height: 20px;
-				background: radial-gradient(circle at 30% 30%, #00f5ff, #0088aa);
-				border: 2px solid #00f5ff;
-				border-radius: 50%;
-				cursor: grab;
-				box-shadow:
-					0 0 10px rgba(0, 245, 255, 0.6),
-					0 0 20px rgba(0, 245, 255, 0.3),
-					inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-				transition: all 0.15s ease;
-			}
+      appearance: none;
+      inline-size: 100%;
+      min-inline-size: 120px;
+      block-size: var(--btf-range-thumb-size);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      box-shadow: none;
 
-			&::-moz-range-thumb {
-				width: 20px;
-				height: 20px;
-				background: radial-gradient(circle at 30% 30%, #00f5ff, #0088aa);
-				border: 2px solid #00f5ff;
-				border-radius: 50%;
-				cursor: grab;
-				box-shadow:
-					0 0 10px rgba(0, 245, 255, 0.6),
-					0 0 20px rgba(0, 245, 255, 0.3);
-			}
+      &::-webkit-slider-runnable-track {
+        block-size: var(--btf-range-track-size);
+        background: linear-gradient(90deg, #1a1a2e, #2a2a4a);
+        border: 1px solid var(--btf-input-border);
+        border-radius: 999px;
+        box-shadow:
+          inset 0 2px 4px rgba(0, 0, 0, 0.5),
+          0 0 6px var(--btf-input-border-glow);
+      }
 
-			&:hover::-webkit-slider-thumb {
-				box-shadow:
-					0 0 15px rgba(0, 245, 255, 0.8),
-					0 0 30px rgba(0, 245, 255, 0.4);
-				transform: scale(1.1);
-			}
+      &::-moz-range-track {
+        block-size: var(--btf-range-track-size);
+        background: linear-gradient(90deg, #1a1a2e, #2a2a4a);
+        border: 1px solid var(--btf-input-border);
+        border-radius: 999px;
+        box-shadow:
+          inset 0 2px 4px rgba(0, 0, 0, 0.5),
+          0 0 6px var(--btf-input-border-glow);
+      }
 
-			&:active::-webkit-slider-thumb {
-				cursor: grabbing;
-				background: radial-gradient(circle at 30% 30%, #ff9500, #cc7700);
-				border-color: #ff9500;
-				box-shadow:
-					0 0 15px rgba(255, 149, 0, 0.8),
-					0 0 30px rgba(255, 149, 0, 0.4);
-			}
-		}
+      &::-webkit-slider-thumb {
+        appearance: none;
+        inline-size: var(--btf-range-thumb-size);
+        block-size: var(--btf-range-thumb-size);
+        margin-block-start: calc((var(--btf-range-track-size) - var(--btf-range-thumb-size)) / 2);
+        background: radial-gradient(circle at 30% 30%, #00f5ff, #0088aa);
+        border: 2px solid #00f5ff;
+        border-radius: 50%;
+        cursor: grab;
+        box-shadow:
+          0 0 10px rgba(0, 245, 255, 0.6),
+          0 0 20px rgba(0, 245, 255, 0.3),
+          inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+        transition: all 0.15s ease;
+      }
 
-		/* ============================================
+      &::-moz-range-thumb {
+        inline-size: var(--btf-range-thumb-size);
+        block-size: var(--btf-range-thumb-size);
+        background: radial-gradient(circle at 30% 30%, #00f5ff, #0088aa);
+        border: 2px solid #00f5ff;
+        border-radius: 50%;
+        cursor: grab;
+        box-shadow:
+          0 0 10px rgba(0, 245, 255, 0.6),
+          0 0 20px rgba(0, 245, 255, 0.3);
+      }
+
+      &:hover::-webkit-slider-thumb {
+        box-shadow:
+          0 0 15px rgba(0, 245, 255, 0.8),
+          0 0 30px rgba(0, 245, 255, 0.4);
+        transform: scale(1.1);
+      }
+
+      &:active::-webkit-slider-thumb {
+        cursor: grabbing;
+        background: radial-gradient(circle at 30% 30%, #ff9500, #cc7700);
+        border-color: #ff9500;
+        box-shadow:
+          0 0 15px rgba(255, 149, 0, 0.8),
+          0 0 30px rgba(255, 149, 0, 0.4);
+      }
+    }
+
+    /* ============================================
      Select Inputs - Destination Selector
      ============================================ */
-		select {
-			appearance: none;
-			background: linear-gradient(180deg, #2a2a4a 0%, #1a1a2e 100%);
-			border: 1px solid var(--btf-input-border);
-			border-radius: var(--btf-input-radius);
-			padding: var(--btf-input-padding-y)
-				calc(var(--btf-input-padding-x) + 1.5rem) var(--btf-input-padding-y)
-				var(--btf-input-padding-x);
-			color: var(--btf-input-text);
-			cursor: pointer;
-			box-shadow:
-				0 0 8px var(--btf-input-border-glow),
-				inset 0 1px 0 rgba(255, 255, 255, 0.1);
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300f5ff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-			background-repeat: no-repeat;
-			background-position: right 0.75rem center;
-			min-width: 120px;
+    select {
+      appearance: none;
+      background: linear-gradient(180deg, #2a2a4a 0%, #1a1a2e 100%);
+      border: 1px solid var(--btf-input-border);
+      border-radius: var(--btf-input-radius);
+      padding: var(--btf-input-padding-y) calc(var(--btf-input-padding-x) + 1.5rem) var(--btf-input-padding-y) var(--btf-input-padding-x);
+      color: var(--btf-input-text);
+      cursor: pointer;
+      box-shadow:
+        0 0 8px var(--btf-input-border-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300f5ff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      min-width: 120px;
 
-			&:hover {
-				border-color: #00f5ff;
-				box-shadow:
-					0 0 15px var(--btf-input-border-glow),
-					0 0 30px rgba(0, 245, 255, 0.2);
-			}
+      &:hover {
+        border-color: #00f5ff;
+        box-shadow:
+          0 0 15px var(--btf-input-border-glow),
+          0 0 30px rgba(0, 245, 255, 0.2);
+      }
 
-			&:focus {
-				outline: none;
-				border-color: var(--btf-input-accent);
-				box-shadow:
-					0 0 15px rgba(255, 149, 0, 0.4),
-					0 0 30px rgba(255, 149, 0, 0.2);
-			}
+      &:focus {
+        outline: none;
+        border-color: var(--btf-input-accent);
+        box-shadow:
+          0 0 15px rgba(255, 149, 0, 0.4),
+          0 0 30px rgba(255, 149, 0, 0.2);
+      }
 
-			option {
-				background: #1a1a2e;
-				color: var(--btf-input-text);
-				padding: 0.5rem;
-			}
-		}
+      option {
+        background: #1a1a2e;
+        color: var(--btf-input-text);
+        padding: 0.5rem;
+      }
+    }
 
-		/* ============================================
+    /* ============================================
      Text Inputs - Time Circuit Display
      ============================================ */
-		:where(
-				input[type="text"],
-				input[type="number"],
-				input[type="email"],
-				input[type="url"],
-				textarea
-			) {
-			appearance: none;
-			background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%);
-			border: 1px solid var(--btf-input-border);
-			border-radius: var(--btf-input-radius);
-			padding: var(--btf-input-padding-y) var(--btf-input-padding-x);
-			color: #00f5ff;
-			font-family: "Digital Numbers", "Courier New", monospace;
-			letter-spacing: 0.1em;
-			box-shadow:
-				inset 0 2px 8px rgba(0, 0, 0, 0.6),
-				0 0 6px var(--btf-input-border-glow);
-			text-shadow: 0 0 8px rgba(0, 245, 255, 0.6);
-		}
+    :where(input[type='text'], input[type='number'], input[type='email'], input[type='url'], textarea) {
+      appearance: none;
+      background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%);
+      border: 1px solid var(--btf-input-border);
+      border-radius: var(--btf-input-radius);
+      padding: var(--btf-input-padding-y) var(--btf-input-padding-x);
+      color: #00f5ff;
+      font-family: 'Digital Numbers', 'Courier New', monospace;
+      letter-spacing: 0.1em;
+      box-shadow:
+        inset 0 2px 8px rgba(0, 0, 0, 0.6),
+        0 0 6px var(--btf-input-border-glow);
+      text-shadow: 0 0 8px rgba(0, 245, 255, 0.6);
+    }
 
-		input[type="number"] {
-			min-width: 80px;
-			text-align: center;
-		}
+    input[type='number'] {
+      min-width: 80px;
+      text-align: center;
+    }
 
-		:where(input[type="text"], input[type="number"], textarea) {
-			&:focus {
-				outline: none;
-				border-color: var(--btf-input-accent);
-				box-shadow:
-					inset 0 2px 8px rgba(0, 0, 0, 0.6),
-					0 0 15px rgba(255, 149, 0, 0.4);
-				color: var(--btf-input-accent);
-				text-shadow: 0 0 8px rgba(255, 149, 0, 0.6);
-			}
-		}
+    :where(input[type='text'], input[type='number'], textarea) {
+      &:focus {
+        outline: none;
+        border-color: var(--btf-input-accent);
+        box-shadow:
+          inset 0 2px 8px rgba(0, 0, 0, 0.6),
+          0 0 15px rgba(255, 149, 0, 0.4);
+        color: var(--btf-input-accent);
+        text-shadow: 0 0 8px rgba(255, 149, 0, 0.6);
+      }
+    }
 
-		:where(input, textarea) {
-			&::placeholder {
-				color: rgba(0, 245, 255, 0.4);
-				font-family: "Michroma", sans-serif;
-				letter-spacing: 0.05em;
-			}
-		}
-		/* ============================================
+    :where(input, textarea) {
+      &::placeholder {
+        color: rgba(0, 245, 255, 0.4);
+        font-family: 'Michroma', sans-serif;
+        letter-spacing: 0.05em;
+      }
+    }
+    /* ============================================
      Checkboxes - Flux Indicator
      ============================================ */
-		input[type="checkbox"] {
-			appearance: none;
-			width: 22px;
-			height: 22px;
-			background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%);
-			border: 2px solid var(--btf-input-border);
-			border-radius: 4px;
-			cursor: pointer;
-			position: relative;
-			box-shadow:
-				inset 0 2px 4px rgba(0, 0, 0, 0.5),
-				0 0 6px var(--btf-input-border-glow);
-			transition: all 0.2s ease;
+    input[type='checkbox'] {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%);
+      border: 2px solid var(--btf-input-border);
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 6px var(--btf-input-border-glow);
+      transition: all 0.2s ease;
 
-			&::after {
-				content: "";
-				position: absolute;
-				inset: 3px;
-				background: radial-gradient(circle, #00f5ff 0%, #0088aa 100%);
-				border-radius: 2px;
-				opacity: 0;
-				transform: scale(0);
-				transition: all 0.2s ease;
-				box-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
-			}
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        background: radial-gradient(circle, #00f5ff 0%, #0088aa 100%);
+        border-radius: 2px;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.2s ease;
+        box-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
+      }
 
-			&:checked::after {
-				opacity: 1;
-				transform: scale(1);
-			}
+      &:checked::after {
+        opacity: 1;
+        transform: scale(1);
+      }
 
-			&:checked {
-				border-color: var(--btf-input-accent);
-				box-shadow:
-					inset 0 2px 4px rgba(0, 0, 0, 0.5),
-					0 0 12px rgba(255, 149, 0, 0.4);
-			}
+      &:checked {
+        border-color: var(--btf-input-accent);
+        box-shadow:
+          inset 0 2px 4px rgba(0, 0, 0, 0.5),
+          0 0 12px rgba(255, 149, 0, 0.4);
+      }
 
-			&:checked::after {
-				background: radial-gradient(circle, #ff9500 0%, #cc7700 100%);
-				box-shadow: 0 0 10px rgba(255, 149, 0, 0.8);
-			}
-		}
+      &:checked::after {
+        background: radial-gradient(circle, #ff9500 0%, #cc7700 100%);
+        box-shadow: 0 0 10px rgba(255, 149, 0, 0.8);
+      }
+    }
 
-		/* ============================================
+    /* ============================================
      Radio Buttons - Destination Selector
      ============================================ */
-		input[type="radio"] {
-			appearance: none;
-			width: 22px;
-			height: 22px;
-			background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%);
-			border: 2px solid var(--btf-input-border);
-			border-radius: 50%;
-			cursor: pointer;
-			position: relative;
-			box-shadow:
-				inset 0 2px 4px rgba(0, 0, 0, 0.5),
-				0 0 6px var(--btf-input-border-glow);
-			transition: all 0.2s ease;
+    input[type='radio'] {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%);
+      border: 2px solid var(--btf-input-border);
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 6px var(--btf-input-border-glow);
+      transition: all 0.2s ease;
 
-			&::after {
-				content: "";
-				position: absolute;
-				inset: 4px;
-				background: radial-gradient(circle at 30% 30%, #00f5ff, #0088aa);
-				border-radius: 50%;
-				opacity: 0;
-				transform: scale(0);
-				transition: all 0.2s ease;
-				box-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
-			}
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 4px;
+        background: radial-gradient(circle at 30% 30%, #00f5ff, #0088aa);
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.2s ease;
+        box-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
+      }
 
-			&:checked::after {
-				opacity: 1;
-				transform: scale(1);
-			}
+      &:checked::after {
+        opacity: 1;
+        transform: scale(1);
+      }
 
-			&:checked {
-				border-color: var(--btf-input-accent);
-				box-shadow:
-					inset 0 2px 4px rgba(0, 0, 0, 0.5),
-					0 0 12px rgba(255, 149, 0, 0.4);
-			}
+      &:checked {
+        border-color: var(--btf-input-accent);
+        box-shadow:
+          inset 0 2px 4px rgba(0, 0, 0, 0.5),
+          0 0 12px rgba(255, 149, 0, 0.4);
+      }
 
-			&:checked::after {
-				background: radial-gradient(circle at 30% 30%, #ff9500, #cc7700);
-				box-shadow: 0 0 10px rgba(255, 149, 0, 0.8);
-			}
-		}
+      &:checked::after {
+        background: radial-gradient(circle at 30% 30%, #ff9500, #cc7700);
+        box-shadow: 0 0 10px rgba(255, 149, 0, 0.8);
+      }
+    }
 
-		/* ============================================
+    /* ============================================
      Labels - Styled for BTF Theme
      ============================================ */
-		label {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.5rem;
-			color: var(--btf-input-text);
-			font-family: "Michroma", sans-serif;
-			font-size: 0.75rem;
-			text-transform: uppercase;
-			letter-spacing: 0.08em;
-			cursor: pointer;
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--btf-input-text);
+      font-family: 'Michroma', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
 
-			span {
-				color: rgba(224, 230, 237, 0.7);
-			}
-		}
-	}
+      span {
+        color: rgba(224, 230, 237, 0.7);
+      }
+    }
+  }
 
-	/* ============================================
+  /* ============================================
    Control Row Layout
    ============================================ */
-	.control-row {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-		gap: 0.75rem;
-		padding: 0.75rem;
-		background: linear-gradient(
-			180deg,
-			rgba(26, 26, 46, 0.8) 0%,
-			rgba(10, 10, 26, 0.9) 100%
-		);
-		border-top: 1px solid rgba(0, 245, 255, 0.2);
-		border-radius: 0 0 0.5rem 0.5rem;
-	}
+  .control-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: linear-gradient(180deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 26, 0.9) 100%);
+    border-top: 1px solid rgba(0, 245, 255, 0.2);
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
 
-	/* ============================================
+  /* ============================================
      Demo Panel Enhancements
      ============================================ */
-	.demo-panel {
-		background: linear-gradient(
-			135deg,
-			rgba(26, 26, 46, 0.95) 0%,
-			rgba(15, 52, 96, 0.9) 50%,
-			rgba(22, 33, 62, 0.95) 100%
-		);
-		border: 1px solid rgba(0, 245, 255, 0.3);
-		border-radius: 0.5rem;
-		box-shadow:
-			0 0 20px rgba(0, 245, 255, 0.15),
-			0 0 40px rgba(0, 0, 0, 0.5),
-			inset 0 1px 0 rgba(255, 255, 255, 0.05);
-		position: relative;
-		overflow: hidden;
+  .demo-panel {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(15, 52, 96, 0.9) 50%, rgba(22, 33, 62, 0.95) 100%);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    border-radius: 0.5rem;
+    box-shadow:
+      0 0 20px rgba(0, 245, 255, 0.15),
+      0 0 40px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
 
-		&::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background:
-				radial-gradient(
-					ellipse at 50% 0%,
-					rgba(0, 245, 255, 0.1) 0%,
-					transparent 50%
-				),
-				radial-gradient(
-					ellipse at 100% 100%,
-					rgba(255, 149, 0, 0.05) 0%,
-					transparent 40%
-				);
-			pointer-events: none;
-		}
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 245, 255, 0.1) 0%, transparent 50%), radial-gradient(ellipse at 100% 100%, rgba(255, 149, 0, 0.05) 0%, transparent 40%);
+      pointer-events: none;
+    }
 
-		/* Flux Panel specific styling */
-		&.flux-panel {
-			border-color: rgba(0, 245, 255, 0.4);
-			box-shadow:
-				0 0 25px rgba(0, 245, 255, 0.2),
-				0 0 50px rgba(0, 0, 0, 0.6),
-				inset 0 0 30px rgba(0, 245, 255, 0.05);
+    /* Flux Panel specific styling */
+    &.flux-panel {
+      border-color: rgba(0, 245, 255, 0.4);
+      box-shadow:
+        0 0 25px rgba(0, 245, 255, 0.2),
+        0 0 50px rgba(0, 0, 0, 0.6),
+        inset 0 0 30px rgba(0, 245, 255, 0.05);
 
-			&[data-era="past"] {
-				border-color: rgba(255, 149, 0, 0.4);
-				box-shadow:
-					0 0 25px rgba(255, 149, 0, 0.2),
-					0 0 50px rgba(0, 0, 0, 0.6),
-					inset 0 0 30px rgba(255, 149, 0, 0.05);
-			}
-		}
+      &[data-era='past'] {
+        border-color: rgba(255, 149, 0, 0.4);
+        box-shadow:
+          0 0 25px rgba(255, 149, 0, 0.2),
+          0 0 50px rgba(0, 0, 0, 0.6),
+          inset 0 0 30px rgba(255, 149, 0, 0.05);
+      }
+    }
 
-		/* Timeline console styling */
-		&.timeline-console {
-			background: linear-gradient(
-				180deg,
-				rgba(20, 20, 35, 0.98) 0%,
-				rgba(30, 30, 50, 0.95) 100%
-			);
-			border-color: rgba(0, 245, 255, 0.5);
-		}
-	}
+    /* Timeline console styling */
+    &.timeline-console {
+      background: linear-gradient(180deg, rgba(20, 20, 35, 0.98) 0%, rgba(30, 30, 50, 0.95) 100%);
+      border-color: rgba(0, 245, 255, 0.5);
+    }
+  }
 }
